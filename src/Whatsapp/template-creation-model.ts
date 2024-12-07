@@ -1,9 +1,12 @@
 import {
   Button,
+  FileMetadata,
+  MessageTemplateType,
+  Section,
+  TemplateRejectionReason,
   WhatsAppComponentType,
   WhatsAppHeaderComponentType
-} from './shared'
-import { FileMetadata, MessageTemplateType, Section, TemplateRejectionReason } from './whatsapp'
+} from './whatsapp'
 
 
 export type TemplateCreationComponentExamples = {

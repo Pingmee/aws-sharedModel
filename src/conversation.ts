@@ -1,10 +1,11 @@
 import {
-  LoginPlatform,
   RichContent,
   WhatsAppAttachmentURL,
   WhatsAppMessageContext,
   WhatsAppMessageStatus, WhatsAppPhoneNumber
 } from './Whatsapp/whatsapp'
+import { LoginPlatform } from './login'
+import { FileInterface } from './file-interface'
 
 
 export type BaseMessageSchemeKeys = {
