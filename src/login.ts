@@ -1,4 +1,4 @@
-export const enum LoginPlatform {
+export enum LoginPlatform {
   email = 'email',
   google = 'google'
 }

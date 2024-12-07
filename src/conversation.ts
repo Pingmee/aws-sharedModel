@@ -13,12 +13,12 @@ export type BaseMessageSchemeKeys = {
   createdAt: number
 }
 
-export const enum MessageType {
+export enum MessageType {
   default = "default",
   informative = "informative"
 }
 
-export const enum Initiator {
+export enum Initiator {
   person = "person",
   bot = "bot"
 }
@@ -114,7 +114,7 @@ export type BusinessSettings = {
   subscriptionStartDate?: number
 }
 
-export const enum PlatformType {
+export enum PlatformType {
   whatsapp = 'whatsapp',
   powerlink = 'powerlink'
 }
@@ -176,13 +176,13 @@ export type DBObjectInterface<T> = {
   lastEvaluatedKey: Record<string, any> | undefined
 }
 
-export const enum ConversationStatusCase {
+export enum ConversationStatusCase {
   open = 'open',
   closed = 'closed',
   standby = 'standby'
 }
 
-export const enum ConversationAnswerMode {
+export enum ConversationAnswerMode {
   bot = 'bot',
   manual = 'manual',
   ai = 'ai'

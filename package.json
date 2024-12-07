@@ -1,14 +1,26 @@
 {
-  "name": "aws-sharedmodel",
-  "version": "1.0.3",
+  "name": "@Pingmee/aws-sharedmodel",
+  "repository": "https://github.com/Pingmee/aws-sharedModel.git",
+  "version": "1.0.5",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
   },
   "files": [
     "dist"
   ],
   "keywords": [],
   "author": "",
+  "main": "dist/index.js",
+  "type": "module",
+  "types": "dist/index.d.ts",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "@eslint/js": "^9.16.0",
+    "eslint": "^9.16.0",
+    "eslint-plugin-react": "^7.37.2",
+    "globals": "^15.13.0",
+    "typescript-eslint": "^8.17.0"
+  }
 }

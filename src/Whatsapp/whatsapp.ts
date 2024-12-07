@@ -1,7 +1,7 @@
 import { Message } from '../conversation'
 import { TemplateInformation } from './template-creation-model'
 
-export const enum WhatsAppMessageStatus {
+export enum WhatsAppMessageStatus {
   pending = "pending",
   failed = "failed",
   sent = "sent",
@@ -110,7 +110,7 @@ export interface InteractiveListData {
   sections?: InteractiveSectionButton[]
 }
 
-export const enum TemplateType {
+export enum TemplateType {
   interactive = 'interactive',
   template = 'template',
   text = 'text'
@@ -143,13 +143,13 @@ export interface WhatsAppErrorMessage {
   };
 }
 
-export const enum MessageTemplateType {
+export enum MessageTemplateType {
   whatsapp = 'whatsapp',
   company = 'company',
   private = 'private'
 }
 
-export const enum TemplateRejectionReason {
+export enum TemplateRejectionReason {
   ABUSIVE_CONTENT = 'ABUSIVE_CONTENT',
   INVALID_FORMAT = 'INVALID_FORMAT',
   NONE = 'NONE',
@@ -174,7 +174,7 @@ export type Section = {
   rows: Row[];
 };
 
-export const enum WhatsAppComponentButtonType {
+export enum WhatsAppComponentButtonType {
   reply = "reply",
   url = "url",
   phone_number = "phone_number",
@@ -196,7 +196,7 @@ export type Action = {
   sections: Section[];
 };
 
-export const enum WhatsAppComponentType {
+export enum WhatsAppComponentType {
   header = 'header',
   body = 'body',
   footer = 'footer',
@@ -205,7 +205,7 @@ export const enum WhatsAppComponentType {
   button = 'button'
 }
 
-export const enum WhatsAppHeaderComponentType {
+export enum WhatsAppHeaderComponentType {
   none = 'none',
   text = 'text',
   image = 'image',
