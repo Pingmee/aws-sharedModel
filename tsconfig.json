@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "commonjs",
+    "target": "ES2015",
+    "declaration": true, // Generate .d.ts files
+    "declarationMap": true, // Optional: Map declarations to source files
+    "sourceMap": true, // Optional: Generate source maps for debugging
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

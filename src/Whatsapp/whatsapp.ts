@@ -1,5 +1,5 @@
-import { TemplateInformation } from '@/components/Models/Templates/Create/TemplateCreationModel'
 import { Message } from '../conversation'
+import { TemplateInformation } from './template-creation-model'
 
 export const enum WhatsAppMessageStatus {
   pending = "pending",
