@@ -1,12 +1,19 @@
 import {
   RichContent,
+  WhatsAppAttachmentType,
   WhatsAppAttachmentURL,
   WhatsAppMessageContext,
-  WhatsAppMessageStatus, WhatsAppPhoneNumber
-} from './Whatsapp/whatsapp'
-import { LoginPlatform } from './login'
-import { FileInterface } from './file-interface'
+  WhatsAppMessageStatus,
+  WhatsAppPhoneNumber
+} from './Whatsapp/whatsapp.js'
+import { LoginPlatform } from './login.js'
+import { FileInterface } from './file-interface.js'
 
+export type ExtractedUserJWTPayload = {
+  user: User
+  iat: number;
+  exp: number;
+};
 
 export type BaseMessageSchemeKeys = {
   messageId: string,
@@ -29,15 +36,19 @@ export type AgentIdentification = {
 }
 
 export type Message = BaseMessageSchemeKeys & {
+  messageId: string
   sender: string
   receiver: string
   initiator: Initiator
   status: WhatsAppMessageStatus
-  message: string
   updatedAt: number
   participantsIdentifiers: string
+  message: string
   type: MessageType
   associatedTo: string
+  messageDirection: MessageDirection
+
+  hasReaction?: boolean
   hasAttachment?: boolean
 
   agentIdentification?: AgentIdentification
@@ -50,11 +61,24 @@ export type Message = BaseMessageSchemeKeys & {
   tempAttachmentFile?: FileInterface
 }
 
+export interface MessagesDBScheme {
+  phoneNumberId: string
+  targetPhoneNumberId: string
+  startKey: BaseMessageSchemeKeys | undefined,
+  limit: number
+}
+
+export type ConnectedPhoneBaseInformation = {
+  phoneNumbers?: DBObjectInterface<WhatsAppPhoneNumber[]>,
+  conversations?: DBObjectInterface<Conversation[]>,
+}
+
 export interface Base64Attachment {
   whatsappId: string
   fileName: string
   fileMimeType: string
   fileSize: number
+  fileType: WhatsAppAttachmentType
 }
 
 export type BaseCustomerSchemeKeys = {
@@ -82,6 +106,7 @@ export interface ConversationTag {
 }
 
 export interface Conversation {
+  associatedTo: string
   participantsIdentifiers: string
   messages: Message[]
   lastMessage?: Message
@@ -137,19 +162,39 @@ export type PlatformPowerlink = {
   wa_token: string
 }
 
-export type User = {
-  name: string
+export type UserSchemaKeys = {
   email: string
-  connectedVia: LoginPlatform
-  profileImage?: string
   associatedTo: string
+}
+
+export enum UserType {
+  owner = 'owner',
+  admin = 'admin',
+  member = 'member'
+}
+
+export type UserPublicInformation = UserSchemaKeys & {
+  name: string
+  type: UserType
+  profileImage?: string
   isConnected?: boolean
+  connectedVia: LoginPlatform
+}
+
+export type User = UserPublicInformation & {
+  password: string
+  morningUserId?: string
 }
 
 export type ActiveConnectionSchemeKeys = {
   connectionId: string;
   associatedTo: string
   associatedToAgent: string
+}
+
+export enum MessageDirection {
+  incoming = 'incoming',
+  outgoing = 'outgoing'
 }
 
 export type MessageReaction = {
@@ -162,11 +207,11 @@ export type MessageReaction = {
 }
 
 export type InitialBaseInformation = {
-  phoneNumbers: DBObjectInterface<WhatsAppPhoneNumber[]>,
+  phoneNumbers?: DBObjectInterface<WhatsAppPhoneNumber[]>,
   connectedPlatforms?: Platform[],
-  conversations: DBObjectInterface<Conversation[]>,
-  agents: DBObjectInterface<User[]>
-  conversationTags: DBObjectInterface<ConversationTag[]>
+  conversations?: DBObjectInterface<Conversation[]>,
+  agents?: DBObjectInterface<UserPublicInformation[]>
+  conversationTags?: DBObjectInterface<ConversationTag[]>
   businessSettings?: BusinessSettings,
 }
 
@@ -186,12 +231,6 @@ export enum ConversationAnswerMode {
   bot = 'bot',
   manual = 'manual',
   ai = 'ai'
-}
-
-export type DeviceIdentity = {
-  vendor?: string
-  model?: string
-  browser?: string
 }
 
 export type PingmeeToken = {

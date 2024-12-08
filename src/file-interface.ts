@@ -1,4 +1,4 @@
 export interface FileInterface {
   file: File
-  additionalInfo: {[key: string]: any}
+  additionalInfo: {[key: string]: unknown}
 }

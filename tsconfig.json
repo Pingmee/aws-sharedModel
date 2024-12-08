@@ -1,15 +1,19 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
-    "module": "ESNext",
-    "target": "ES2020",
-    "declaration": true, // Generate .d.ts files
-    "declarationMap": true, // Optional: Map declarations to source files
-    "sourceMap": true, // Optional: Generate source maps for debugging
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
+    "target": "ES2020",                // Use a modern JavaScript target
+    "module": "Node16",                // Align with moduleResolution
+    "moduleResolution": "Node16",      // Node16 resolution mode
+    "declaration": true,               // Generate .d.ts files for type declarations
+    "declarationMap": true,            // Generate maps for declarations
+    "sourceMap": true,                 // Generate source maps for debugging
+    "outDir": "dist",                  // Output directory for compiled files
+    "rootDir": "src",                  // Root directory for source files
+    "strict": true,                    // Enable all strict type-checking options
+    "esModuleInterop": true,           // Enable interoperability for CommonJS modules
+    "skipLibCheck": true,              // Skip type checks of declaration files
+    "types": ["node"],                 // Include Node.js types
+    "isolatedModules": true            // Ensure each file can be safely transpiled
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*"],             // Include all files in the `src` folder
+  "exclude": ["node_modules", "dist"]  // Exclude node_modules and dist from compilation
 }

@@ -1,5 +1,5 @@
-import { Message } from '../conversation'
-import { TemplateInformation } from './template-creation-model'
+import { Message } from '../conversation.js'
+import { TemplateInformation } from './template-creation-model.js'
 
 export enum WhatsAppMessageStatus {
   pending = "pending",
@@ -14,7 +14,7 @@ export interface FileMetadata {
   name?: string;
   mime_type: string;
   file_size: number;
-  // type: WhatsAppAttachmentType;
+  type: WhatsAppAttachmentType;
   url: string;
 }
 
@@ -213,3 +213,38 @@ export enum WhatsAppHeaderComponentType {
   document = 'document',
   location = 'location',
 }
+
+export const enum WhatsAppMessageStatusNumber {
+  pending,
+  sent,
+  delivered,
+  read,
+  failed,
+}
+
+export const getWhatsAppMessageStatusNumber = (status: string): WhatsAppMessageStatusNumber | undefined => {
+  switch (status) {
+    case WhatsAppMessageStatus.pending:
+      return WhatsAppMessageStatusNumber.pending
+    case WhatsAppMessageStatus.failed:
+      return WhatsAppMessageStatusNumber.failed
+    case WhatsAppMessageStatus.sent:
+      return WhatsAppMessageStatusNumber.sent
+    case WhatsAppMessageStatus.delivered:
+      return WhatsAppMessageStatusNumber.delivered
+    case WhatsAppMessageStatus.read:
+      return WhatsAppMessageStatusNumber.read
+  }
+}
+
+export type Header = {
+  type: "text" | "image";
+  text?: string;
+  image?: {
+    link: string;
+  };
+};
+
+export type Footer = {
+  text: string;
+};

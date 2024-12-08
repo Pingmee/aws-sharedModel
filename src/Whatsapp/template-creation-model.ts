@@ -6,14 +6,7 @@ import {
   TemplateRejectionReason,
   WhatsAppComponentType,
   WhatsAppHeaderComponentType
-} from './whatsapp'
-
-
-export type TemplateCreationComponentExamples = {
-  header_handle?: string[],
-  header_text?: string[],
-  body_text?: string[]
-}
+} from './whatsapp.js'
 
 export type TemplateCreationComponent = {
   type: WhatsAppComponentType;
@@ -44,4 +37,10 @@ export type TemplateInformation = {
   templateName?: string,
   templateType?: MessageTemplateType
   attachment?: FileMetadata
+}
+
+export type TemplateCreationComponentExamples = {
+  header_handle?: string[],
+  header_text?: string[],
+  body_text?: string[]
 }
