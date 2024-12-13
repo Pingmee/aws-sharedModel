@@ -1,6 +1,3 @@
-// Re-export from backend.ts
-export * from './backend/backend.js';
-
 // Re-export from conversation.ts
 export * from './frontend/conversation.js';
 

@@ -1,14 +1,13 @@
 {
   "name": "@pingmee/aws-sharedmodel",
   "repository": "https://github.com/Pingmee/aws-sharedModel.git",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "scripts": {
     "build": "tsc",
+    "deploy": "npm run build && git tag v1.0.10 && git push origin v1.0.10 && npm publish",
     "prepublishOnly": "npm run build"
   },
   "exports": {
-    "node": "./dist/index-node.js",
-    "browser": "./dist/index.js",
     "default": "./dist/index.js"
   },
   "keywords": [],
@@ -21,11 +20,10 @@
   ],
   "type": "module",
   "description": "",
-  "devDependencies": {
+  "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.554.0",
     "@aws-sdk/lib-dynamodb": "^3.554.0",
     "@eslint/js": "^9.16.0",
-    "@pingmee/aws-sharedmodel": "^1.0.7",
     "@types/aws-lambda": "^8.10.137",
     "@types/bcryptjs": "^2.4.6",
     "@types/cookie": "^0.6.0",
