@@ -1,7 +1,7 @@
 {
   "name": "@pingmee/aws-sharedmodel",
   "repository": "https://github.com/Pingmee/aws-sharedModel.git",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build"
