@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "target": "ES2020",                // Use a modern JavaScript target
+    "target": "ES2022",                // Use a modern JavaScript target
     "module": "Node16",                // Align with moduleResolution
     "moduleResolution": "Node16",      // Node16 resolution mode
     "declaration": true,               // Generate .d.ts files for type declarations
     "declarationMap": true,            // Generate maps for declarations
     "sourceMap": true,                 // Generate source maps for debugging
     "outDir": "dist",                  // Output directory for compiled files
-    "rootDir": "src",                  // Root directory for source files
+    "rootDir": ".",                  // Root directory for source files
     "strict": true,                    // Enable all strict type-checking options
     "esModuleInterop": true,           // Enable interoperability for CommonJS modules
     "skipLibCheck": true,              // Skip type checks of declaration files

@@ -24,5 +24,6 @@ module.exports = {
         'prettier/prettier': 'error', // Marks Prettier issues as errors
         '@typescript-eslint/no-unused-vars': ['warn'], // Handles unused vars in TS
         '@typescript-eslint/explicit-module-boundary-types': 'off', // Disables the need to explicitly type functions
+        '@typescript-eslint/no-explicit-any': 'off'
     },
 };

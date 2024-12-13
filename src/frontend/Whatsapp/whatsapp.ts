@@ -214,7 +214,7 @@ export enum WhatsAppHeaderComponentType {
   location = 'location',
 }
 
-export const enum WhatsAppMessageStatusNumber {
+export enum WhatsAppMessageStatusNumber {
   pending,
   sent,
   delivered,
