@@ -1,3 +1,5 @@
+import { DBObjectInterface } from './conversation.js'
+
 export type Workflow = {
   id: string
   name: string
@@ -5,6 +7,7 @@ export type Workflow = {
   lastModified: number,
   isActive: boolean,
   folderId: string,
+  associatedTo: string,
 
   executionCount?: number;      // Number of times the workflow was executed
   successCount?: number;        // Number of successful executions
@@ -24,17 +27,13 @@ export type Workflow = {
 export type WorkflowFolder = {
   id: string,
   name: string,
+  associatedTo: string,
   created: number
   lastModified: number,
-  workflows: Workflow[]
+  workflows: DBObjectInterface<Workflow[]>
 
   // GUI
   selected?: boolean
-}
-
-export interface AutomationsDataSource {
-  flow?: { [key: string]: any }
-  theme: "dark" | "light"
 }
 
 export interface AutomationsDataExport {
