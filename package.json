@@ -1,10 +1,10 @@
 {
   "name": "@pingmee/aws-sharedmodel",
   "repository": "https://github.com/Pingmee/aws-sharedModel.git",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "scripts": {
     "build": "tsc",
-    "deploy": "npm run build && git tag v1.0.13 && git push origin v1.0.13 && npm publish",
+    "deploy": "npm run build && git tag v1.0.14 && git push origin v1.0.14 && npm publish",
     "prepublishOnly": "npm run build"
   },
   "exports": {
@@ -20,9 +20,7 @@
   ],
   "type": "module",
   "description": "",
-  "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.554.0",
-    "@aws-sdk/lib-dynamodb": "^3.554.0",
+  "devDependencies": {
     "@eslint/js": "^9.16.0",
     "@types/aws-lambda": "^8.10.137",
     "@types/bcryptjs": "^2.4.6",
@@ -30,36 +28,19 @@
     "@types/google-libphonenumber": "^7.4.30",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^22.10.1",
-    "@types/node-fetch": "^2.6.12",
-    "@types/uuid": "^9.0.8",
-    "@types/web-push": "^3.6.3",
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",
-    "aws-cloudfront-sign": "^3.0.2",
-    "aws-crt": "^1.24.0",
-    "aws-lambda": "^1.0.7",
-    "aws-sdk": "^2.1622.0",
-    "bcryptjs": "^2.4.3",
-    "cookie": "^0.6.0",
-    "cross-fetch": "^4.0.0",
-    "crypto": "^1.0.1",
-    "dotenv": "^16.4.5",
-    "encoding": "^0.1.13",
     "eslint": "^9.16.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.37.2",
-    "form-data": "^4.0.1",
-    "globals": "^15.13.0",
-    "google-libphonenumber": "^3.2.40",
-    "jsonwebtoken": "^9.0.2",
-    "node-fetch": "^2.7.0",
-    "prettier": "^3.4.2",
     "serverless-plugin-additional-stacks": "^1.6.0",
     "serverless-plugin-include-dependencies": "^6.1.1",
     "tsc-alias": "^1.8.10",
     "typescript": "^5.4.5",
     "typescript-eslint": "^8.17.0",
-    "uuid": "^9.0.1",
-    "web-push": "^3.6.7"
+    "prettier": "^3.4.2",
+    "globals": "^15.13.0"
+  },
+  "dependencies": {
   }
 }
