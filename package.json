@@ -1,10 +1,10 @@
 {
   "name": "@pingmee/aws-sharedmodel",
   "repository": "https://github.com/Pingmee/aws-sharedModel.git",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "scripts": {
     "build": "tsc",
-    "deploy": "npm run build && git tag v1.0.12 && git push origin v1.0.12 && npm publish",
+    "deploy": "npm run build && git tag v1.0.13 && git push origin v1.0.13 && npm publish",
     "prepublishOnly": "npm run build"
   },
   "exports": {
