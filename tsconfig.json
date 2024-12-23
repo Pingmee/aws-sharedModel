@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "target": "ES2022",                // Use a modern JavaScript target
-    "module": "Node16",                // Align with moduleResolution
-    "moduleResolution": "Node16",      // Node16 resolution mode
+    "module": "ESNext",                // Align with moduleResolution
+    "moduleResolution": "node",        // Node16 resolution mode
     "declaration": true,               // Generate .d.ts files for type declarations
     "declarationMap": true,            // Generate maps for declarations
     "sourceMap": true,                 // Generate source maps for debugging

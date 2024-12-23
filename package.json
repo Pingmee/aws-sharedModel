@@ -1,10 +1,10 @@
 {
   "name": "@pingmee/aws-sharedmodel",
   "repository": "https://github.com/Pingmee/aws-sharedModel.git",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "scripts": {
     "build": "tsc",
-    "deploy": "npm run build && git tag v1.0.14 && git push origin v1.0.14 && npm publish",
+    "deploy": "npm run build && git tag v1.0.15 && git push origin v1.0.15 && npm publish",
     "prepublishOnly": "npm run build"
   },
   "exports": {
@@ -21,6 +21,7 @@
   "type": "module",
   "description": "",
   "devDependencies": {
+    "@remotex-labs/xbuild": "^1.4.0",
     "@eslint/js": "^9.16.0",
     "@types/aws-lambda": "^8.10.137",
     "@types/bcryptjs": "^2.4.6",
