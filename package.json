@@ -1,10 +1,10 @@
 {
   "name": "@pingmee/aws-sharedmodel",
   "repository": "https://github.com/Pingmee/aws-sharedModel.git",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "scripts": {
     "build": "tsc",
-    "deploy": "npm run build && git tag v1.0.15 && git push origin v1.0.15 && npm publish",
+    "deploy": "npm run build && git tag v1.0.16 && git push origin v1.0.16 && npm publish",
     "prepublishOnly": "npm run build"
   },
   "exports": {
@@ -23,25 +23,15 @@
   "devDependencies": {
     "@remotex-labs/xbuild": "^1.4.0",
     "@eslint/js": "^9.16.0",
-    "@types/aws-lambda": "^8.10.137",
-    "@types/bcryptjs": "^2.4.6",
-    "@types/cookie": "^0.6.0",
-    "@types/google-libphonenumber": "^7.4.30",
-    "@types/jsonwebtoken": "^9.0.6",
-    "@types/node": "^22.10.1",
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",
     "eslint": "^9.16.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.37.2",
-    "serverless-plugin-additional-stacks": "^1.6.0",
-    "serverless-plugin-include-dependencies": "^6.1.1",
     "tsc-alias": "^1.8.10",
     "typescript": "^5.4.5",
     "typescript-eslint": "^8.17.0",
     "prettier": "^3.4.2",
     "globals": "^15.13.0"
-  },
-  "dependencies": {
   }
 }
