@@ -1,4 +1,4 @@
-import { DBObjectInterface } from './conversation.js'
+import { DBObjectInterface } from '../conversation'
 
 export type Workflow = {
   id: string
@@ -9,6 +9,9 @@ export type Workflow = {
   folderId: string,
   associatedTo: string,
 
+  triggerType?: string,
+  trigger?: object,
+
   executionCount?: number;      // Number of times the workflow was executed
   successCount?: number;        // Number of successful executions
   failureCount?: number;        // Number of failed executions
@@ -18,7 +21,9 @@ export type Workflow = {
   conversionRate?: number;     // Percentage of users who completed the workflow's intended outcome
   notes?: string;              // Any manual notes or descriptions for the workflow
 
-  data: any
+  variables: { [key: string]: any}
+  data: any // For reactflow UI
+  parsedData: any // for backend execution
 
   // GUI
   selected?: boolean
@@ -37,6 +42,6 @@ export type WorkflowFolder = {
 }
 
 export interface AutomationsDataExport {
-  displayedFlow: () => { [key: string]: any }
+  displayedFlow: () => Workflow | undefined
   onAnyChange: () => void
 }

@@ -13,4 +13,6 @@ export * from './frontend/Whatsapp/whatsapp.js';
 // Re-export from Whatsapp/template-creation-model.ts
 export * from './frontend/Whatsapp/template-creation-model.js';
 
-export * from './frontend/automations.js';
+export * from './frontend/Automations/automations.js';
+//
+export * from './frontend/Automations/Nodes.js';
