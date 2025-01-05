@@ -44,6 +44,18 @@ export interface WhatsAppMessageContext {
   message?: Message
 }
 
+export type AdReferral = {
+  source_url: string
+  source_id: string
+  source_type: 'ad' | 'post'
+  body: string
+  headline: string
+  media_type: 'image' | 'video'
+  video_url?: string
+  image_url?: string
+  thumbnail_url: string
+  ctwa_clid: string
+}
 
 export interface RichContent {
   type: TemplateType
@@ -52,6 +64,7 @@ export interface RichContent {
     templateData?: TemplateData
     interactiveButtonData?: InteractiveButtonData
     interactiveListData?: InteractiveListData
+    referral?: AdReferral
   }
 }
 
@@ -113,7 +126,10 @@ export interface InteractiveListData {
 export enum TemplateType {
   interactive = 'interactive',
   template = 'template',
-  text = 'text'
+  text = 'text',
+
+  // Not a template
+  referral = 'referral'
 }
 
 
