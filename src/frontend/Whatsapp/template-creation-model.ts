@@ -44,3 +44,16 @@ export type TemplateCreationComponentExamples = {
   header_text?: string[],
   body_text?: string[]
 }
+
+export function inputFileSelectionAllowList(headerFormat: string) {
+  switch (headerFormat.toLowerCase()) {
+    case WhatsAppHeaderComponentType.image:
+      return ".jpg, .jpeg, .png"
+    case WhatsAppHeaderComponentType.video:
+      return "video/mp4"
+    case WhatsAppHeaderComponentType.document:
+      return ".pdf"
+    default:
+      return ''
+  }
+}

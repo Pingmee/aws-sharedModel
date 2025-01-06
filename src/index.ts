@@ -4,6 +4,8 @@ export * from './frontend/conversation.js';
 // Re-export from login.ts
 export * from './frontend/login.js';
 
+export * from './frontend/utils.js';
+
 // Re-export from file-interface.ts
 export * from './frontend/file-interface.js';
 
@@ -16,3 +18,5 @@ export * from './frontend/Whatsapp/template-creation-model.js';
 export * from './frontend/Automations/automations.js';
 //
 export * from './frontend/Automations/Nodes.js';
+
+export * from './frontend/Automations/model.js';

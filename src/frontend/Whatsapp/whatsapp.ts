@@ -264,3 +264,31 @@ export type Header = {
 export type Footer = {
   text: string;
 };
+
+export enum SupportedMimeTypes {
+  audioAac = "audio/aac",
+  audioMp4 = "audio/mp4",
+  audioMpeg = "audio/mpeg",
+  audioAmr = "audio/amr",
+  audioOgg = "audio/ogg",
+  audioOpus = "audio/opus",
+
+  applicationPowerpoint = "application/vnd.ms-powerpoint",
+  applicationMSWord = "application/msword",
+  applicationDocument = "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  applicationPresentation = "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+  applicationSheet = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  applicationPdf = "application/pdf",
+  applicationExcel = "application/vnd.ms-excel",
+
+  textPlain = "text/plain",
+
+  imageJpeg = "image/jpeg",
+  imagePng = "image/png",
+  imageWebp = "image/webp",
+
+  videoMp4 = "video/mp4",
+  video3gpp = "video/3gpp",
+
+  zip = 'application/zip'
+}

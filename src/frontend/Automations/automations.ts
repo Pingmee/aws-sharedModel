@@ -1,4 +1,6 @@
 import { DBObjectInterface } from '../conversation'
+import { NodeSpecificData } from './Nodes'
+import { WorkflowNode } from './model'
 
 export type Workflow = {
   id: string
@@ -10,7 +12,7 @@ export type Workflow = {
   associatedTo: string,
 
   triggerType?: string,
-  trigger?: object,
+  trigger?: WorkflowNode,
 
   executionCount?: number;      // Number of times the workflow was executed
   successCount?: number;        // Number of successful executions
@@ -21,12 +23,20 @@ export type Workflow = {
   conversionRate?: number;     // Percentage of users who completed the workflow's intended outcome
   notes?: string;              // Any manual notes or descriptions for the workflow
 
-  variables: { [key: string]: any}
+  variables: { [key: string]: Variable}
   data: any // For reactflow UI
-  parsedData: any // for backend execution
+  parsedData: WorkflowNode[] // for backend execution
 
   // GUI
   selected?: boolean
+}
+
+export type Variable = {
+  id: string
+  name: string
+  parentId: string
+  valueType: any
+  variables?: { [key: string]: Variable}
 }
 
 export type WorkflowFolder = {
