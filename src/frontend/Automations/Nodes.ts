@@ -67,6 +67,7 @@ export interface TriggerNodeData extends GeneralNodeData {
 
 // Specific data structure for Message nodes
 export interface MessageNodeData extends GeneralNodeData {
+  waitForUserResponse?: boolean
   templateInformation?: TemplateInformation
   headerVariables?: { [key: number]: Variable}
   bodyVariables?: { [key: number]: Variable}

@@ -11,7 +11,7 @@
     "strict": true,                    // Enable all strict type-checking options
     "esModuleInterop": true,           // Enable interoperability for CommonJS modules
     "skipLibCheck": true,              // Skip type checks of declaration files
-    "types": ["node"],                 // Include Node.js types
+    "types": [],                 // Include Node.js types
     "isolatedModules": true            // Ensure each file can be safely transpiled
   },
   "include": ["src/**/*"],             // Include all files in the `src` folder
