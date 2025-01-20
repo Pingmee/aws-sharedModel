@@ -1,5 +1,5 @@
 import { Variable } from './automations'
-import { ConditionType, GeneralNodeData, NodeType } from './Nodes'
+import { ConditionType, NodeSpecificData, NodeType, SubNodeData } from './Nodes'
 
 export enum NodeCategory {
   trigger = 'Trigger',
@@ -15,20 +15,14 @@ export type WorkflowNode = {
   type: NodeType;
   category: NodeCategory
   title?: string;
-  data: GeneralNodeData;
+  data: NodeSpecificData;
   connections: Record<string, string[]>;
   subNodes?: WorkflowNode[]
 };
 
-export type SubNode = {
-  label: string;
-  editable: boolean;
-  index: number
-}
-
 export interface SubNodeConfigType {
   subNodeType: NodeType;
-  defaultNodes?: SubNode[];
+  defaultNodes?: SubNodeData[];
   editable?: boolean;
   nodesEditable?: boolean;
   subNodesLimit?: number;

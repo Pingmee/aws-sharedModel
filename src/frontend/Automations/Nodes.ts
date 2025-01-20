@@ -3,12 +3,18 @@ import { TemplateInformation } from '../Whatsapp/template-creation-model'
 import { Condition, SubNodeConfigType } from './model'
 
 export enum NodeType {
+  // Real Full Nodes
   pingmeeTrigger = "pingmeeTrigger",
   whatsapp = "whatsapp",
   if = "if",
-  answer ="answer",
+
+  // Non connectable node
+  stickyNote = "stickyNote",
+
+  // Nested nodes
+  answer = "answer",
   conditionEvaluation = "conditionEvaluation",
-  stickyNote = "stickyNote"
+  noSelectionFallback = 'noSelectionFallback'
 }
 
 export enum PingmeeTriggerOptions {
@@ -32,12 +38,14 @@ export type NodeSpecificData =
   & IfNodeData
   & TriggerNodeData
   & MessageNodeData
+  & SubNodeFallbackData
+  & SubNodeData
   & GeneralNodeData; // Add more as needed
 
 // Base data structure for all nodes
 export interface GeneralNodeData extends Record<string, unknown> {
   description?: string;
-  variables?: { [key: string]: Variable}
+  variables?: { [key: string]: Variable }
   index?: number;
   subNodesLength?: number;
   subNodesConfig?: SubNodeConfigType;
@@ -56,8 +64,21 @@ export interface IfNodeData extends GeneralNodeData {
 
 // Specific data structure for If nodes
 export interface SubNodeData extends GeneralNodeData {
-  label: string,
-  editable: boolean
+  label?: string,
+  editable?: boolean
+}
+
+export interface SubNodeFallbackData extends SubNodeData {
+  shouldSendReplyMessage?: boolean
+  unknownAnswerReplyMessage?: string
+
+  shouldTimeoutExecution?: boolean
+  timerInfo?: {
+    numberOfSeconds: number
+    hours: string,
+    minutes: string,
+    seconds: string
+  }
 }
 
 // Specific data structure for Trigger nodes
@@ -69,6 +90,6 @@ export interface TriggerNodeData extends GeneralNodeData {
 export interface MessageNodeData extends GeneralNodeData {
   waitForUserResponse?: boolean
   templateInformation?: TemplateInformation
-  headerVariables?: { [key: number]: Variable}
-  bodyVariables?: { [key: number]: Variable}
+  headerVariables?: { [key: number]: Variable }
+  bodyVariables?: { [key: number]: Variable }
 }
