@@ -1,19 +1,35 @@
 {
   "compilerOptions": {
-    "target": "ES2022",                // Use a modern JavaScript target
-    "module": "ESNext",                // Align with moduleResolution
-    "moduleResolution": "node",        // Node16 resolution mode
-    "declaration": true,               // Generate .d.ts files for type declarations
-    "declarationMap": true,            // Generate maps for declarations
-    "sourceMap": true,                 // Generate source maps for debugging
-    "outDir": "dist",                  // Output directory for compiled files
-    "rootDir": "src",                  // Root directory for source files
-    "strict": true,                    // Enable all strict type-checking options
-    "esModuleInterop": true,           // Enable interoperability for CommonJS modules
-    "skipLibCheck": true,              // Skip type checks of declaration files
-    "types": [],                 // Include Node.js types
-    "isolatedModules": true            // Ensure each file can be safely transpiled
+    "strict": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "rootDir": "./src",
+    "baseUrl": "./src",
+    "declaration": true,
+    "skipLibCheck": true,
+    "importHelpers": true,
+    "isolatedModules": false,
+    "esModuleInterop": true,
+    "moduleDetection": "force",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "preserveConstEnums": true,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "outDir": "dist",
+    "types": [
+    ],
   },
-  "include": ["src/**/*"],             // Include all files in the `src` folder
-  "exclude": ["node_modules", "dist"]  // Exclude node_modules and dist from compilation
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "dist",
+    ".build",
+    "node_modules",
+    "**/*.spec.ts",
+  ]
 }

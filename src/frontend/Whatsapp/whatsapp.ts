@@ -126,7 +126,11 @@ export interface InteractiveListData {
 export enum TemplateType {
   interactive = 'interactive',
   template = 'template',
+
   text = 'text',
+  image = 'image',
+  document = 'document',
+  video = 'video',
 
   // Not a template
   referral = 'referral'
