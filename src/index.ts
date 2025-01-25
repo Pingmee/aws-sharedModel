@@ -20,3 +20,5 @@ export * from './frontend/Automations/automations.js';
 export * from './frontend/Automations/Nodes.js';
 
 export * from './frontend/Automations/model.js';
+
+export * from './frontend/Automations/workflow.js';
