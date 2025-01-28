@@ -1,11 +1,14 @@
 import { Variable } from './automations'
 import { TemplateInformation } from '../Whatsapp/template-creation-model'
 import { Condition, SubNodeConfigType } from './model'
+import { ConversationTag, UserPublicInformation } from '../conversation'
 
 export enum NodeType {
   // Real Full Nodes
   pingmeeTrigger = "pingmeeTrigger",
   whatsapp = "whatsapp",
+  assignTags = "assignTags",
+  assignAgents = "assignAgent",
   if = "if",
 
   // Non connectable node
@@ -40,12 +43,15 @@ export type NodeSpecificData =
   & MessageNodeData
   & SubNodeFallbackData
   & SubNodeData
-  & GeneralNodeData; // Add more as needed
+  & GeneralNodeData
+  & assignAgentsData
+  & assignTagsData
 
 // Base data structure for all nodes
 export interface GeneralNodeData extends Record<string, unknown> {
   description?: string;
   variables?: { [key: string]: Variable }
+  possibilities?: { [key: string]: string }
   index?: number;
   subNodesLength?: number;
   subNodesConfig?: SubNodeConfigType;
@@ -60,6 +66,14 @@ export enum ConditionEvaluationMode {
 export interface IfNodeData extends GeneralNodeData {
   evaluationMode?: ConditionEvaluationMode; // All conditions or at least one condition
   conditions?: Condition[];
+}
+
+export interface assignTagsData extends GeneralNodeData {
+  selectedTags?: ConversationTag[];
+}
+
+export interface assignAgentsData extends GeneralNodeData {
+  selectedAgents?: UserPublicInformation[];
 }
 
 // Specific data structure for If nodes

@@ -52,6 +52,6 @@ export type WorkflowFolder = {
 }
 
 export interface AutomationsDataExport {
-  displayedFlow: () => Workflow | undefined
+  displayedFlow: () => Promise<Workflow | undefined>
   onAnyChange: () => void
 }
