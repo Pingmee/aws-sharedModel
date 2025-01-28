@@ -37,7 +37,7 @@ export type WorkflowExecution = {
   maxTimeToLive?: number
   expiresAt?: number
 
-  // runningNumber: number
+  runningNumber: number
   startTime?: number;
   endTime?: number;
   statusCase: WorkflowExecutionStatus;
