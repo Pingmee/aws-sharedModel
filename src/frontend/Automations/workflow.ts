@@ -30,6 +30,7 @@ export enum WorkflowExecutionStatus {
 export type WorkflowExecution = {
   // Schema Keys
   id: string;
+  associatedToWorkflowId: string;
   createdAt: number
   associatedTo: string
 
