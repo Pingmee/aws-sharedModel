@@ -24,7 +24,8 @@ export enum WorkflowExecutionStatus {
   inProgress = 'In Progress',
   waitingForInput = 'Waiting For Input',
   success = 'Success',
-  failure = 'Failure'
+  failure = 'Failure',
+  expired = 'Expired'
 }
 
 export type WorkflowExecution = {
@@ -34,8 +35,9 @@ export type WorkflowExecution = {
   createdAt: number
   associatedTo: string
 
+  ignoreAfterTimestamp?: number
+
   // TTL auto-remove
-  maxTimeToLive?: number
   expiresAt?: number
 
   runningNumber: number

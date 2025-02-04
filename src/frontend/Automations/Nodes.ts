@@ -82,17 +82,19 @@ export interface SubNodeData extends GeneralNodeData {
   editable?: boolean
 }
 
+export type TimerInfo = {
+  numberOfSeconds: number
+  hours: string,
+  minutes: string,
+  seconds: string
+}
+
 export interface SubNodeFallbackData extends SubNodeData {
   shouldSendReplyMessage?: boolean
   unknownAnswerReplyMessage?: string
 
   shouldTimeoutExecution?: boolean
-  timerInfo?: {
-    numberOfSeconds: number
-    hours: string,
-    minutes: string,
-    seconds: string
-  }
+  timerInfo?: TimerInfo
 }
 
 // Specific data structure for Trigger nodes
