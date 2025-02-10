@@ -40,10 +40,10 @@ const extendedPlan = {
   type: PlanType.expended,
   isActive: true,
   isPopular: true,
-  monthlyPrice: 199,
+  monthlyPrice: 349,
   yearlyPrice: 349 * 11,
   baseFeatures: [
-    ...basePlan.baseFeatures, ...basePlan.extraFeatures
+    ...basePlan.extraFeatures, ...basePlan.baseFeatures
   ],
   extraFeatures: [
     "שרת אוטומציות מגובה ענן",
@@ -62,7 +62,7 @@ export const Plans: { [key in PlanType]: Plan } = {
     monthlyPrice: 599,
     yearlyPrice: 599 * 11,
     baseFeatures: [
-      ...extendedPlan.baseFeatures, ...extendedPlan.extraFeatures
+      ...extendedPlan.extraFeatures, ...extendedPlan.baseFeatures
     ],
     extraFeatures: [
       "סריקת אתר העסק ויצירת בוט AI",
