@@ -97,3 +97,38 @@ export function searchAndReplace(obj: any, searchTerm: string, action: (value: s
   // If the current value is neither a string nor an object, return it as-is
   return obj;
 }
+
+export function updateAndEncodeCookie(cookieName: string): void {
+  // Get all cookies as a string
+  const cookies = document.cookie;
+
+  // Search for the specific cookie
+  const cookieMatch = cookies.match(new RegExp('(?:^|; )' + cookieName + '=([^;]*)'));
+
+  if (cookieMatch) {
+    // Decode the current value to handle any already encoded characters
+    const cookieValue = decodeURIComponent(cookieMatch[1]);
+
+    try {
+      // Parse the JSON to ensure it's a valid JSON object (if applicable)
+      const parsedValue = JSON.parse(cookieValue);
+
+      // Convert the parsed object back to a string
+      const stringValue = JSON.stringify(parsedValue);
+
+      // URL encode the value
+      const encodedValue = encodeURIComponent(stringValue);
+
+      // Update the cookie with the new encoded value
+      document.cookie = `${ cookieName }=${ encodedValue }; path=/;`;
+      console.log(`Cookie "${ cookieName }" updated to URL-encoded value.`);
+    } catch (error) {
+      // If JSON.parse fails, it means the cookie value isn't JSON, so encode it directly
+      const encodedValue = encodeURIComponent(cookieValue);
+      document.cookie = `${ cookieName }=${ encodedValue }; path=/;`;
+      console.log(`Cookie "${ cookieName }" updated to URL-encoded value.`);
+    }
+  } else {
+    console.log(`Cookie "${ cookieName }" not found.`);
+  }
+}

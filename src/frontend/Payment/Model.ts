@@ -5,6 +5,7 @@ export enum PlanType {
 }
 
 export interface Plan {
+  paymentLinkId: string,
   name: string
   type: PlanType
   isActive: boolean,
@@ -16,6 +17,7 @@ export interface Plan {
 }
 
 const basePlan = {
+  paymentLinkId: '',
   name: 'בסיס',
   type: PlanType.basic,
   isActive: true,
@@ -36,6 +38,7 @@ const basePlan = {
 }
 
 const extendedPlan = {
+  paymentLinkId: 'd266b6a1-59ad-41a5-8fbe-bad3c530a607',
   name: 'מורחב',
   type: PlanType.expended,
   isActive: true,
@@ -55,6 +58,7 @@ export const Plans: { [key in PlanType]: Plan } = {
   [PlanType.basic]: basePlan,
   [PlanType.expended]: extendedPlan,
   [PlanType.expertAI]: {
+    paymentLinkId: '',
     name: 'מתקדם - AI',
     type: PlanType.expertAI,
     isActive: false,
