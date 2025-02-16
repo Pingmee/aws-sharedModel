@@ -1,6 +1,6 @@
 export enum PlanType {
   basic = 'Basic',
-  expended = 'Expended',
+  expended = 'Expanded',
   expertAI = 'ExpertAI'
 }
 
