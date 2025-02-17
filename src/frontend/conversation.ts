@@ -59,6 +59,13 @@ export type Message = BaseMessageSchemeKeys & {
   richContent?: RichContent
 
   tempAttachmentFile?: FileInterface
+
+  // Used to track upload progress
+  attachmentUploadProgress?: number
+
+  // When we send a message we create a temp id, then replace it
+  // with the real whatsapp id
+  temporaryMessageId?: string
 }
 
 export interface MessagesDBScheme {
