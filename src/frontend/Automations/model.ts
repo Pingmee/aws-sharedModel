@@ -5,6 +5,7 @@ export enum NodeCategory {
   trigger = 'Trigger',
   condition = 'Condition',
   action = 'Action',
+  operation = 'Operation',
   note = 'Note',
   answer = 'Answer'
 }

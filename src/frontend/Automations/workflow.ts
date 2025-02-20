@@ -12,6 +12,7 @@ export type NodeExecutionLog = {
 export type NodeExecutionResult = {
   output: any;
   waitForResponse: boolean
+  waitForSubflow?: boolean
 }
 
 export interface NodeExecutable {
@@ -23,6 +24,7 @@ export enum WorkflowExecutionStatus {
   idle = 'Idle',
   inProgress = 'In Progress',
   waitingForInput = 'Waiting For Input',
+  waitingForSubWorkflow = 'Waiting For Sub Workflow',
   success = 'Success',
   failure = 'Failure',
   expired = 'Expired'

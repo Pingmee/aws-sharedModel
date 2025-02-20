@@ -1,5 +1,4 @@
 import { DBObjectInterface } from '../conversation'
-import { NodeSpecificData } from './Nodes'
 import { WorkflowNode } from './model'
 
 export type Workflow = {
@@ -23,7 +22,7 @@ export type Workflow = {
   conversionRate?: number;     // Percentage of users who completed the workflow's intended outcome
   notes?: string;              // Any manual notes or descriptions for the workflow
 
-  variables: { [key: string]: Variable}
+  variables: { [key: string]: Variable }
   data: any // For reactflow UI
   parsedData: WorkflowNode[] // for backend execution
 
@@ -36,7 +35,7 @@ export type Variable = {
   name: string
   parentId: string
   valueType: any
-  variables?: { [key: string]: Variable}
+  variables?: { [key: string]: Variable }
 }
 
 export type WorkflowFolder = {
@@ -51,7 +50,13 @@ export type WorkflowFolder = {
   selected?: boolean
 }
 
+
+export enum AutomationEvents {
+  workflowNavigation
+}
+
 export interface AutomationsDataExport {
   displayedFlow: () => Promise<Workflow | undefined>
   onAnyChange: () => void
+  onEvent: (event: AutomationEvents, data: any) => void
 }

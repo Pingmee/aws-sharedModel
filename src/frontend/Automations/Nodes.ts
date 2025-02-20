@@ -6,9 +6,12 @@ import { ConversationTag, UserPublicInformation } from '../conversation'
 export enum NodeType {
   // Real Full Nodes
   pingmeeTrigger = "pingmeeTrigger",
+  workflowTrigger = "workflowTrigger",
   whatsapp = "whatsapp",
   assignTags = "assignTags",
   assignAgents = "assignAgent",
+  workflowPointer = 'workflowPointer',
+  powerlink = 'powerlink',
   if = "if",
 
   // Non connectable node
@@ -22,7 +25,9 @@ export enum NodeType {
 
 export enum PingmeeTriggerOptions {
   MessageCreated = "Messages Created",
-  NewConversationStarted = "New Conversation Started"
+  NewConversationStarted = "New Conversation Started",
+
+  WorkflowTrigger = "Workflow Trigger"
 }
 
 export enum ConditionType {
@@ -46,6 +51,7 @@ export type NodeSpecificData =
   & GeneralNodeData
   & assignAgentsData
   & assignTagsData
+  & WorkflowPointerNodeData
 
 // Base data structure for all nodes
 export interface GeneralNodeData extends Record<string, unknown> {
@@ -108,4 +114,10 @@ export interface MessageNodeData extends GeneralNodeData {
   templateInformation?: TemplateInformation
   headerVariables?: { [key: number]: Variable }
   bodyVariables?: { [key: number]: Variable }
+}
+
+export interface WorkflowPointerNodeData extends GeneralNodeData {
+  workflowId?: string;
+  workflowFolderId?: string
+  workflowName?: string
 }

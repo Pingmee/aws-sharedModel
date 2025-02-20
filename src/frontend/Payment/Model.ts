@@ -17,7 +17,7 @@ export interface Plan {
 }
 
 const basePlan = {
-  paymentLinkId: '',
+  paymentLinkId: '96dddf71-c537-4e05-a1a2-13adda359196',
   name: 'בסיס',
   type: PlanType.basic,
   isActive: true,
@@ -38,7 +38,7 @@ const basePlan = {
 }
 
 const extendedPlan = {
-  paymentLinkId: 'd266b6a1-59ad-41a5-8fbe-bad3c530a607',
+  paymentLinkId: '6b06b7d9-c046-42a2-a88d-351e37011703',
   name: 'מורחב',
   type: PlanType.expended,
   isActive: true,
