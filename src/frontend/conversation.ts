@@ -8,6 +8,7 @@ import {
 } from './Whatsapp/whatsapp.js'
 import { LoginPlatform } from './login.js'
 import { FileInterface } from './file-interface.js'
+import { PlanType } from './Payment/Model'
 
 export type ExtractedUserJWTPayload = {
   user: User
@@ -139,11 +140,14 @@ export interface Conversation {
 
 export type BusinessSettings = {
   associatedTo: string
-  subscription_id: string
   name?: string
   imageUrl?: string
   isActive?: boolean
+
+  subscription_id: string
   subscriptionStartDate?: number
+  subscriptionPlan?: PlanType
+  isPaymentYearly?: boolean
 }
 
 export enum PlatformType {
@@ -180,12 +184,17 @@ export enum UserType {
   member = 'member'
 }
 
+export type UserSettings = {
+  blurImages: boolean
+}
+
 export type UserPublicInformation = UserSchemaKeys & {
   name: string
   type: UserType
   profileImage?: string
   isConnected?: boolean
   connectedVia: LoginPlatform
+  settings: UserSettings
 }
 
 export type User = UserPublicInformation & {
@@ -220,6 +229,7 @@ export type InitialBaseInformation = {
   agents?: DBObjectInterface<UserPublicInformation[]>
   conversationTags?: DBObjectInterface<ConversationTag[]>
   businessSettings?: BusinessSettings,
+  agentSettings?: UserSettings
 }
 
 export type DBObjectInterface<T> = {
