@@ -57,10 +57,11 @@ export type NodeSpecificData =
 export interface GeneralNodeData extends Record<string, unknown> {
   description?: string;
   variables?: { [key: string]: Variable }
-  possibilities?: { [key: string]: string }
+  possibilities?: { [key: string]: { [key: string]: string[] } }
   index?: number;
   subNodesLength?: number;
   subNodesConfig?: SubNodeConfigType;
+  isActive?: boolean
 }
 
 export enum ConditionEvaluationMode {
