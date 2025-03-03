@@ -24,3 +24,5 @@ export * from './frontend/Automations/model.js';
 export * from './frontend/Automations/workflow.js';
 
 export * from './frontend/Payment/Model.js';
+
+export * from './frontend/Campaigns/Model.js';

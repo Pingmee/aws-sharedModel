@@ -1,7 +1,7 @@
 import { DBObjectInterface } from '../conversation'
 import { WorkflowNode } from './model'
 
-export type Workflow = {
+export type BaseSubFolder = {
   id: string
   name: string
   created: number
@@ -9,6 +9,12 @@ export type Workflow = {
   isActive: boolean,
   folderId: string,
   associatedTo: string,
+
+  // GUI
+  selected?: boolean
+}
+
+export type Workflow = BaseSubFolder & {
 
   triggerType?: string,
   trigger?: WorkflowNode,
@@ -25,9 +31,6 @@ export type Workflow = {
   variables: { [key: string]: Variable }
   data: any // For reactflow UI
   parsedData: WorkflowNode[] // for backend execution
-
-  // GUI
-  selected?: boolean
 }
 
 export type Variable = {
@@ -38,13 +41,13 @@ export type Variable = {
   variables?: { [key: string]: Variable }
 }
 
-export type WorkflowFolder = {
+export type SideBarFolder<T> = {
   id: string,
   name: string,
   associatedTo: string,
   created: number
   lastModified: number,
-  workflows: DBObjectInterface<Workflow[]>
+  items: DBObjectInterface<T[]>
 
   // GUI
   selected?: boolean
