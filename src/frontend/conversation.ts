@@ -47,6 +47,7 @@ export type Message = BaseMessageSchemeKeys & {
   message: string
   type: MessageType
   associatedTo: string
+  associatedToCampaignId?: string
   messageDirection: MessageDirection
 
   hasReaction?: boolean
