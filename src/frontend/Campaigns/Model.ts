@@ -1,7 +1,7 @@
 import { TemplateInformation } from '../Whatsapp/template-creation-model.js'
 import { BaseSubFolder } from '../Automations/automations'
 import { WhatsAppMessageStatus } from '../Whatsapp/whatsapp'
-import { ConversationTag, Message } from '../conversation'
+import { ConversationTag, Customer, Message } from '../conversation'
 
 export enum TimeOption {
   now = 'now',
@@ -41,7 +41,7 @@ export type CampaignRecipient = {
   campaignId: string; // Partition Key
   recipientPhoneNumberId: string; // Sort Key (phone number or user ID)
   status: WhatsAppMessageStatus;
-  name?: string
+  customer?: Customer
   sentAt?: number; // Optional timestamp when message was sent
   deliveredAt?: number; // Optional timestamp when message was delivered
   readAt?: number; // Optional timestamp when message was read
