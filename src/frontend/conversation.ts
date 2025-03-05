@@ -28,7 +28,8 @@ export enum MessageType {
 
 export enum Initiator {
   person = "person",
-  bot = "bot"
+  bot = "bot",
+  campaign = "campaign"
 }
 
 export type AgentIdentification = {
