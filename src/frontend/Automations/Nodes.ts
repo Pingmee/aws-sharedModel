@@ -13,6 +13,7 @@ export enum NodeType {
   workflowPointer = 'workflowPointer',
   powerlink = 'powerlink',
   if = "if",
+  wait = "wait",
 
   // Non connectable node
   stickyNote = "stickyNote",
@@ -52,6 +53,7 @@ export type NodeSpecificData =
   & assignAgentsData
   & assignTagsData
   & WorkflowPointerNodeData
+  & WaitNodeData
 
 // Base data structure for all nodes
 export interface GeneralNodeData extends Record<string, unknown> {
@@ -121,4 +123,8 @@ export interface WorkflowPointerNodeData extends GeneralNodeData {
   workflowId?: string;
   workflowFolderId?: string
   workflowName?: string
+}
+
+export interface WaitNodeData extends GeneralNodeData {
+  timerInfo?: TimerInfo
 }
