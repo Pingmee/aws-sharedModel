@@ -172,7 +172,7 @@ export type PlatformWhatsapp = {
 }
 
 export type PlatformPowerlink = {
-  wa_token: string
+  token: string
 }
 
 export type UserSchemaKeys = {
