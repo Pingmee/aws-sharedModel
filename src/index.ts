@@ -28,3 +28,5 @@ export * from './frontend/Payment/Model.js';
 export * from './frontend/Campaigns/Model.js';
 
 export * from './frontend/Campaigns/FireberryModel.js';
+
+export * from './frontend/DateHelper.js';

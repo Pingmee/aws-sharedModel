@@ -1,6 +1,6 @@
 import { TemplateInformation } from '../Whatsapp/template-creation-model.js'
 import { BaseSubFolder } from '../Automations/automations'
-import { WhatsAppMessageStatus } from '../Whatsapp/whatsapp'
+import { WhatsAppErrorMessage, WhatsAppMessageStatus } from '../Whatsapp/whatsapp'
 import { ConversationTag, Customer, Message } from '../conversation'
 import { FireberryTableData } from './FireberryModel'
 
@@ -41,6 +41,7 @@ export type Campaign = BaseSubFolder & {
 export type CampaignRecipient = {
   campaignId: string; // Partition Key
   recipientPhoneNumberId: string; // Sort Key (phone number or user ID)
+  conversationId: string
   status: WhatsAppMessageStatus;
   customer?: Customer
   sentAt?: number; // Optional timestamp when message was sent
@@ -48,6 +49,7 @@ export type CampaignRecipient = {
   readAt?: number; // Optional timestamp when message was read
   failedAttempts?: number; // Number of retry attempts
   lastAttemptAt?: number; // Last retry attempt timestamp
-  failureReason?: string; // Optional: Stores error messages for failed attempts
+  failureReason?: string; // Optional: Stores error messages for failed attemptse
+  error?: WhatsAppErrorMessage
   expiresAt?: number; // TTL attribute (optional)
 };
