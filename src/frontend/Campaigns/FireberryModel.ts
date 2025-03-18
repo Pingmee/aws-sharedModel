@@ -33,6 +33,9 @@ export interface FireberryQueries {
 }
 
 export interface FireberryQuery {
+  viewTableId: number
+  clientsCount?: number
+
   viewSchemaId: string,
   viewName: string,
   folderName: string,
@@ -43,4 +46,31 @@ export interface FireberryQuery {
 export type FireberryTableData = {
   table: FireberryTable,
   queries: FireberryQuery[]
+}
+
+export interface FireberryRecord {
+  [key: string]: any;
+}
+
+export interface FireberryField {
+  logicalName: string;
+  fieldObjectType: string;
+  label: string;
+  isMultiObject: string;
+  type: string;
+  width: number;
+  precision: string;
+  groupdigits: boolean;
+  display: string;
+  displayname?: string;
+}
+
+export interface FireberryQueryResponse {
+  viewId: string;
+  objectType: number;
+  primaryKeyName: string;
+  primaryFieldName: string;
+  records: FireberryRecord[]; // Now supports any key-value pairs
+  fields: FireberryField[];
+  pageNumber: number;
 }

@@ -2,7 +2,7 @@ import { TemplateInformation } from '../Whatsapp/template-creation-model.js'
 import { BaseSubFolder } from '../Automations/automations'
 import { WhatsAppErrorMessage, WhatsAppMessageStatus } from '../Whatsapp/whatsapp'
 import { ConversationTag, Customer, Message } from '../conversation'
-import { FireberryTableData } from './FireberryModel'
+import { FireberryQuery, FireberryTable, FireberryTableData } from './FireberryModel'
 
 export enum TimeOption {
   now = 'now',
@@ -23,7 +23,8 @@ export type Campaign = BaseSubFolder & {
   source: AudienceSource
 
   conversationTags?: ConversationTag[]
-  powerlinkTableOptions?: FireberryTableData[]
+  selectedFireberryTables?: FireberryTable[]
+  selectedFireberryQueries?: FireberryQuery[]
 
   createdBy?: string;
   scheduledAt?: number; // Optional: Timestamp for scheduled execution
