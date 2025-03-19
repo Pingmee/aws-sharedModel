@@ -73,6 +73,7 @@ export interface TemplateData {
     type: WhatsAppHeaderComponentType
     url?: string
     parameters?: string[]
+    text?: string
   },
   body: {
     parameters?: string[]
