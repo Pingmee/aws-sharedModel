@@ -1,10 +1,12 @@
 import {
-  Action, Footer, Header,
+  Action,
+  Footer,
+  Header,
   ReplyButton,
   Section,
   WhatsAppComponentButtonType,
-  WhatsAppComponentType,
-} from '@pingmee/aws-sharedmodel'
+  WhatsAppComponentType
+} from './whatsapp'
 
 
 export type TemplateSendComponentParameter = {
@@ -65,7 +67,7 @@ export type TemplateSendMessage = {
   to: string;
   from?: string;
   template?: Template;
-  interactive?: InteractiveList | InteractiveButton;
+  interactive?: InteractiveList | InteractiveSendButton;
   text?: { body: string };
   context?: { message_id: string }
   filename?: string
@@ -97,7 +99,8 @@ export type InteractiveList = BaseInteractive & {
   action: Action;
 };
 
-export type InteractiveButton = BaseInteractive & {
+//Not used?
+export type InteractiveSendButton = BaseInteractive & {
   type: 'button';
   body: { text: string },
   action: {

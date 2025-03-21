@@ -12,6 +12,8 @@ export * from './frontend/file-interface.js';
 // Re-export from Whatsapp/whatsapp.ts
 export * from './frontend/Whatsapp/whatsapp.js';
 
+export * from './frontend/Whatsapp/TemplateSendModel.js';
+
 // Re-export from Whatsapp/template-creation-model.ts
 export * from './frontend/Whatsapp/template-creation-model.js';
 

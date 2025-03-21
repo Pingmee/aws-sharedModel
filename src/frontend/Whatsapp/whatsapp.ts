@@ -1,4 +1,4 @@
-import { Message } from '../conversation.js'
+import { Base64Attachment, Message } from '../conversation.js'
 import { TemplateInformation } from './template-creation-model.js'
 
 export enum WhatsAppMessageStatus {
@@ -296,4 +296,19 @@ export enum SupportedMimeTypes {
   video3gpp = "video/3gpp",
 
   zip = 'application/zip'
+}
+
+export function attachmentTypeFromInfo(attachmentBase64: Base64Attachment) {
+  const fileType = attachmentBase64.fileMimeType.split('/')[0]
+  switch (fileType) {
+    case 'application':
+      return WhatsAppAttachmentType.document
+    case 'video':
+      return WhatsAppAttachmentType.video
+    case 'audio':
+      return WhatsAppAttachmentType.audio
+    case 'image':
+      return WhatsAppAttachmentType.image
+  }
+  return WhatsAppAttachmentType.text
 }
