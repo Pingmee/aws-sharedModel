@@ -32,3 +32,5 @@ export * from './frontend/Campaigns/Model.js';
 export * from './frontend/Campaigns/FireberryModel.js';
 
 export * from './frontend/DateHelper.js';
+
+export * from './frontend/Blogs/Model.js';
