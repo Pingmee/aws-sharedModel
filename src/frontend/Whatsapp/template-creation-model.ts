@@ -42,7 +42,7 @@ export type TemplateInformation = {
 export type TemplateCreationComponentExamples = {
   header_handle?: string[],
   header_text?: string[],
-  body_text?: string[]
+  body_text?: string[][]
 }
 
 export function inputFileSelectionAllowList(headerFormat: string) {
