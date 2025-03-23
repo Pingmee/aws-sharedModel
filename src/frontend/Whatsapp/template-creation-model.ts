@@ -22,7 +22,7 @@ export type TemplateCreationComponent = {
 
 export type TemplateInformation = {
   id?: string
-  status?: string;
+  status?: 'PENDING' | 'APPROVED' | 'REJECTED';
   rejected_reason?: TemplateRejectionReason
 
   name: string;
@@ -37,6 +37,7 @@ export type TemplateInformation = {
   templateName?: string,
   templateType?: MessageTemplateType
   attachment?: FileMetadata
+  createdAt?: number
 }
 
 export type TemplateCreationComponentExamples = {
