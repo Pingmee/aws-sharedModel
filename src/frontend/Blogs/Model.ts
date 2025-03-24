@@ -6,5 +6,6 @@ export type Blog = {
   author: string,
   content: string,
   category: string,
-  createdAt: number
+  createdAt: number,
+  keywords: string[]
 }
