@@ -1,5 +1,6 @@
 import { Variable } from './automations'
 import { ConditionType, NodeSpecificData, NodeType, SubNodeData } from './Nodes'
+import {FireberryField} from "../Campaigns/FireberryModel";
 
 export enum NodeCategory {
   trigger = 'Trigger',
@@ -34,4 +35,19 @@ export interface Condition {
   firstValue?: Variable;
   comparison: ConditionType;
   secondValue?: any;
+}
+
+export interface FireberryWorkflowQuery {
+  id: string,
+  field: FireberryField,
+  value: Variable
+}
+
+export enum FireberryAction {
+  addTask = 'Add Task',
+  addComment = 'Add Comment',
+  addRecord = 'Add Record',
+  deleteRecord = 'Delete Record',
+  updateRecord = 'Update Record',
+  query = 'Query',
 }

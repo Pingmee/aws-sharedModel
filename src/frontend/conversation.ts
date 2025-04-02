@@ -171,7 +171,7 @@ export type PlatformWhatsapp = {
   wa_phone_number_id: string
 }
 
-export type PlatformPowerlink = {
+export type PlatformFireberry = {
   token: string
 }
 

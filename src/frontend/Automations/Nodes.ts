@@ -1,7 +1,8 @@
 import { Variable } from './automations'
 import { TemplateInformation } from '../Whatsapp/template-creation-model'
-import { Condition, SubNodeConfigType } from './model'
+import {Condition, FireberryAction, FireberryWorkflowQuery, SubNodeConfigType} from './model'
 import { ConversationTag, UserPublicInformation } from '../conversation'
+import {FireberryTable} from "../Campaigns/FireberryModel";
 
 export enum NodeType {
   // Real Full Nodes
@@ -57,6 +58,7 @@ export type NodeSpecificData =
   & WorkflowPointerNodeData
   & WaitNodeData
   & SwitchCaseNodeData
+  & FireberryNodeData
 
 // Base data structure for all nodes
 export interface GeneralNodeData extends Record<string, unknown> {
@@ -134,4 +136,19 @@ export interface WaitNodeData extends GeneralNodeData {
 
 export interface SwitchCaseNodeData extends GeneralNodeData {
   cases?: IfNodeData[]
+}
+
+export interface FireberryNodeData extends GeneralNodeData {
+  table?: FireberryTable,
+  action?: FireberryAction,
+  pageSize?: number,
+  pageNumber?: number,
+  sortByField?: string,
+  sortType?: 'ASC' | 'DEC',
+  fields?: string[]
+  objectId?: string,
+  message?: string,
+  ownerId?: string,
+  fileUrl?: string,
+  queries?: FireberryWorkflowQuery[];
 }
