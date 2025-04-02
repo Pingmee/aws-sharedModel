@@ -14,6 +14,7 @@ export enum NodeType {
   powerlink = 'powerlink',
   if = "if",
   wait = "wait",
+  switch = "switch",
 
   // Non connectable node
   stickyNote = "stickyNote",
@@ -21,6 +22,7 @@ export enum NodeType {
   // Nested nodes
   answer = "answer",
   conditionEvaluation = "conditionEvaluation",
+  switchCaseEvaluation = "switchCaseEvaluation",
   noSelectionFallback = 'noSelectionFallback'
 }
 
@@ -54,6 +56,7 @@ export type NodeSpecificData =
   & assignTagsData
   & WorkflowPointerNodeData
   & WaitNodeData
+  & SwitchCaseNodeData
 
 // Base data structure for all nodes
 export interface GeneralNodeData extends Record<string, unknown> {
@@ -127,4 +130,8 @@ export interface WorkflowPointerNodeData extends GeneralNodeData {
 
 export interface WaitNodeData extends GeneralNodeData {
   timerInfo?: TimerInfo
+}
+
+export interface SwitchCaseNodeData extends GeneralNodeData {
+  cases?: IfNodeData[]
 }

@@ -1,12 +1,12 @@
 {
   "name": "@pingmee/aws-sharedmodel",
   "repository": "https://github.com/Pingmee/aws-sharedModel.git",
-  "version": "1.0.54",
+  "version": "1.0.55",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "deploy": "npm run build && git tag v1.0.54 && git push origin v1.0.54 && npm publish",
+    "deploy": "npm run build && git tag v1.0.55 && git push origin v1.0.55 && npm publish",
     "prepublishOnly": "npm run build"
   },
   "exports": {
@@ -24,10 +24,13 @@
     "eslint": "^9.16.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.37.2",
+    "globals": "^15.13.0",
+    "prettier": "^3.4.2",
     "tsc-alias": "^1.8.10",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^8.17.0",
-    "prettier": "^3.4.2",
-    "globals": "^15.13.0"
+    "typescript-eslint": "^8.17.0"
+  },
+  "peerDependencies": {
+    "@pingmee/aws-sharedui": "^1.0.7"
   }
 }
