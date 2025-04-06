@@ -1,6 +1,6 @@
 import { Variable } from './automations'
 import { ConditionType, NodeSpecificData, NodeType, SubNodeData } from './Nodes'
-import {FireberryField} from "../Campaigns/FireberryModel";
+import { FireberryField, FireberrySelectionBoxItem } from "../Campaigns/FireberryModel"
 
 export enum NodeCategory {
   trigger = 'Trigger',
@@ -27,6 +27,7 @@ export interface SubNodeConfigType {
   defaultNodes?: SubNodeData[];
   editable?: boolean;
   nodesEditable?: boolean;
+  nodesRemovable?: boolean;
   subNodesLimit?: number;
 }
 
@@ -40,7 +41,7 @@ export interface Condition {
 export interface FireberryWorkflowQuery {
   id: string,
   field: FireberryField,
-  value: Variable
+  value: Variable | FireberrySelectionBoxItem
 }
 
 export enum FireberryAction {

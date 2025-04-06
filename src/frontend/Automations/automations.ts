@@ -41,6 +41,17 @@ export type Variable = {
   variables?: { [key: string]: Variable }
 }
 
+export function isVariable(obj: any): obj is Variable {
+  return (
+    obj &&
+    typeof obj === 'object' &&
+    typeof obj.id === 'string' &&
+    typeof obj.name === 'string' &&
+    typeof obj.parentId === 'string' &&
+    'valueType' in obj
+  )
+}
+
 export type SideBarFolder<T> = {
   id: string,
   name: string,

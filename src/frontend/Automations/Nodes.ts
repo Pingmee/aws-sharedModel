@@ -2,7 +2,7 @@ import { Variable } from './automations'
 import { TemplateInformation } from '../Whatsapp/template-creation-model'
 import {Condition, FireberryAction, FireberryWorkflowQuery, SubNodeConfigType} from './model'
 import { ConversationTag, UserPublicInformation } from '../conversation'
-import {FireberryTable} from "../Campaigns/FireberryModel";
+import { FireberryField, FireberryTable } from "../Campaigns/FireberryModel"
 
 export enum NodeType {
   // Real Full Nodes
@@ -12,7 +12,7 @@ export enum NodeType {
   assignTags = "assignTags",
   assignAgents = "assignAgent",
   workflowPointer = 'workflowPointer',
-  powerlink = 'powerlink',
+  fireberry = 'fireberry',
   if = "if",
   wait = "wait",
   switch = "switch",
@@ -24,7 +24,8 @@ export enum NodeType {
   answer = "answer",
   conditionEvaluation = "conditionEvaluation",
   switchCaseEvaluation = "switchCaseEvaluation",
-  noSelectionFallback = 'noSelectionFallback'
+  noSelectionFallback = 'noSelectionFallback',
+  fireberryNewRecordFallback = 'fireberryNewRecordFallback'
 }
 
 export enum PingmeeTriggerOptions {
@@ -94,6 +95,7 @@ export interface assignAgentsData extends GeneralNodeData {
 export interface SubNodeData extends GeneralNodeData {
   label?: string,
   editable?: boolean
+  removable?: boolean
 }
 
 export type TimerInfo = {
@@ -145,10 +147,12 @@ export interface FireberryNodeData extends GeneralNodeData {
   pageNumber?: number,
   sortByField?: string,
   sortType?: 'ASC' | 'DEC',
+  objectField?: FireberryField,
+  objectVariable?: Variable,
+  queries?: FireberryWorkflowQuery[];
+
   fields?: string[]
-  objectId?: string,
   message?: string,
   ownerId?: string,
   fileUrl?: string,
-  queries?: FireberryWorkflowQuery[];
 }
