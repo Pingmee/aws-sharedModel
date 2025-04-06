@@ -154,7 +154,7 @@ export type BusinessSettings = {
 
 export enum PlatformType {
   whatsapp = 'whatsapp',
-  powerlink = 'powerlink'
+  fireberry = 'powerlink'
 }
 
 export type Platform = {

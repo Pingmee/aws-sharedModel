@@ -11,7 +11,7 @@ export enum TimeOption {
 
 export enum AudienceSource {
   pingmeeTags = 'tags',
-  powerlink = 'powerlink',
+  fireberry = 'fireberry',
   excel = 'excel'
 }
 
