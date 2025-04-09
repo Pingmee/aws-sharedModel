@@ -34,3 +34,5 @@ export * from './frontend/Campaigns/FireberryModel.js';
 export * from './frontend/DateHelper.js';
 
 export * from './frontend/Blogs/Model.js';
+
+export * from './frontend/AI/Chatbot/Model.js';
