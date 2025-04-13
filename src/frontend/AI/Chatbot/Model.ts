@@ -5,12 +5,30 @@ export enum Status {
   error
 }
 
+export type AIChatBotGeneratedContent = {
+  trigger: string
+
+  messages: {
+    [id: string]: {
+      header: string
+      body: string
+      buttons: string[]
+    }
+  }
+  transitions: {
+    [fromId: string]: {
+      [buttonLabel: string]: string
+    }
+  }
+}
+
 export type AIChatBotModel = {
   id: string
   associatedTo: string,
   status: Status
   createdAt: number
   generatorModel: ChatBotGeneratorModel
+  content: AIChatBotGeneratedContent
 }
 
 export type ChatBotGeneratorModel = {
