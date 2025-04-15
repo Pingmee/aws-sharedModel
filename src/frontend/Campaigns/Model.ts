@@ -1,4 +1,3 @@
-import { TemplateInformation } from '../Whatsapp/template-creation-model.js'
 import { BaseSubFolder } from '../Automations/automations'
 import { WhatsAppErrorMessage, WhatsAppMessageStatus } from '../Whatsapp/whatsapp'
 import { ConversationTag, Customer, Message } from '../conversation'

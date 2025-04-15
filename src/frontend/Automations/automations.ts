@@ -1,5 +1,6 @@
 import { DBObjectInterface } from '../conversation'
 import { WorkflowNode } from './model'
+import { AIChatBotGeneratedContent } from '../AI/Chatbot/Model'
 
 export type BaseSubFolder = {
   id: string
@@ -31,6 +32,8 @@ export type Workflow = BaseSubFolder & {
   variables: { [key: string]: Variable }
   data: any // For reactflow UI
   parsedData: WorkflowNode[] // for backend execution
+
+  aiChatBotGeneratedContent?: AIChatBotGeneratedContent
 }
 
 export type Variable = {
