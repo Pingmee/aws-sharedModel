@@ -200,7 +200,9 @@ export enum WhatsAppComponentButtonType {
   url = "url",
   phone_number = "phone_number",
   quick_reply = 'quick_reply',
-  copy_code = 'copy_code'
+  copy_code = 'copy_code',
+  catalog = 'catalog',
+  multi_product = 'mpm'
 }
 
 export type Button = {
