@@ -45,10 +45,12 @@ export interface FireberryWorkflowQuery {
 }
 
 export enum FireberryAction {
-  addTask = 'Add Task',
-  addComment = 'Add Comment',
-  addRecord = 'Add Record',
-  deleteRecord = 'Delete Record',
   updateRecord = 'Update Record',
-  query = 'Query',
+  createIfNoneExist = 'Create If None Exist',
+
+  // addTask = 'Add Task',
+  // addComment = 'Add Comment',
+  // addRecord = 'Add Record',
+  // deleteRecord = 'Delete Record',
+  // query = 'Query',
 }
