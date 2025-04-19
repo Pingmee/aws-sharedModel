@@ -70,7 +70,7 @@ export interface FireberryField {
   fieldName: string;
   systemFieldTypeId: string,
   systemName: string;
-  values?: [FireberrySelectionBoxItem]
+  values?: FireberrySelectionBoxItem[]
 }
 
 export interface FireberryQueryResponse {
