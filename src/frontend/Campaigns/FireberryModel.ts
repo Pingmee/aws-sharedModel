@@ -65,12 +65,24 @@ export interface FireberrySelectionBoxItem {
   value: string
 }
 
+export enum FieldType {
+  LookUp = "lookUp",
+  DateTime = "dateTime",
+  Text = "text",
+  Telephone = "telephone",
+  Email = "email",
+}
+
 export interface FireberryField {
   label: string;
   fieldName: string;
   systemFieldTypeId: string,
   systemName: string;
   values?: FireberrySelectionBoxItem[]
+
+  // Exist only in some responses
+  logicalName?: string;
+  type?: FieldType
 }
 
 export interface FireberryQueryResponse {
@@ -85,5 +97,5 @@ export interface FireberryQueryResponse {
 
 export enum FireberryFieldTypeId {
   selectionBox = 'b4919f2e-2996-48e4-a03c-ba39fb64386c',
-  telephone = "3f62f67a-1cee-403a-bec6-aa02a9804edb"
+  telephone = "telephone"
 }
