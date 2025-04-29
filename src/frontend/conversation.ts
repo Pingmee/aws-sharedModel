@@ -148,6 +148,7 @@ export type BusinessSettings = {
 
   subscription_id: string
   subscriptionStartDate?: number
+  subscriptionEndDate?: number
   subscriptionPlan?: PlanType
   isPaymentYearly?: boolean
 }
