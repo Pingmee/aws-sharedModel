@@ -1,7 +1,8 @@
 export enum PlanType {
   basic = 'Basic',
   expended = 'Expanded',
-  expertAI = 'ExpertAI'
+  expertAI = 'ExpertAI',
+  trial = 'Trial'
 }
 
 export interface Plan {
@@ -54,6 +55,7 @@ const extendedPlan = {
   ]
 }
 
+//@ts-expect-error
 export const Plans: { [key in PlanType]: Plan } = {
   [PlanType.basic]: basePlan,
   [PlanType.expended]: extendedPlan,
