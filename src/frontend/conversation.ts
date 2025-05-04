@@ -209,6 +209,7 @@ export type ActiveConnectionSchemeKeys = {
   connectionId: string;
   associatedTo: string
   associatedToAgent: string
+  expiresAt: number
 }
 
 export enum MessageDirection {
