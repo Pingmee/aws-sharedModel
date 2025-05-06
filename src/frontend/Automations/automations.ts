@@ -36,12 +36,19 @@ export type Workflow = BaseSubFolder & {
   aiChatBotGeneratedContent?: AIChatBotGeneratedContent
 }
 
-export type Variable = {
+export type BaseVariable = {
   id: string
   name: string
   parentId: string
   valueType: any
-  variables?: { [key: string]: Variable }
+}
+
+export type Expression = BaseVariable & {
+  expression: string
+}
+
+export type Variable = BaseVariable & {
+  variables?: { [key: string]: Variable  }
 }
 
 export function isVariable(obj: any): obj is Variable {

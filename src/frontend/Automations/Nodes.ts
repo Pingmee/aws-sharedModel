@@ -1,4 +1,4 @@
-import { Variable } from './automations'
+import { Expression, Variable } from './automations'
 import { TemplateInformation } from '../Whatsapp/template-creation-model'
 import {Condition, FireberryAction, FireberryWorkflowQuery, SubNodeConfigType} from './model'
 import { ConversationTag, UserPublicInformation } from '../conversation'
@@ -122,8 +122,8 @@ export interface TriggerNodeData extends GeneralNodeData {
 export interface MessageNodeData extends GeneralNodeData {
   waitForUserResponse?: boolean
   templateInformation?: TemplateInformation
-  headerVariables?: { [key: number]: Variable }
-  bodyVariables?: { [key: number]: Variable }
+  headerVariables?: { [key: number]: Variable | Expression }
+  bodyVariables?: { [key: number]: Variable | Expression }
 }
 
 export interface WorkflowPointerNodeData extends GeneralNodeData {
@@ -148,7 +148,7 @@ export interface FireberryNodeData extends GeneralNodeData {
   sortByField?: string,
   sortType?: 'ASC' | 'DEC',
   objectField?: FireberryField,
-  objectVariable?: Variable,
+  objectVariable?: Variable | Expression,
   queries?: FireberryWorkflowQuery[];
 
   fields?: string[]

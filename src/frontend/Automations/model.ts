@@ -1,4 +1,4 @@
-import { Variable } from './automations'
+import { Expression, Variable } from './automations'
 import { ConditionType, NodeSpecificData, NodeType, SubNodeData } from './Nodes'
 import { FireberryField, FireberrySelectionBoxItem } from "../Campaigns/FireberryModel"
 
@@ -33,7 +33,7 @@ export interface SubNodeConfigType {
 
 export interface Condition {
   id: string
-  firstValue?: Variable;
+  firstValue?: Variable | Expression;
   comparison: ConditionType;
   secondValue?: any;
 }
@@ -41,7 +41,7 @@ export interface Condition {
 export interface FireberryWorkflowQuery {
   id: string,
   field: FireberryField,
-  value: Variable | FireberrySelectionBoxItem
+  value: Variable | FireberrySelectionBoxItem | Expression
 }
 
 export enum FireberryAction {
