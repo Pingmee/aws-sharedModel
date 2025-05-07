@@ -62,6 +62,10 @@ export function isVariable(obj: any): obj is Variable {
   )
 }
 
+export function isExpression(obj: any): obj is Expression {
+  return obj && typeof obj === 'object' && 'expression' in obj && typeof obj.expression === 'string'
+}
+
 export type SideBarFolder<T> = {
   id: string,
   name: string,
