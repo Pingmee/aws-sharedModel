@@ -14,18 +14,18 @@ export interface FileMetadata {
   name?: string;
   mime_type: string;
   file_size: number;
-  type: WhatsAppAttachmentType;
+  type: AttachmentType;
   url: string;
+  participantsIdentifiers: string;
 }
 
 export type WhatsAppAttachmentURL = FileMetadata & {
   sha256: string;
   id: string;
   messaging_product: string;
-  participantsIdentifiers: string;
 }
 
-export enum WhatsAppAttachmentType {
+export enum AttachmentType {
   image = 'image',
   document = 'document',
   audio = 'audio',
@@ -137,6 +137,12 @@ export enum TemplateType {
   referral = 'referral'
 }
 
+
+export interface FacebookPage {
+  id: string
+  associatedTo: string
+  name: string
+}
 
 export interface WhatsAppPhoneNumber {
   id: string
@@ -304,13 +310,13 @@ export function attachmentTypeFromInfo(attachmentBase64: Base64Attachment) {
   const fileType = attachmentBase64.fileMimeType.split('/')[0]
   switch (fileType) {
     case 'application':
-      return WhatsAppAttachmentType.document
+      return AttachmentType.document
     case 'video':
-      return WhatsAppAttachmentType.video
+      return AttachmentType.video
     case 'audio':
-      return WhatsAppAttachmentType.audio
+      return AttachmentType.audio
     case 'image':
-      return WhatsAppAttachmentType.image
+      return AttachmentType.image
   }
-  return WhatsAppAttachmentType.text
+  return AttachmentType.text
 }

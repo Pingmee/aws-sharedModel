@@ -1,7 +1,7 @@
 import {
+  AttachmentType,
+  FileMetadata,
   RichContent,
-  WhatsAppAttachmentType,
-  WhatsAppAttachmentURL,
   WhatsAppMessageContext,
   WhatsAppMessageStatus,
   WhatsAppPhoneNumber
@@ -47,6 +47,7 @@ export type Message = BaseMessageSchemeKeys & {
   participantsIdentifiers: string
   message: string
   type: MessageType
+  messagePlatform: PlatformType
   associatedTo: string
   associatedToCampaignId?: string
   messageDirection: MessageDirection
@@ -56,7 +57,7 @@ export type Message = BaseMessageSchemeKeys & {
 
   agentIdentification?: AgentIdentification
   context?: WhatsAppMessageContext
-  attachment?: WhatsAppAttachmentURL
+  attachment?: FileMetadata
   attachmentBase64?: Base64Attachment
   reactions?: MessageReaction[]
   richContent?: RichContent
@@ -84,11 +85,11 @@ export type ConnectedPhoneBaseInformation = {
 }
 
 export interface Base64Attachment {
-  whatsappId: string
+  resourceId: string
   fileName: string
   fileMimeType: string
   fileSize: number
-  fileType: WhatsAppAttachmentType
+  fileType: AttachmentType
 }
 
 export type BaseCustomerSchemeKeys = {
@@ -116,8 +117,10 @@ export interface ConversationTag {
 }
 
 export interface Conversation {
+  platformCompositionKey: string // whatsapp#<phoneNumber/page>Id
+
   associatedTo: string
-  participantsIdentifiers: string
+  participantsIdentifiers: string // <phoneNumber/page>Id#customer<PhoneNumber/page>Id
   messages: Message[]
   lastMessage?: Message
   phoneNumberId: string
@@ -154,8 +157,12 @@ export type BusinessSettings = {
 }
 
 export enum PlatformType {
+  fireberry = 'powerlink',
+
   whatsapp = 'whatsapp',
-  fireberry = 'powerlink'
+  facebookMessenger = 'facebookMessenger',
+  pingmee = 'pingmee',
+  instagram = 'instagram',
 }
 
 export type Platform = {
@@ -174,6 +181,12 @@ export type PlatformWhatsapp = {
 
 export type PlatformFireberry = {
   token: string
+}
+
+export type PlatformFacebookMessenger = {
+  id: string
+  name: string
+  access_token: string
 }
 
 export type UserSchemaKeys = {
