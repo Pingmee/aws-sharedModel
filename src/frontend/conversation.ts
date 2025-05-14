@@ -232,6 +232,7 @@ export enum MessageDirection {
 
 export type MessageReaction = {
   id: string
+  messagePlatform: PlatformType
   associatedToMessageId: string,
   emoji: string
   senderId: string
