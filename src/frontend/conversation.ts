@@ -9,6 +9,7 @@ import {
 import { LoginPlatform } from './login.js'
 import { FileInterface } from './file-interface.js'
 import { PlanType } from './Payment/Model'
+import { AITranslation } from './AI/Translation'
 
 export type ExtractedUserJWTPayload = {
   user: User
@@ -54,6 +55,8 @@ export type Message = BaseMessageSchemeKeys & {
 
   hasReaction?: boolean
   hasAttachment?: boolean
+
+  translation?: AITranslation
 
   agentIdentification?: AgentIdentification
   context?: WhatsAppMessageContext
