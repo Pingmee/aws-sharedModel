@@ -24,6 +24,7 @@ export type Campaign = BaseSubFolder & {
   conversationTags?: ConversationTag[]
   selectedFireberryTables?: FireberryTable[]
   selectedFireberryQueries?: FireberryQuery[]
+  customerList?: Pick<Customer, 'customerName' | 'phoneNumberId' | 'countryCode'>[]
 
   createdBy?: string;
   scheduledAt?: number; // Optional: Timestamp for scheduled execution
