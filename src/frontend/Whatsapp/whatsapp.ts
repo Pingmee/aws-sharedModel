@@ -1,4 +1,4 @@
-import { Base64Attachment, Message } from '../conversation.js'
+import { Base64Attachment, Message, WhatsAppContact } from '../conversation.js'
 import { TemplateInformation } from './template-creation-model.js'
 
 export enum WhatsAppMessageStatus {
@@ -65,6 +65,7 @@ export interface RichContent {
     interactiveButtonData?: InteractiveButtonData
     interactiveListData?: InteractiveListData
     referral?: AdReferral
+    contacts?: WhatsAppContact[]
   }
 }
 
@@ -134,7 +135,8 @@ export enum TemplateType {
   video = 'video',
 
   // Not a template
-  referral = 'referral'
+  referral = 'referral',
+  contacts = 'contacts'
 }
 
 

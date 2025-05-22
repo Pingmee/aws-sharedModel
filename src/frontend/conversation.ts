@@ -38,6 +38,14 @@ export type AgentIdentification = {
   email: string
 }
 
+export type WhatsAppContact = {
+  name: string
+  phoneNumbers: {
+    phone: string,
+    wa_id: string,
+  }[]
+}
+
 export type Message = BaseMessageSchemeKeys & {
   messageId: string
   sender: string
