@@ -6,7 +6,8 @@ export enum WhatsAppMessageStatus {
   failed = "failed",
   sent = "sent",
   delivered = "delivered",
-  read = "read"
+  read = "read",
+  standby = "standby"
 }
 
 export interface FileMetadata {
