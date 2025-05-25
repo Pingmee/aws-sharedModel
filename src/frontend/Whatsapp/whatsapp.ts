@@ -305,6 +305,7 @@ export enum SupportedMimeTypes {
 
   videoMp4 = "video/mp4",
   video3gpp = "video/3gpp",
+  videoQuicktime = 'video/quicktime',
 
   zip = 'application/zip'
 }
