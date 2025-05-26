@@ -17,6 +17,9 @@ export type BaseSubFolder = {
 
 export type Workflow = BaseSubFolder & {
 
+  //(whatsapp - phoneNumberId, facebook - pageId)
+  associatedToBusinessId: string
+
   triggerType?: string,
   trigger?: WorkflowNode,
 

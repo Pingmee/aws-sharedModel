@@ -16,6 +16,7 @@ export enum NodeType {
   if = "if",
   wait = "wait",
   switch = "switch",
+  httpRequest = "httpRequest",
 
   // Non connectable node
   stickyNote = "stickyNote",
@@ -138,6 +139,18 @@ export interface WaitNodeData extends GeneralNodeData {
 
 export interface SwitchCaseNodeData extends GeneralNodeData {
   cases?: IfNodeData[]
+}
+
+export interface HTTPRequestNodeData extends GeneralNodeData {
+  method: string; // e.g., "GET", "POST", etc.
+  url?: string;
+  headers?: string[];
+  body?: string;
+  contentType?: string; // e.g., "application/json", "application/x-www-form-urlencoded"
+  queryParams?: { [key: string]: string };
+  responseMapping?: { [key: string]: string }; // Optional field for mapping response keys to variables
+  timeout?: number; // In milliseconds
+  retryCount?: number; // Number of retries if the request fails
 }
 
 export interface FireberryNodeData extends GeneralNodeData {

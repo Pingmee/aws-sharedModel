@@ -21,6 +21,9 @@ export type Campaign = BaseSubFolder & {
   whenToSendMessage: TimeOption
   source: AudienceSource
 
+  //(whatsapp - phoneNumberId, facebook - pageId)
+  associatedToBusinessId: string
+
   conversationTags?: ConversationTag[]
   selectedFireberryTables?: FireberryTable[]
   selectedFireberryQueries?: FireberryQuery[]

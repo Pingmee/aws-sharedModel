@@ -150,6 +150,7 @@ export interface FacebookPage {
 export interface WhatsAppPhoneNumber {
   id: string
   associatedTo: string
+  associatedBusinessId: string // This is the Whatsapp Business Id
   userExtensionSettingsId: string
   verified_name: string
   code_verification_status: string
