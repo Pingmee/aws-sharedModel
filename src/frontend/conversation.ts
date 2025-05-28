@@ -127,6 +127,12 @@ export interface ConversationTag {
   isSelected?: boolean
 }
 
+export type LanguageInformation = {
+  languageCode: string
+  targetCountryCode?: string // "he-IL"
+  autoTranslate: boolean
+}
+
 export interface Conversation {
   platformCompositionKey: string // whatsapp#<phoneNumber/page>Id
 
@@ -143,6 +149,10 @@ export interface Conversation {
   unreadCount: number
   assignedTagIds?: string[]
   assignedAgentIds?: string[]
+
+  aiFeatures?: {
+    autoTranslation?: LanguageInformation
+  }
 
   statusCase: ConversationStatusCase
   answerMode: ConversationAnswerMode
