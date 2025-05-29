@@ -1,7 +1,7 @@
 import { Expression, Variable } from './automations'
 import { TemplateInformation } from '../Whatsapp/template-creation-model'
 import {Condition, FireberryAction, FireberryWorkflowQuery, SubNodeConfigType} from './model'
-import { ConversationTag, UserPublicInformation } from '../conversation'
+import { ConversationTag, PlatformType, UserPublicInformation } from '../conversation'
 import { FireberryField, FireberryTable } from "../Campaigns/FireberryModel"
 
 export enum NodeType {
@@ -9,6 +9,8 @@ export enum NodeType {
   pingmeeTrigger = "pingmeeTrigger",
   workflowTrigger = "workflowTrigger",
   whatsapp = "whatsapp",
+  facebookMessenger = "facebookMessenger",
+  instagram = "instagram",
   assignTags = "assignTags",
   assignAgents = "assignAgent",
   workflowPointer = 'workflowPointer',
@@ -32,8 +34,6 @@ export enum NodeType {
 export enum PingmeeTriggerOptions {
   MessageCreated = "Messages Created",
   NewConversationStarted = "New Conversation Started",
-
-  WorkflowTrigger = "Workflow Trigger"
 }
 
 export enum ConditionType {
@@ -116,11 +116,13 @@ export interface SubNodeFallbackData extends SubNodeData {
 
 // Specific data structure for Trigger nodes
 export interface TriggerNodeData extends GeneralNodeData {
+  platform?: PlatformType
   eventType?: string; // e.g., "onMessage" or "onNewConversation"
 }
 
 // Specific data structure for Message nodes
 export interface MessageNodeData extends GeneralNodeData {
+  platform?: PlatformType
   waitForUserResponse?: boolean
   templateInformation?: TemplateInformation
   headerVariables?: { [key: number]: Variable | Expression }
