@@ -207,7 +207,9 @@ export type PlatformFireberry = {
 export type PlatformFacebookMessenger = {
   id: string
   name: string
-  access_token: string
+  access_token: string,
+  instagram_business_account_id?: string
+  instagram_username?: string
 }
 
 export type UserSchemaKeys = {
