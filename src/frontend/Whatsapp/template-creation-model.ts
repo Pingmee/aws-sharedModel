@@ -7,6 +7,7 @@ import {
   WhatsAppComponentType,
   WhatsAppHeaderComponentType
 } from './whatsapp.js'
+import { PlatformType } from '../conversation'
 
 export type TemplateCreationComponent = {
   type: WhatsAppComponentType;
@@ -38,6 +39,7 @@ export type TemplateInformation = {
   templateType?: MessageTemplateType
   attachment?: FileMetadata
   createdAt?: number
+  platformType?: PlatformType
 }
 
 export type TemplateCreationComponentExamples = {
