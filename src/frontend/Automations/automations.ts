@@ -1,4 +1,4 @@
-import { DBObjectInterface } from '../conversation'
+import { DBObjectInterface, PlatformType } from '../conversation'
 import { WorkflowNode } from './model'
 import { AIChatBotGeneratedContent } from '../AI/Chatbot/Model'
 
@@ -19,6 +19,7 @@ export type Workflow = BaseSubFolder & {
 
   //(whatsapp - phoneNumberId, facebook - pageId)
   associatedToBusinessId: string
+  platformType?: PlatformType
 
   triggerType?: string,
   trigger?: WorkflowNode,
