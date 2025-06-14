@@ -47,7 +47,6 @@ export type WhatsAppContact = {
 }
 
 export type Message = BaseMessageSchemeKeys & {
-  messageId: string
   sender: string
   receiver: string
   initiator: Initiator
@@ -164,6 +163,12 @@ export interface Conversation {
   isSelected?: boolean
 }
 
+export type AISettings = {
+  tokens: number
+  overallTokens: number
+  autoRenewable: boolean
+}
+
 export type BusinessSettings = {
   associatedTo: string
   name?: string
@@ -175,6 +180,8 @@ export type BusinessSettings = {
   subscriptionEndDate?: number
   subscriptionPlan?: PlanType
   isPaymentYearly?: boolean
+
+  ai?: AISettings
 }
 
 export enum PlatformType {
