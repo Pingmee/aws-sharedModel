@@ -166,6 +166,7 @@ export interface Conversation {
 
 export type AISettings = {
   tokens: number
+  purchasedTokens: number
   overallTokens: number
   autoRenewable: boolean
 }
@@ -181,6 +182,10 @@ export type BusinessSettings = {
   subscriptionEndDate?: number
   subscriptionPlan?: PlanType
   isPaymentYearly?: boolean
+
+  industry?: string
+  targetAudience?: string
+  about?: string
 
   ai?: AISettings
 }
