@@ -1,3 +1,5 @@
+import { BaseSubFolder } from '../../Automations/automations'
+
 export enum Status {
   none,
   pending,
@@ -61,4 +63,11 @@ export type LLMResponse = {
       audio_tokens: number
     },
   },
+}
+
+export type AIAgent = BaseSubFolder & {
+  description?: string
+  role: string
+  prompts: string[]
+  tokensUsed?: bigint
 }
