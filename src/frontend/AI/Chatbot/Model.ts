@@ -62,3 +62,16 @@ export type LLMResponse = {
     },
   },
 }
+
+export type AIAgent = {
+  id: string
+  name: string
+  description?: string
+  role: string
+  prompts: string[]
+  status: Status
+  createdAt: number
+  updatedAt?: number
+  tokensUsed?: bigint
+  selected?: boolean
+}
