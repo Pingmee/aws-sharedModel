@@ -1,7 +1,13 @@
 import { Expression, Variable } from './automations'
 import { TemplateInformation } from '../Whatsapp/template-creation-model'
 import {Condition, FireberryAction, FireberryWorkflowQuery, SubNodeConfigType} from './model'
-import { ConversationTag, PlatformType, UserPublicInformation } from '../conversation'
+import {
+  ConversationAnswerMode,
+  ConversationStatusCase,
+  ConversationTag, LanguageInformation,
+  PlatformType,
+  UserPublicInformation
+} from '../conversation'
 import { FireberryField, FireberryTable } from "../Campaigns/FireberryModel"
 
 export enum NodeType {
@@ -13,6 +19,7 @@ export enum NodeType {
   instagram = "instagram",
   assignTags = "assignTags",
   assignAgents = "assignAgent",
+  updateConversation = 'updateConversation',
   workflowPointer = 'workflowPointer',
   fireberry = 'fireberry',
   if = "if",
@@ -61,6 +68,7 @@ export type NodeSpecificData =
   & WaitNodeData
   & SwitchCaseNodeData
   & FireberryNodeData
+  & UpdateConversationData
 
 // Base data structure for all nodes
 export interface GeneralNodeData extends Record<string, unknown> {
@@ -84,12 +92,22 @@ export interface IfNodeData extends GeneralNodeData {
   conditions?: Condition[];
 }
 
+// *depecrated* use updateConversationData
 export interface assignTagsData extends GeneralNodeData {
   selectedTags?: ConversationTag[];
 }
 
+// *depecrated* use updateConversationData
 export interface assignAgentsData extends GeneralNodeData {
   selectedAgents?: UserPublicInformation[];
+}
+
+export interface UpdateConversationData extends GeneralNodeData {
+  selectedTags?: ConversationTag[];
+  selectedAgents?: UserPublicInformation[];
+  answerMode?: ConversationAnswerMode
+  status?: ConversationStatusCase
+  autoTranslation?: LanguageInformation
 }
 
 // Specific data structure for If nodes
