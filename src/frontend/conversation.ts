@@ -233,7 +233,8 @@ export type UserSchemaKeys = {
 export enum UserType {
   owner = 'owner',
   admin = 'admin',
-  member = 'member'
+  member = 'member',
+  ai = 'ai'
 }
 
 export type UserSettings = {
