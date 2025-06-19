@@ -63,7 +63,7 @@ export const Plans: { [key in PlanType]: Plan } = {
     paymentLinkId: '',
     name: 'מתקדם - AI',
     type: PlanType.expertAI,
-    isActive: false,
+    isActive: true,
     isPopular: false,
     monthlyPrice: 599,
     yearlyPrice: 599 * 11,
@@ -71,7 +71,7 @@ export const Plans: { [key in PlanType]: Plan } = {
       ...extendedPlan.extraFeatures, ...extendedPlan.baseFeatures
     ],
     extraFeatures: [
-      "סריקת אתר העסק ויצירת בוט AI",
+      "יצירת סוכני AI",
       "חיבור למערכת ChatGPT",
       "סיכום שיחות בקליק ועריכת הודעות AI"
     ]
