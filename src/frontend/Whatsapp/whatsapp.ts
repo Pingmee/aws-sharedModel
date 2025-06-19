@@ -18,6 +18,9 @@ export interface FileMetadata {
   type: AttachmentType;
   url: string;
   participantsIdentifiers: string;
+
+  // Primerly used by AI after it analyzed the image
+  description?: string
 }
 
 export type WhatsAppAttachmentURL = FileMetadata & {
