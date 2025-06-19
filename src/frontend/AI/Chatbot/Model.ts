@@ -68,6 +68,7 @@ export type LLMResponse = {
 export type AIAgent = BaseSubFolder & {
   description?: string
   role: string
+  profileImage: string
   prompts: string[]
-  tokensUsed?: bigint
+  tokensUsed?: number
 }
