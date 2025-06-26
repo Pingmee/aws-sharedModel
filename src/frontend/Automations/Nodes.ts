@@ -1,6 +1,6 @@
 import { Expression, Variable } from './automations'
 import { TemplateInformation } from '../Whatsapp/template-creation-model'
-import {Condition, FireberryAction, FireberryWorkflowQuery, SubNodeConfigType} from './model'
+import { Condition, FireberryAction, FireberryWorkflowQuery, MessageNodeType, SubNodeConfigType } from './model'
 import {
   ConversationAnswerMode,
   ConversationStatusCase,
@@ -9,6 +9,7 @@ import {
   UserPublicInformation
 } from '../conversation'
 import { FireberryField, FireberryTable } from "../Campaigns/FireberryModel"
+import { MessageTemplateType, TemplateType } from '../Whatsapp/whatsapp'
 
 export enum NodeType {
   // Real Full Nodes
@@ -79,6 +80,7 @@ export interface GeneralNodeData extends Record<string, unknown> {
   subNodesLength?: number;
   subNodesConfig?: SubNodeConfigType;
   isActive?: boolean
+  hasError?: boolean
 }
 
 export enum ConditionEvaluationMode {
@@ -140,6 +142,8 @@ export interface TriggerNodeData extends GeneralNodeData {
 
 // Specific data structure for Message nodes
 export interface MessageNodeData extends GeneralNodeData {
+  messageType?: MessageNodeType
+  templateType?: MessageTemplateType
   platform?: PlatformType
   waitForUserResponse?: boolean
   templateInformation?: TemplateInformation

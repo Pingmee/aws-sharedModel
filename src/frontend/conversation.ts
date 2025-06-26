@@ -150,6 +150,7 @@ export interface Conversation {
   assignedTagIds?: string[]
   assignedAgentIds?: string[]
 
+  aiContextLastMessageId?: string
   aiFeatures?: {
     autoTranslation?: LanguageInformation
   }

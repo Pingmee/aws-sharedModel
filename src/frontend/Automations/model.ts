@@ -54,3 +54,11 @@ export enum FireberryAction {
   // deleteRecord = 'Delete Record',
   // query = 'Query',
 }
+
+export enum MessageNodeType {
+  custom = 'custom',
+  template = 'template',
+  ai = 'ai'
+}
+
+
