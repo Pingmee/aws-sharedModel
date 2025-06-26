@@ -150,7 +150,6 @@ export interface Conversation {
   assignedTagIds?: string[]
   assignedAgentIds?: string[]
 
-  aiContextLastMessageId?: string
   aiFeatures?: {
     autoTranslation?: LanguageInformation
   }
@@ -170,6 +169,7 @@ export type AISettings = {
   purchasedTokens: number
   overallTokens: number
   autoRenewable: boolean
+  apiToken?: string
 }
 
 export type BusinessSettings = {
