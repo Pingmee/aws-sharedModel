@@ -170,6 +170,7 @@ export type AISettings = {
   purchasedTokens: number
   overallTokens: number
   autoRenewable: boolean
+  apiToken?: string
 }
 
 export type BusinessSettings = {
