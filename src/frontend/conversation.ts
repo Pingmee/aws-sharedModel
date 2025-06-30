@@ -154,6 +154,10 @@ export interface Conversation {
     autoTranslation?: LanguageInformation
   }
 
+  ai?: {
+    tokensUsed?: number
+  }
+
   statusCase: ConversationStatusCase
   answerMode: ConversationAnswerMode
 
