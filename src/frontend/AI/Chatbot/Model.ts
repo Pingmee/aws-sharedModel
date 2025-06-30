@@ -1,4 +1,5 @@
 import { BaseSubFolder } from '../../Automations/automations'
+import { OpenAI } from 'openai'
 
 export enum Status {
   none,
@@ -65,10 +66,16 @@ export type LLMResponse = {
   },
 }
 
+export type AIAgentRole = {
+  name: string
+  description: string
+  tool?: OpenAI.Responses.Tool
+  webhook: string
+}
+
 export type AIAgent = BaseSubFolder & {
   description?: string
-  role: string
+  roles: AIAgentRole[]
   profileImage: string
-  prompts: string[]
   tokensUsed?: number
 }

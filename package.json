@@ -1,12 +1,12 @@
 {
   "name": "@pingmee/aws-sharedmodel",
   "repository": "https://github.com/Pingmee/aws-sharedModel.git",
-  "version": "1.0.97",
+  "version": "1.0.98",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "deploy": "npm run build && git tag v1.0.97 && git push origin v1.0.97 && npm publish",
+    "deploy": "npm run build && git tag v1.0.98 && git push origin v1.0.98 && npm publish",
     "prepublishOnly": "npm run build"
   },
   "exports": {
@@ -29,5 +29,8 @@
     "tsc-alias": "^1.8.10",
     "typescript": "^5.4.5",
     "typescript-eslint": "^8.17.0"
+  },
+  "dependencies": {
+    "openai": "^5.8.2"
   }
 }
