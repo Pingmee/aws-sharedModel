@@ -34,7 +34,8 @@ const basePlan = {
     "תמיכה בתקשורת בין סוכנים" ],
   extraFeatures: [
     "אפליקציה iOS Android",
-    "תוסף לדפדפן כרום"
+    "תוסף לדפדפן כרום",
+    "Whatsapp, Messenger, Instagram"
   ]
 }
 
@@ -50,8 +51,10 @@ const extendedPlan = {
     ...basePlan.extraFeatures, ...basePlan.baseFeatures
   ],
   extraFeatures: [
-    "שרת אוטומציות מגובה ענן",
-    "בונה צ'אט בוט חכם פעיל 24/7"
+    "צ׳אט בוט בדקה",
+    "יכולות AI",
+    "תרגום הודעות אוטומטי",
+    "שרת אוטומציות מגובה ענן"
   ]
 }
 
@@ -71,9 +74,10 @@ export const Plans: { [key in PlanType]: Plan } = {
       ...extendedPlan.extraFeatures, ...extendedPlan.baseFeatures
     ],
     extraFeatures: [
+      "צ׳אט בוט AI",
       "יצירת סוכני AI",
-      "חיבור למערכת ChatGPT",
-      "סיכום שיחות בקליק ועריכת הודעות AI"
+      "סיכום שיחות בקליק ועריכת הודעות AI",
+      "חיבור למערכת ChatGPT"
     ]
   }
 }
