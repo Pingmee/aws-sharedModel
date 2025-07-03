@@ -69,6 +69,7 @@ export type LLMResponse = {
 export type AIAgentRole = {
   name: string
   description: string
+  instructions: string
   tool?: OpenAI.Responses.Tool
   webhook: string
 }
