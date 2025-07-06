@@ -72,6 +72,7 @@ export type AIAgentRole = {
   instructions: string
   tool?: OpenAI.Responses.Tool
   webhook: string
+  allRequired: boolean
 }
 
 export type AIAgent = BaseSubFolder & {
