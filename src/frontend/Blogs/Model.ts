@@ -1,6 +1,7 @@
-export type Blog = {
+export type Content = {
   id: string,
   title: string,
+  videoId?: string
   subtitle: string,
   imageUrl: string,
   author: string,
