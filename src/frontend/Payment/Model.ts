@@ -63,7 +63,7 @@ export const Plans: { [key in PlanType]: Plan } = {
   [PlanType.basic]: basePlan,
   [PlanType.expended]: extendedPlan,
   [PlanType.expertAI]: {
-    paymentLinkId: '',
+    paymentLinkId: '46c8a69f-bf05-48f6-b9ed-10e1cdb2136e',
     name: 'מתקדם - AI',
     type: PlanType.expertAI,
     isActive: true,
