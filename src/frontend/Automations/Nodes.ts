@@ -110,6 +110,7 @@ export interface UpdateConversationData extends GeneralNodeData {
   answerMode?: ConversationAnswerMode
   status?: ConversationStatusCase
   autoTranslation?: LanguageInformation
+  optoutFromMarketingMessage?: boolean
 }
 
 // Specific data structure for If nodes

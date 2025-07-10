@@ -166,6 +166,7 @@ export interface Conversation {
   hasMoreItemsToFetch?: boolean
   lastEvaluatedKey?: any
   isSelected?: boolean
+  isOptoutFromMarketingMessages?: boolean
 }
 
 export type AISettings = {
