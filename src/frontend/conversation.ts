@@ -1,6 +1,6 @@
 import {
   AttachmentType,
-  FileMetadata,
+  FileMetadata, SocialComment,
   RichContent,
   WhatsAppMessageContext,
   WhatsAppMessageStatus,
@@ -24,7 +24,8 @@ export type BaseMessageSchemeKeys = {
 
 export enum MessageType {
   default = "default",
-  informative = "informative"
+  informative = "informative",
+  commentOnPost = "commentOnPost"
 }
 
 export enum Initiator {
@@ -68,6 +69,7 @@ export type Message = BaseMessageSchemeKeys & {
 
   agentIdentification?: AgentIdentification
   context?: WhatsAppMessageContext
+  comment?: SocialComment
   attachment?: FileMetadata
   attachmentBase64?: Base64Attachment
   reactions?: MessageReaction[]

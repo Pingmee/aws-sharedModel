@@ -49,6 +49,21 @@ export interface WhatsAppMessageContext {
   message?: Message
 }
 
+export interface SocialComment {
+  commentId: string;
+  parentId?: string;
+  permalink?: string;
+}
+
+export type FacebookComment = SocialComment & {
+  postId: string;
+}
+
+export type InstagramComment = SocialComment & {
+  mediaProductType?: string;
+  mediaId?: string
+}
+
 export type AdReferral = {
   source_url: string
   source_id: string
