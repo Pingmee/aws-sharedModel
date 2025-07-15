@@ -4,7 +4,7 @@ import { Condition, FireberryAction, FireberryWorkflowQuery, MessageNodeType, Su
 import {
   ConversationAnswerMode,
   ConversationStatusCase,
-  ConversationTag, LanguageInformation,
+  ConversationTag, LanguageInformation, MessageType,
   PlatformType,
   UserPublicInformation
 } from '../conversation'
@@ -14,6 +14,8 @@ import { MessageTemplateType, TemplateType } from '../Whatsapp/whatsapp'
 export enum NodeType {
   // Real Full Nodes
   pingmeeTrigger = "pingmeeTrigger",
+  instagramTrigger = "instagramTrigger",
+  facebookTrigger = "facebookTrigger",
   workflowTrigger = "workflowTrigger",
   whatsapp = "whatsapp",
   facebookMessenger = "facebookMessenger",
@@ -36,7 +38,6 @@ export enum NodeType {
   conditionEvaluation = "conditionEvaluation",
   switchCaseEvaluation = "switchCaseEvaluation",
   noSelectionFallback = 'noSelectionFallback',
-  fireberryNewRecordFallback = 'fireberryNewRecordFallback'
 }
 
 export enum PingmeeTriggerOptions {
@@ -143,6 +144,7 @@ export interface TriggerNodeData extends GeneralNodeData {
 
 // Specific data structure for Message nodes
 export interface MessageNodeData extends GeneralNodeData {
+  type?: MessageType
   messageType?: MessageNodeType
   templateType?: MessageTemplateType
   platform?: PlatformType
