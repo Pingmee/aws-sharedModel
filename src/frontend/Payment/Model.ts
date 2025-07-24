@@ -19,29 +19,30 @@ export interface Plan {
 
 const basePlan = {
   paymentLinkId: '96dddf71-c537-4e05-a1a2-13adda359196',
-  name: 'בסיס',
+  name: 'בסיס - Omnichannel',
   type: PlanType.basic,
   isActive: true,
   isPopular: false,
   monthlyPrice: 199,
   yearlyPrice: 199 * 11,
-  baseFeatures: [
-    "ממשק מתקדם לשיחות",
+  baseFeatures: [],
+  extraFeatures: [
+    "אפליקציה ל־iOS ולאנדרואיד",
+    "תוסף לדפדפן כרום",
+    "חיבור ל־WhatsApp, Messenger ו־Instagram",
+    "ממשק ניהול שיחות מתקדם",
     "שירות רשמי WhatsApp API",
     "צ'אט תמיכה מהיר",
     "שירות גיבוי שיחות והודעות",
-    "שליחה ועריכת תבניות",
-    "תמיכה בתקשורת בין סוכנים" ],
-  extraFeatures: [
-    "אפליקציה iOS Android",
-    "תוסף לדפדפן כרום",
-    "Whatsapp, Messenger, Instagram"
+    "ממשק ניהול שיחות מתקדם",
+    "תמיכה בתקשורת בין סוכנים"
+
   ]
 }
 
 const extendedPlan = {
   paymentLinkId: '6b06b7d9-c046-42a2-a88d-351e37011703',
-  name: 'מורחב',
+  name: 'מורחב - Social',
   type: PlanType.expended,
   isActive: true,
   isPopular: true,
@@ -51,10 +52,12 @@ const extendedPlan = {
     ...basePlan.extraFeatures, ...basePlan.baseFeatures
   ],
   extraFeatures: [
-    "צ׳אט בוט בדקה",
+    "צ׳אט בוט קלאסי",
+    "בניית מסע לקוח",
     "יכולות AI",
     "תרגום הודעות אוטומטי",
-    "שרת אוטומציות מגובה ענן"
+    "שרת אוטומציות מגובה ענן",
+    "מענה אוטומטי לפוסטים, Stories ו־Reels",
   ]
 }
 
@@ -74,8 +77,7 @@ export const Plans: { [key in PlanType]: Plan } = {
       ...extendedPlan.extraFeatures, ...extendedPlan.baseFeatures
     ],
     extraFeatures: [
-      "צ׳אט בוט AI",
-      "יצירת סוכני AI",
+      "סוכני AI",
       "סיכום שיחות בקליק ועריכת הודעות AI",
       "חיבור למערכת ChatGPT"
     ]
