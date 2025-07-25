@@ -8,6 +8,7 @@ export enum PlanType {
 export interface Plan {
   paymentLinkId: string,
   name: string
+  description: string
   type: PlanType
   isActive: boolean,
   isPopular: boolean,
@@ -19,7 +20,7 @@ export interface Plan {
 
 const basePlan = {
   paymentLinkId: '96dddf71-c537-4e05-a1a2-13adda359196',
-  name: 'בסיס - Omnichannel',
+  name: 'בסיס - Social',
   type: PlanType.basic,
   isActive: true,
   isPopular: false,
@@ -27,6 +28,7 @@ const basePlan = {
   yearlyPrice: 199 * 11,
   baseFeatures: [],
   extraFeatures: [
+    "מענה אוטומטי לפוסטים, Stories ו־Reels",
     "אפליקציה ל־iOS ולאנדרואיד",
     "תוסף לדפדפן כרום",
     "חיבור ל־WhatsApp, Messenger ו־Instagram",
@@ -36,13 +38,13 @@ const basePlan = {
     "שירות גיבוי שיחות והודעות",
     "ממשק ניהול שיחות מתקדם",
     "תמיכה בתקשורת בין סוכנים"
-
-  ]
+  ],
+  description: 'תוכנית זו מתאימה לעסקים שמנהלים פעילות בסיסית במדיה החברתית ורוצים מענה אוטומטי לפוסטים, Stories ו־Reels. ושליחת הודעות קמפיין להמונים.'
 }
 
 const extendedPlan = {
   paymentLinkId: '6b06b7d9-c046-42a2-a88d-351e37011703',
-  name: 'מורחב - Social',
+  name: 'מורחב - Chatbot',
   type: PlanType.expended,
   isActive: true,
   isPopular: true,
@@ -56,9 +58,9 @@ const extendedPlan = {
     "בניית מסע לקוח",
     "יכולות AI",
     "תרגום הודעות אוטומטי",
-    "שרת אוטומציות מגובה ענן",
-    "מענה אוטומטי לפוסטים, Stories ו־Reels",
-  ]
+    "שרת אוטומציות מגובה ענן"
+  ],
+  description: 'תוכנית זו מתאימה לעסקים המעוניינים בצ\'אט בוטים קלאסים (שאלות תשובות), ניהול מסעות לקוח וכלי אוטומציה מבוססי AI לשיפור השירות והמעורבות.'
 }
 
 //@ts-expect-error
@@ -80,6 +82,7 @@ export const Plans: { [key in PlanType]: Plan } = {
       "סוכני AI",
       "סיכום שיחות בקליק ועריכת הודעות AI",
       "חיבור למערכת ChatGPT"
-    ]
+    ],
+    description: 'תוכנית זו מתאימה לעסקים מתקדמים שמבקשים כלים חכמים לניהול שיחות, סוכני AI וחיבורים למערכות מתקדמות כמו ChatGPT. סוכני AI מסוגלים לקבוע פגישות, לתת מידע על סטטוס הזמנה, לספק מידע על העסק ועוד המון אפשריות.'
   }
 }
