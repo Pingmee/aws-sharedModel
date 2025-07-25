@@ -9,7 +9,13 @@ import {
   UserPublicInformation
 } from '../conversation'
 import { FireberryField, FireberryTable } from "../Campaigns/FireberryModel"
-import { MessageTemplateType, TemplateType } from '../Whatsapp/whatsapp'
+import { MessageTemplateType } from '../Whatsapp/whatsapp'
+
+export enum WorkflowMode {
+  demo = "demo",
+  social = "social",
+  full = "full"
+}
 
 export enum NodeType {
   // Real Full Nodes
