@@ -1,7 +1,7 @@
 import { BaseSubFolder } from '../Automations/automations'
 import { WhatsAppErrorMessage, WhatsAppMessageStatus } from '../Whatsapp/whatsapp'
 import { ConversationTag, Customer, Message } from '../conversation'
-import { FireberryQuery, FireberryTable, FireberryTableData } from './FireberryModel'
+import { FireberryQuery, FireberryTable } from './FireberryModel'
 
 export enum TimeOption {
   now = 'now',
@@ -11,7 +11,8 @@ export enum TimeOption {
 export enum AudienceSource {
   pingmeeTags = 'tags',
   fireberry = 'fireberry',
-  excel = 'excel'
+  excel = 'excel',
+  webhook = 'webhook'
 }
 
 export type Campaign = BaseSubFolder & {
@@ -53,7 +54,7 @@ export type CampaignRecipient = {
   readAt?: number; // Optional timestamp when message was read
   failedAttempts?: number; // Number of retry attempts
   lastAttemptAt?: number; // Last retry attempt timestamp
-  failureReason?: string; // Optional: Stores error messages for failed attemptse
+  failureReason?: string; // Optional: Stores error messages for failed attempts
   error?: WhatsAppErrorMessage
   expiresAt?: number; // TTL attribute (optional)
 };
