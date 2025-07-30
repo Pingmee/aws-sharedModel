@@ -247,6 +247,7 @@ export enum UserType {
 
 export type UserSettings = {
   blurImages: boolean
+  finishedOnboarding: boolean
 }
 
 export type UserPublicInformation = UserSchemaKeys & {
