@@ -345,3 +345,14 @@ export function attachmentTypeFromInfo(attachmentBase64: Base64Attachment) {
   }
   return AttachmentType.text
 }
+
+export interface WhatsappManagerFields {
+  about?: string,
+  address?: string
+  description?: string,
+  email?: string,
+  profile_picture_url?: string,
+  websites?: string[],
+  vertical?: string,
+  messaging_product: string
+}
