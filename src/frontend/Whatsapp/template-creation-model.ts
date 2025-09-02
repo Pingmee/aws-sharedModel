@@ -2,7 +2,7 @@ import {
   Button,
   FileMetadata,
   MessageTemplateType,
-  Section,
+  Section, SupportedMimeTypes,
   TemplateRejectionReason,
   WhatsAppComponentType,
   WhatsAppHeaderComponentType
@@ -53,7 +53,7 @@ export function inputFileSelectionAllowList(headerFormat: string) {
     case WhatsAppHeaderComponentType.image:
       return ".jpg, .jpeg, .png"
     case WhatsAppHeaderComponentType.video:
-      return "video/mp4"
+      return `${SupportedMimeTypes.videoMp4}, ${SupportedMimeTypes.videoQuicktime}`
     case WhatsAppHeaderComponentType.document:
       return ".pdf"
     default:
