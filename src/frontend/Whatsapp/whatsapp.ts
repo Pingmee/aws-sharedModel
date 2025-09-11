@@ -352,6 +352,8 @@ export interface WhatsappManagerFields {
   description?: string,
   email?: string,
   profile_picture_url?: string,
+  // For image upload
+  profile_picture_handle?: string,
   websites?: string[],
   vertical?: string,
   messaging_product: string
