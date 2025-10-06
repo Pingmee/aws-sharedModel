@@ -44,6 +44,7 @@ export enum NodeType {
   conditionEvaluation = "conditionEvaluation",
   switchCaseEvaluation = "switchCaseEvaluation",
   noSelectionFallback = 'noSelectionFallback',
+  awaitResponseTimeout = 'awaitResponseTimeout',
 }
 
 export enum SocialTriggerOptions {
