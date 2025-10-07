@@ -47,6 +47,12 @@ export enum NodeType {
   awaitResponseTimeout = 'awaitResponseTimeout',
 }
 
+export enum EventBridgeTriggerOptions {
+  waitNode = 'waitNode',
+  campaign = 'campaign',
+  noResponseTimeout = 'noResponseTimeout'
+}
+
 export enum SocialTriggerOptions {
   CommentOnInstagramPost = "Comment on Instagram Post",
   CommentOnFacebookPost = "Comment on Facebook Post",
