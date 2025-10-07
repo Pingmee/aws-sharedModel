@@ -1,5 +1,4 @@
 import { BaseSubFolder } from '../../Automations/automations'
-import { OpenAI } from 'openai'
 
 export enum Status {
   none,
@@ -70,7 +69,7 @@ export type AIAgentRole = {
   name: string
   description: string
   instructions: string
-  tool?: OpenAI.Responses.Tool
+  tool?: any
   webhook: string
   allRequired: boolean
 }
