@@ -26,7 +26,8 @@ export enum MessageType {
   default = "default",
   informative = "informative",
   commentOnPost = "commentOnPost",
-  privateReply = "privateReply"
+  privateReply = "privateReply",
+  forward = "forward"
 }
 
 export enum Initiator {
