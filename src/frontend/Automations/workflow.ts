@@ -37,6 +37,7 @@ export type WorkflowExecution = {
   associatedToWorkflowId: string;
   createdAt: number
   associatedTo: string
+  participantsIdentifiers: string
 
   ignoreAfterTimestamp?: number
 
