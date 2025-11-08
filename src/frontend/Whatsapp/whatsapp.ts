@@ -78,6 +78,15 @@ export type AdReferral = {
   ctwa_clid: string
 }
 
+export type AISummary = {
+  summary: string,
+  issue: string,
+  agentActions: string,
+  status: string,
+  steps: string[],
+  tone: string
+}
+
 export interface RichContent {
   type: TemplateType
   content: {
@@ -87,6 +96,7 @@ export interface RichContent {
     interactiveListData?: InteractiveListData
     referral?: AdReferral
     contacts?: WhatsAppContact[]
+    summary?: AISummary
   }
 }
 
@@ -157,7 +167,8 @@ export enum TemplateType {
 
   // Not a template
   referral = 'referral',
-  contacts = 'contacts'
+  contacts = 'contacts',
+  aiSummary = 'aiSummary'
 }
 
 
