@@ -132,6 +132,10 @@ export interface ConversationTag {
   isSelected?: boolean
 }
 
+export type AISummarizeData = {
+  shouldSummarize: boolean
+}
+
 export type LanguageInformation = {
   languageCode: string
   targetCountryCode?: string // "he-IL"

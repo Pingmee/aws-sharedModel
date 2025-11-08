@@ -2,6 +2,7 @@ import { Expression, Variable } from './automations'
 import { TemplateInformation } from '../Whatsapp/template-creation-model'
 import { Condition, FireberryAction, FireberryWorkflowQuery, MessageNodeType, SubNodeConfigType } from './model'
 import {
+  AISummarizeData,
   ConversationAnswerMode,
   ConversationStatusCase,
   ConversationTag, LanguageInformation, MessageType,
@@ -129,6 +130,7 @@ export interface UpdateConversationData extends GeneralNodeData {
   answerMode?: ConversationAnswerMode
   status?: ConversationStatusCase
   autoTranslation?: LanguageInformation
+  aiSummarize?: AISummarizeData
   optoutFromMarketingMessage?: boolean
 }
 
