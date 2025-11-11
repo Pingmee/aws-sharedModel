@@ -42,38 +42,72 @@ export function hexToRgba(hex: string, alpha = 0.8) {
   return `rgba(${ r }, ${ g }, ${ b }, ${ alpha })`;
 }
 
+// 1) Keep your original helper (slightly typed)
 export function dataURLToFile(dataURL: string, fileName: string): File {
-  if (!dataURL) {
-    throw new Error('Invalid dataURL: The dataURL is empty or undefined.');
+  if (!dataURL) throw new Error('Invalid dataURL: The dataURL is empty or undefined.')
+
+  const arr = dataURL.split(',')
+  if (arr.length !== 2) throw new Error('Invalid dataURL format')
+
+  const mimeMatch = arr[0].match(/:(.*?);/)
+  if (!mimeMatch?.[1]) throw new Error('Invalid MIME type in dataURL')
+
+  const mime = mimeMatch[1]
+  const bstr = atob(arr[1])
+  const u8arr = new Uint8Array(bstr.length)
+  for (let i = 0; i < bstr.length; i++) u8arr[i] = bstr.charCodeAt(i)
+  return new File([new Blob([u8arr], { type: mime })], fileName, { type: mime })
+}
+
+// 2) Minimal JPEG sniff (FF D8 FF)
+function isJpegBlob(blob: Blob): Promise<boolean> {
+  return blob.slice(0, 3).arrayBuffer().then(buf => {
+    const h = new Uint8Array(buf)
+    return h[0] === 0xFF && h[1] === 0xD8 && h[2] === 0xFF
+  })
+}
+
+// 3) Safe toBlob wrapper (handles null + typing)
+function canvasToBlob(canvas: HTMLCanvasElement, type: string, quality?: number): Promise<Blob> {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('toBlob returned null'))), type, quality)
+  })
+}
+
+// 4) Ensure **actual** JPEG bytes (re-encode if needed)
+export async function ensureJpegFileFromDataUrl(
+  dataUrl: string,
+  filename: string,
+  quality = 1.0
+): Promise<File> {
+  // First, try to use the data directly
+  const file = dataURLToFile(dataUrl.replace(/^data:image\/jpg;/, 'data:image/jpeg;'), filename)
+
+  if (file.type === 'image/jpeg' && (await isJpegBlob(file))) {
+    // Already a genuine JPEG
+    return file.name.endsWith('.jpg') || file.name.endsWith('.jpeg')
+      ? file
+      : new File([file], filename.endsWith('.jpg') || filename.endsWith('.jpeg') ? filename : `${filename}.jpg`, { type: 'image/jpeg' })
   }
 
-  // Split the data URL to extract the MIME type and base64 content
-  const arr = dataURL.split(',');
-  if (arr.length !== 2) {
-    throw new Error('Invalid dataURL format: The dataURL must contain a valid base64 string.');
-  }
+  // Otherwise, re-encode through a canvas to **guarantee** JPEG bytes
+  const img = new (typeof window !== 'undefined' ? window.Image : Image)()
+  await new Promise<void>((res, rej) => {
+    img.onload = () => res()
+    img.onerror = rej
+    img.src = dataUrl
+  })
 
-  const mimeMatch = arr[0].match(/:(.*?);/);
-  if (!mimeMatch || mimeMatch.length < 2) {
-    throw new Error('Invalid MIME type: Could not extract the MIME type from the dataURL.');
-  }
+  const canvas = document.createElement('canvas')
+  canvas.width = img.naturalWidth
+  canvas.height = img.naturalHeight
+  const ctx = canvas.getContext('2d')
+  if (!ctx) throw new Error('Canvas 2D context not available')
+  ctx.drawImage(img, 0, 0)
 
-  const mime = mimeMatch[1]; // Extract the MIME type
-  try {
-    const bstr = atob(arr[1]); // Decode the base64 string
-    let n = bstr.length;
-    const u8arr = new Uint8Array(n);
-
-    // Fill the Uint8Array with the binary content
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
-    }
-
-    // Convert the Uint8Array to a Blob and then create a File
-    return new File([new Blob([u8arr], { type: mime })], fileName, { type: mime });
-  } catch (error) {
-    throw new Error(`Error converting base64 to binary: ${error}`);
-  }
+  const jpegBlob = await canvasToBlob(canvas, 'image/jpeg', quality)
+  const safeName = filename.endsWith('.jpg') || filename.endsWith('.jpeg') ? filename : `${filename}.jpg`
+  return new File([jpegBlob], safeName, { type: 'image/jpeg' })
 }
 
 export function searchAndReplace(obj: any, searchTerm: string, action: (value: string) => string): any {
