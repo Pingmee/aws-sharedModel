@@ -10,6 +10,7 @@ import { LoginPlatform } from './login.js'
 import { FileInterface } from './file-interface.js'
 import { PlanType } from './Payment/Model'
 import { AITranslation } from './AI/Translation'
+import { WorkflowExecution } from './Automations/workflow'
 
 export type ExtractedUserJWTPayload = {
   user: User
@@ -158,7 +159,12 @@ export interface Conversation {
   unreadCount: number
   assignedTagIds?: string[]
   assignedAgentIds?: string[]
+
+
+  // This id is set when a new execution is created
   lastWorkflowExecutionId?: string
+  // This object is queried when fetching conversations
+  lastWorkflowExecution?: WorkflowExecution
 
   aiFeatures?: {
     autoTranslation?: LanguageInformation
