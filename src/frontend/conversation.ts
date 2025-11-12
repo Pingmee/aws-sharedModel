@@ -158,6 +158,7 @@ export interface Conversation {
   unreadCount: number
   assignedTagIds?: string[]
   assignedAgentIds?: string[]
+  lastWorkflowExecutionId?: string
 
   aiFeatures?: {
     autoTranslation?: LanguageInformation
