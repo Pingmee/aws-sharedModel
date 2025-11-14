@@ -1,4 +1,5 @@
 import { BaseSubFolder } from '../../Automations/automations'
+import { VectorStoreFile } from 'openai/resources/vector-stores'
 
 export enum Status {
   none,
@@ -74,8 +75,15 @@ export type AIAgentRole = {
   allRequired: boolean
 }
 
+export type VectorStore = {
+  id: string
+  files: VectorStoreFile[]
+  fileNamesMapping: { [key: string]: string }
+}
+
 export type AIAgent = BaseSubFolder & {
   description?: string
+  vectorStore?: VectorStore
   roles: AIAgentRole[]
   profileImage: string
   tokensUsed?: number
