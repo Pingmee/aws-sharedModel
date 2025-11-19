@@ -78,6 +78,7 @@ export type AIAgentRole = {
 export type VectorStore = {
   id: string
   files: VectorStoreFile[]
+  required: boolean
   fileNamesMapping: { [key: string]: string }
 }
 
