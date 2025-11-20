@@ -4,7 +4,7 @@ import {
   RichContent,
   WhatsAppMessageContext,
   WhatsAppMessageStatus,
-  WhatsAppPhoneNumber
+  WhatsAppPhoneNumber, WhatsAppErrorMessage
 } from './Whatsapp/whatsapp.js'
 import { LoginPlatform } from './login.js'
 import { FileInterface } from './file-interface.js'
@@ -71,6 +71,7 @@ export type Message = BaseMessageSchemeKeys & {
 
   translation?: AITranslation
 
+  error?: WhatsAppErrorMessage
   agentIdentification?: AgentIdentification
   context?: WhatsAppMessageContext
   comment?: SocialComment
