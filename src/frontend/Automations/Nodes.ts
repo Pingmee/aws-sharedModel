@@ -51,7 +51,8 @@ export enum NodeType {
 export enum EventBridgeTriggerOptions {
   waitNode = 'waitNode',
   campaign = 'campaign',
-  noResponseTimeout = 'noResponseTimeout'
+  noResponseTimeout = 'noResponseTimeout',
+  conversation = 'conversation'
 }
 
 export enum SocialTriggerOptions {
