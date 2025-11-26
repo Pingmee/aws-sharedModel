@@ -260,6 +260,12 @@ export enum UserType {
   ai = 'ai'
 }
 
+export enum UserStatus {
+  active = 'active',
+  inActive = 'inactive',
+  invited = 'invited'
+}
+
 export type UserSettings = {
   blurImages: boolean
   finishedOnboarding: boolean
@@ -268,6 +274,7 @@ export type UserSettings = {
 export type UserPublicInformation = UserSchemaKeys & {
   name: string
   type: UserType
+  status: UserStatus
   profileImage?: string
   isConnected?: boolean
   connectedVia: LoginPlatform
