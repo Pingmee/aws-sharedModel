@@ -54,6 +54,7 @@ export interface SocialComment {
   commentId: string;
   parentId?: string;
   permalink?: string;
+  username?: string
 }
 
 export type FacebookComment = SocialComment & {
