@@ -189,6 +189,7 @@ export interface WhatsAppPhoneNumber {
   display_phone_number: string
   quality_rating: string
   platform_type: string
+  max_daily_conversations?: number
   throughput: {
     "level": string
   },

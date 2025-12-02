@@ -260,6 +260,18 @@ export enum UserType {
   ai = 'ai'
 }
 
+export enum UserPermission {
+  all = 'all',
+  conversationListAgents = 'conversationListAgents',
+  messages = 'messages',
+  contacts = 'contacts',
+  aiAgents = 'aiAgents',
+  workflows = 'workflows',
+  campaigns = 'campaigns',
+  templates = 'templates',
+  integrations = 'integrations'
+}
+
 export enum UserStatus {
   active = 'active',
   inActive = 'inactive',
@@ -275,6 +287,7 @@ export type UserPublicInformation = UserSchemaKeys & {
   name: string
   type: UserType
   status: UserStatus
+  permissions: UserPermission[]
   profileImage?: string
   isConnected?: boolean
   connectedVia: LoginPlatform
