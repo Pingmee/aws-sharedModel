@@ -135,7 +135,7 @@ export interface WhatsAppWebhookHistoryMessage {
               }
             ];
           };
-          field: string;
+          field: "messages";
         }
       ];
     }
@@ -241,31 +241,15 @@ export function isHistoryWhatsAppWebhookMessageEchoes(obj: any): obj is WhatsApp
   );
 }
 
-export function isHistoryMessageEchoesQueueDataArray(obj: any): obj is WhatsAppHistoryMessageEchoQueueData[] {
-  return (
-    Array.isArray(obj) &&
-    obj.length > 0 &&
-    isHistoryWhatsAppWebhookMessageEchoes(obj[0])
-  );
-}
-
-export function isHistoryStateSyncQueueDataArray(obj: any): obj is WhatsAppHistoryStateSyncQueueData[] {
-  return (
-    Array.isArray(obj) &&
-    obj.length > 0 &&
-    isHistoryWhatsAppWebhookStateSync(obj[0])
-  );
-}
-
 export function isWhatsAppWebhookMediaMessage(obj: any): obj is WhatsAppWebhookMediaMessage {
   return (
     obj &&
     typeof obj === 'object' &&
     typeof obj.object === 'string' &&
     Array.isArray(obj.entry) &&
-    obj.entry[0]?.changes?.[0]?.field === 'history' &&
+    obj.entry[0]?.changes?.[0]?.field === 'messages' &&
     Array.isArray(obj.entry[0].changes[0].value.messages)
-  )
+  );
 }
 
 export function isWhatsAppWebhookHistoryMessage(obj: any): obj is WhatsAppWebhookHistoryMessage {
@@ -290,6 +274,7 @@ export function isWhatsAppWebhookHistoryError(obj: any): obj is WhatsAppWebhookH
   )
 }
 
+
 export function isHistoryMessageQueueData(obj: any): obj is WhatsAppHistoryMessageQueueData {
   return (
     obj &&
@@ -297,15 +282,13 @@ export function isHistoryMessageQueueData(obj: any): obj is WhatsAppHistoryMessa
     typeof obj.customerPhoneNumberId === 'string' &&
     typeof obj.businessPhoneNumberId === 'string' &&
     typeof obj.associatedTo === 'string' &&
-    typeof obj.id === 'string' &&
     typeof obj.from === 'string' &&
+    typeof obj.id === 'string' &&
     typeof obj.timestamp === 'string' &&
-    typeof obj.type === 'string'
-  )
-}
-
-export function isHistoryMessageQueueDataArray(obj: any): obj is WhatsAppHistoryMessageQueueData[] {
-  return (Array.isArray(obj) && obj.length > 0 && isHistoryMessageQueueData(obj[0]))
+    typeof obj.type === 'string' &&
+    obj.history_context &&
+    typeof obj.history_context.status === 'string'
+  );
 }
 
 export function isHistoryMediaMessageQueueData(obj: any): obj is WhatsAppHistoryMediaMessageQueueData {
@@ -365,10 +348,35 @@ export function isHistoryMediaMessageQueueData(obj: any): obj is WhatsAppHistory
   }
 }
 
+
+export function isHistoryMessageQueueDataArray(obj: any): obj is WhatsAppHistoryMessageQueueData[] {
+  return Array.isArray(obj) && obj.length > 0 && isHistoryMessageQueueData(obj[0]);
+}
+
 export function isHistoryMediaMessageQueueDataArray(obj: any): obj is WhatsAppHistoryMediaMessageQueueData[] {
   return (
     Array.isArray(obj) &&
     obj.length > 0 &&
     isHistoryMediaMessageQueueData(obj[0])
   )
+}
+
+export function isHistoryMessageEchoesQueueDataArray(obj: any): obj is WhatsAppHistoryMessageEchoQueueData[] {
+  return (
+    Array.isArray(obj) &&
+    obj.length > 0 &&
+    typeof obj[0]?.to === 'string' &&
+    isHistoryMediaMessageQueueData(obj[0])
+  );
+}
+
+export function isHistoryStateSyncQueueDataArray(obj: any): obj is WhatsAppHistoryStateSyncQueueData[] {
+  return (
+    Array.isArray(obj) &&
+    obj.length > 0 &&
+    typeof obj[0]?.customerPhoneNumberId === 'string' &&
+    typeof obj[0]?.businessPhoneNumberId === 'string' &&
+    typeof obj[0]?.associatedTo === 'string' &&
+    typeof obj[0]?.fullName === 'string'
+  );
 }
