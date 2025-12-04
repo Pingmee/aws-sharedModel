@@ -7,6 +7,7 @@ export enum WhatsAppMessageStatus {
   sent = "sent",
   delivered = "delivered",
   read = "read",
+  played = "played",
   standby = "standby",
   optOut = "optOut",
   tooManyRequests = "tooManyRequests"
@@ -179,6 +180,22 @@ export interface FacebookPage {
   name: string
 }
 
+export interface WhatsAppCoexistenceStatus {
+  phase: number,
+  chunk_order: number,
+  progress: number,
+  errors?: WhatsAppCoexistenceError[]
+}
+
+export interface WhatsAppCoexistenceError {
+  code: number;
+  title: string;
+  message: string;
+  error_data: {
+    details: string;
+  }
+}
+
 export interface WhatsAppPhoneNumber {
   id: string
   associatedTo: string
@@ -196,6 +213,7 @@ export interface WhatsAppPhoneNumber {
   webhook_configuration: {
     "application": string
   }
+  coexistenceOnboarding?: WhatsAppCoexistenceStatus
 }
 
 export interface WhatsAppErrorMessage {
@@ -285,6 +303,7 @@ export enum WhatsAppMessageStatusNumber {
   sent,
   delivered,
   read,
+  played,
   failed,
 }
 
