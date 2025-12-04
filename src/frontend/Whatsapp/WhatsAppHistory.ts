@@ -135,7 +135,7 @@ export interface WhatsAppWebhookHistoryMessage {
               }
             ];
           };
-          field: string;
+          field: "messages";
         }
       ];
     }
@@ -294,13 +294,8 @@ export function isHistoryMessageQueueData(obj: any): obj is WhatsAppHistoryMessa
   return (
     obj &&
     typeof obj === 'object' &&
-    typeof obj.customerPhoneNumberId === 'string' &&
-    typeof obj.businessPhoneNumberId === 'string' &&
-    typeof obj.associatedTo === 'string' &&
-    typeof obj.id === 'string' &&
-    typeof obj.from === 'string' &&
-    typeof obj.timestamp === 'string' &&
-    typeof obj.type === 'string'
+    Array.isArray(obj.entry) &&
+    obj.entry[0]?.changes?.[0]?.field === 'messages'
   )
 }
 
