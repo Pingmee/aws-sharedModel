@@ -307,6 +307,10 @@ export function isHistoryMediaMessageQueueData(obj: any): obj is WhatsAppHistory
 
   // Validate based on media type
   switch (obj.type) {
+    case 'text':
+      return (
+        obj.text && typeof obj.text.body === 'string'
+      )
     case 'image':
       return (
         obj.image &&
@@ -361,12 +365,20 @@ export function isHistoryMediaMessageQueueDataArray(obj: any): obj is WhatsAppHi
   )
 }
 
-export function isHistoryMessageEchoesQueueDataArray(obj: any): obj is WhatsAppHistoryMessageEchoQueueData[] {
+export function isHistoryMessageEchoesQueueDataArray(
+  obj: any
+): obj is WhatsAppHistoryMessageEchoQueueData[] {
   return (
     Array.isArray(obj) &&
     obj.length > 0 &&
-    typeof obj[0]?.to === 'string' &&
-    isHistoryMediaMessageQueueData(obj[0])
+    typeof obj[0]?.to === "string" &&
+    typeof obj[0]?.from === "string" &&
+    typeof obj[0]?.id === "string" &&
+    typeof obj[0]?.timestamp === "string" &&
+    typeof obj[0]?.type === "string" &&
+    typeof obj[0]?.customerPhoneNumberId === "string" &&
+    typeof obj[0]?.businessPhoneNumberId === "string" &&
+    typeof obj[0]?.associatedTo === "string"
   );
 }
 
