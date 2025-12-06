@@ -62,6 +62,7 @@ export type Message = BaseMessageSchemeKeys & {
   message: string
   type: MessageType
   messagePlatform: PlatformType
+  creationPlatform: PlatformType
   associatedTo: string
   associatedToCampaignId?: string
   messageDirection: MessageDirection
