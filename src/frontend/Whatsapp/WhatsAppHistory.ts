@@ -227,7 +227,7 @@ export function isHistoryWhatsAppWebhookStateSync(obj: any): obj is WhatsAppWebh
     Array.isArray(obj.entry) &&
     obj.entry[0]?.changes?.[0]?.field === 'smb_app_state_sync' &&
     Array.isArray(obj.entry[0].changes[0].value.state_sync)
-  );
+  )
 }
 
 export function isHistoryWhatsAppWebhookMessageEchoes(obj: any): obj is WhatsAppWebhookMessageEchoes {
@@ -238,7 +238,7 @@ export function isHistoryWhatsAppWebhookMessageEchoes(obj: any): obj is WhatsApp
     Array.isArray(obj.entry) &&
     obj.entry[0]?.changes?.[0]?.field === 'smb_message_echoes' &&
     Array.isArray(obj.entry[0].changes[0].value.message_echoes)
-  );
+  )
 }
 
 export function isWhatsAppWebhookMediaMessage(obj: any): obj is WhatsAppWebhookMediaMessage {
@@ -249,7 +249,7 @@ export function isWhatsAppWebhookMediaMessage(obj: any): obj is WhatsAppWebhookM
     Array.isArray(obj.entry) &&
     obj.entry[0]?.changes?.[0]?.field === 'messages' &&
     Array.isArray(obj.entry[0].changes[0].value.messages)
-  );
+  )
 }
 
 export function isWhatsAppWebhookHistoryMessage(obj: any): obj is WhatsAppWebhookHistoryMessage {
@@ -288,7 +288,7 @@ export function isHistoryMessageQueueData(obj: any): obj is WhatsAppHistoryMessa
     typeof obj.type === 'string' &&
     obj.history_context &&
     typeof obj.history_context.status === 'string'
-  );
+  )
 }
 
 export function isHistoryMediaMessageQueueData(obj: any): obj is WhatsAppHistoryMediaMessageQueueData {
@@ -354,7 +354,7 @@ export function isHistoryMediaMessageQueueData(obj: any): obj is WhatsAppHistory
 
 
 export function isHistoryMessageQueueDataArray(obj: any): obj is WhatsAppHistoryMessageQueueData[] {
-  return Array.isArray(obj) && obj.length > 0 && isHistoryMessageQueueData(obj[0]);
+  return Array.isArray(obj) && obj.length > 0 && isHistoryMessageQueueData(obj[0])
 }
 
 export function isHistoryMediaMessageQueueDataArray(obj: any): obj is WhatsAppHistoryMediaMessageQueueData[] {
@@ -379,7 +379,7 @@ export function isHistoryMessageEchoesQueueDataArray(
     typeof obj[0]?.customerPhoneNumberId === "string" &&
     typeof obj[0]?.businessPhoneNumberId === "string" &&
     typeof obj[0]?.associatedTo === "string"
-  );
+  )
 }
 
 export function isHistoryStateSyncQueueDataArray(obj: any): obj is WhatsAppHistoryStateSyncQueueData[] {
@@ -390,5 +390,5 @@ export function isHistoryStateSyncQueueDataArray(obj: any): obj is WhatsAppHisto
     typeof obj[0]?.businessPhoneNumberId === 'string' &&
     typeof obj[0]?.associatedTo === 'string' &&
     typeof obj[0]?.fullName === 'string'
-  );
+  )
 }
