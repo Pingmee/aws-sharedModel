@@ -246,7 +246,7 @@ export function isHistoryWhatsAppWebhookMessageEchoes(obj: any): obj is WhatsApp
     typeof obj === 'object' &&
     typeof obj.object === 'string' &&
     Array.isArray(obj.entry) &&
-    obj.entry[0]?.changes?.[0]?.field === 'smb_message_echoes' &&
+    (obj.entry[0]?.changes?.[0]?.field === 'smb_message_echoes' || obj.entry[0]?.changes?.[0]?.field === 'history') &&
     Array.isArray(obj.entry[0].changes[0].value.message_echoes)
   )
 }
