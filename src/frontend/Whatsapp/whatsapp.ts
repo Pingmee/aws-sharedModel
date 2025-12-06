@@ -180,10 +180,16 @@ export interface FacebookPage {
   name: string
 }
 
+export enum WhatsAppCoexistenceSyncType {
+  contacts = 'smb_app_state_sync',
+  history = 'history'
+}
+
 export interface WhatsAppCoexistenceStatus {
   phase: number,
   chunk_order: number,
   progress: number,
+  syncIds: {[key: string]: string}
   errors?: WhatsAppCoexistenceError[]
 }
 
@@ -213,6 +219,7 @@ export interface WhatsAppPhoneNumber {
   webhook_configuration: {
     "application": string
   }
+  isCoexistence?: boolean
   coexistenceOnboarding?: WhatsAppCoexistenceStatus
 }
 
