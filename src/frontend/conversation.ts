@@ -11,6 +11,7 @@ import { FileInterface } from './file-interface.js'
 import { PlanType } from './Payment/Model'
 import { AITranslation } from './AI/Translation'
 import { WorkflowExecution } from './Automations/workflow'
+import { SelectablePlatform } from './platforms'
 
 export type ExtractedUserJWTPayload = {
   user: User
@@ -289,6 +290,7 @@ export type UserPublicInformation = UserSchemaKeys & {
   type: UserType
   status: UserStatus
   permissions: UserPermission[]
+  platformAccess: SelectablePlatform[]
   profileImage?: string
   isConnected?: boolean
   connectedVia: LoginPlatform
