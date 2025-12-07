@@ -258,7 +258,8 @@ export type UserSchemaKeys = {
 export enum UserType {
   owner = 'owner',
   admin = 'admin',
-  member = 'member',
+  agent = 'agent', // can view all conversation associated to a platform
+  member = 'member', // can view only conversation associated to a him
   ai = 'ai'
 }
 
