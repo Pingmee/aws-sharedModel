@@ -1,6 +1,12 @@
 import { Expression, Variable } from './automations'
 import { TemplateInformation } from '../Whatsapp/template-creation-model'
-import { Condition, FireberryAction, FireberryWorkflowQuery, MessageNodeType, SubNodeConfigType } from './model'
+import {
+  Condition, FacebookSocialPost,
+  FireberryAction,
+  FireberryWorkflowQuery, InstagramSocialPost,
+  MessageNodeType,
+  SubNodeConfigType
+} from './model'
 import {
   AISummarizeData,
   ConversationAnswerMode,
@@ -79,6 +85,7 @@ export enum ConditionType {
 
 export type NodeSpecificData =
   & IfNodeData
+  & SocialTriggerNodeData
   & TriggerNodeData
   & MessageNodeData
   & SubNodeFallbackData
@@ -161,6 +168,10 @@ export interface SubNodeFallbackData extends SubNodeData {
 export interface TriggerNodeData extends GeneralNodeData {
   platform?: PlatformType
   eventType?: string; // e.g., "onMessage" or "onNewConversation"
+}
+
+export interface SocialTriggerNodeData extends TriggerNodeData {
+  post?: FacebookSocialPost | InstagramSocialPost
 }
 
 // Specific data structure for Message nodes

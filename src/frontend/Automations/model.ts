@@ -61,4 +61,21 @@ export enum MessageNodeType {
   ai = 'ai'
 }
 
+export interface FacebookSocialPost {
+  created_time: string,
+  message?: string,
+  id: string,
+  full_picture?: string
+  permalink_url: string
+}
+
+export interface InstagramSocialPost {
+  timestamp: string,
+  caption?: string,
+  id: string,
+  media_url: string,
+  media_type: string,
+  thumbnail_url: string
+}
+
 
