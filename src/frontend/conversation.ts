@@ -12,6 +12,7 @@ import { PlanType } from './Payment/Model'
 import { AITranslation } from './AI/Translation'
 import { WorkflowExecution } from './Automations/workflow'
 import { SelectablePlatform } from './platforms'
+import { BusinessStorageTotal } from './Storage'
 
 export type ExtractedUserJWTPayload = {
   user: User
@@ -212,7 +213,15 @@ export type BusinessSettings = {
   targetAudience?: string
   about?: string
 
+  // Representative contact information
+  phoneNumbers?: string[]
+  emails?: string[]
+
   ai?: AISettings
+  storage?: {
+    maxSizeInMB: number
+    size: number
+  }
 }
 
 export enum PlatformType {
