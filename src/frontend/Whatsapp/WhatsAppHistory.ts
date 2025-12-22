@@ -207,6 +207,29 @@ export interface WhatsAppWebhookStateSync {
   ];
 }
 
+export interface WhatsAppWebhookAccountUpdate {
+  object: string;
+  entry: [
+    {
+      id: string;
+      time: number;
+      changes: [
+        {
+          field: "account_update";
+          value: {
+            event: "PARTNER_APP_UNINSTALLED" | string;
+            waba_info: {
+              waba_id: string;
+              owner_business_id: string;
+              partner_app_id: string;
+            };
+          };
+        }
+      ];
+    }
+  ];
+}
+
 export interface WhatsAppWebhookMessageEchoes {
   object: string;
   entry: [
@@ -281,6 +304,24 @@ export function isWhatsAppWebhookHistoryError(obj: any): obj is WhatsAppWebhookH
     obj.history &&
     Array.isArray(obj.history) &&
     Array.isArray(obj.history[0]?.errors)
+  )
+}
+
+
+export function isWhatsAppWebhookAccountUpdate(obj: any): obj is WhatsAppWebhookAccountUpdate {
+  return (
+    obj &&
+    typeof obj === 'object' &&
+    obj.object === 'whatsapp_business_account' &&
+    Array.isArray(obj.entry) &&
+    typeof obj.entry[0]?.id === 'string' &&
+    typeof obj.entry[0]?.time === 'number' &&
+    Array.isArray(obj.entry[0]?.changes) &&
+    obj.entry[0]?.changes[0]?.field === 'account_update' &&
+    typeof obj.entry[0]?.changes[0]?.value?.event === 'string' &&
+    typeof obj.entry[0]?.changes[0]?.value?.waba_info?.waba_id === 'string' &&
+    typeof obj.entry[0]?.changes[0]?.value?.waba_info?.owner_business_id === 'string' &&
+    typeof obj.entry[0]?.changes[0]?.value?.waba_info?.partner_app_id === 'string'
   )
 }
 
