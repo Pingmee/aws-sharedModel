@@ -202,16 +202,19 @@ export interface WhatsAppCoexistenceError {
   }
 }
 
-export interface WhatsAppPhoneNumber {
+export interface PhoneNumber {
   id: string
   associatedTo: string
   associatedBusinessId: string // This is the Whatsapp Business Id
-  userExtensionSettingsId: string
-  verified_name: string
-  code_verification_status: string
-  display_phone_number: string
-  quality_rating: string
   platform_type: string
+  display_phone_number: string
+  verified_name: string
+}
+
+export interface WhatsAppPhoneNumber extends PhoneNumber {
+  userExtensionSettingsId: string
+  code_verification_status: string
+  quality_rating: string
   max_daily_conversations?: number
   throughput: {
     "level": string
@@ -221,6 +224,12 @@ export interface WhatsAppPhoneNumber {
   }
   isCoexistence?: boolean
   coexistenceOnboarding?: WhatsAppCoexistenceStatus
+}
+
+export interface GreenAPIPhoneNumber extends PhoneNumber {
+  apiUrl: string
+  mediaUrl: string,
+  token: string
 }
 
 export interface WhatsAppErrorMessage {

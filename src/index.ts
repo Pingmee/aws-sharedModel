@@ -44,3 +44,5 @@ export * from './frontend/AI/Chatbot/Model.js';
 export * from './frontend/AI/Translation.js';
 
 export * from './frontend/platforms.js';
+
+export * from './frontend/greenAPI/model.js';

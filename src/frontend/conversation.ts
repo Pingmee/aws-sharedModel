@@ -12,7 +12,6 @@ import { PlanType } from './Payment/Model'
 import { AITranslation } from './AI/Translation'
 import { WorkflowExecution } from './Automations/workflow'
 import { SelectablePlatform } from './platforms'
-import { BusinessStorageTotal } from './Storage'
 
 export type ExtractedUserJWTPayload = {
   user: User
@@ -226,7 +225,7 @@ export type BusinessSettings = {
 
 export enum PlatformType {
   fireberry = 'powerlink',
-
+  greenAPI = 'greenAPI',
   whatsapp = 'whatsapp',
   facebookMessenger = 'facebookMessenger',
   pingmee = 'pingmee',
