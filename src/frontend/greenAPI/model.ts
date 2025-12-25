@@ -73,7 +73,7 @@ export function isOutgoingMessageReceivedWebhook(
   obj: any
 ): obj is OutgoingMessageReceivedWebhook {
   return (
-    obj?.typeWebhook === 'outgoingMessageReceived' &&
+    (obj?.typeWebhook === 'outgoingMessageReceived' || obj?.typeWebhook === 'incomingMessageReceived') &&
     typeof obj.idMessage === 'string' &&
     typeof obj.senderData?.sender === 'string' &&
     typeof obj.messageData?.typeMessage === 'string'
