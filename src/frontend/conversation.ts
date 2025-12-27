@@ -26,6 +26,7 @@ export type BaseMessageSchemeKeys = {
 
 export enum MessageType {
   default = "default",
+  deleted = 'deleted',
   informative = "informative",
   commentOnPost = "commentOnPost",
   privateReply = "privateReply",
