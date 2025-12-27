@@ -7,6 +7,7 @@ import { WhatsAppMessageStatus } from '../Whatsapp/whatsapp.js'
 export enum TypeWebhook {
   outgoingMessageStatus = 'outgoingMessageStatus',
   incomingMessageReceived = 'incomingMessageReceived',
+  outgoingMessageReceived = 'outgoingMessageReceived',
   outgoingAPIMessageReceived = 'outgoingAPIMessageReceived'
 }
 
@@ -143,7 +144,7 @@ export function isOutgoingMessageStatusWebhook(obj: any): obj is OutgoingMessage
 
 export function isOutgoingMessageReceivedWebhook(obj: any): obj is OutgoingMessageReceivedWebhook {
   return (
-    [TypeWebhook.incomingMessageReceived, TypeWebhook.outgoingAPIMessageReceived, TypeWebhook.outgoingMessageStatus].includes(obj.typeWebhook) &&
+    [TypeWebhook.incomingMessageReceived, TypeWebhook.outgoingAPIMessageReceived, TypeWebhook.outgoingMessageStatus, TypeWebhook.outgoingMessageReceived].includes(obj.typeWebhook) &&
     typeof obj.idMessage === 'string' &&
     typeof obj.senderData?.sender === 'string' &&
     typeof obj.messageData?.typeMessage === 'string'
