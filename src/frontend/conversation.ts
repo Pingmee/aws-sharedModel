@@ -123,7 +123,8 @@ export type BaseCustomerSchemeKeys = {
 
 export type Customer = BaseCustomerSchemeKeys & {
   profileImage: string | undefined
-  customerName: string
+  customerName: string // The name from whatsapp
+  customerNickname?: string // The name the business gave them
   createdAt: number
   lastActiveAt: number
   email?: string
