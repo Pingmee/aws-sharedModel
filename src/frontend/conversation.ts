@@ -128,6 +128,7 @@ export type Customer = BaseCustomerSchemeKeys & {
   createdAt: number
   lastActiveAt: number
   email?: string
+  platform?: PlatformType.whatsapp | PlatformType.instagram | PlatformType.facebookMessenger
 }
 
 export interface ConversationTag {
