@@ -197,6 +197,7 @@ export type AISettings = {
   overallTokens: number
   autoRenewable: boolean
   apiToken?: string
+  baseInstructions?: string
 }
 
 export type BusinessSettings = {
