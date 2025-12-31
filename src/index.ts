@@ -46,3 +46,5 @@ export * from './frontend/AI/Translation.js';
 export * from './frontend/platforms.js';
 
 export * from './frontend/greenAPI/model.js';
+
+export * from './frontend/Sorting.js';

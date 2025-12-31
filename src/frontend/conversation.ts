@@ -12,6 +12,7 @@ import { PlanType } from './Payment/Model'
 import { AITranslation } from './AI/Translation'
 import { WorkflowExecution } from './Automations/workflow'
 import { SelectablePlatform } from './platforms'
+import { FilterRule } from './Sorting'
 
 export type ExtractedUserJWTPayload = {
   user: User
@@ -298,6 +299,13 @@ export type UserSettings = {
   finishedOnboarding: boolean
 }
 
+export type UserFilterOptions = {
+  conversation?: {
+    defaultHeaderTab: string,
+    filterOptions: FilterRule[]
+  }
+}
+
 export type UserPublicInformation = UserSchemaKeys & {
   name: string
   type: UserType
@@ -308,6 +316,7 @@ export type UserPublicInformation = UserSchemaKeys & {
   isConnected?: boolean
   connectedVia: LoginPlatform
   settings: UserSettings
+  filterOptions?: UserFilterOptions
 }
 
 export type User = UserPublicInformation & {
