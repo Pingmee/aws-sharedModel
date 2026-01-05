@@ -150,6 +150,11 @@ export type LanguageInformation = {
   autoTranslate: boolean
 }
 
+export interface ConversationGroup {
+  id: string
+  name: string
+}
+
 export interface Conversation {
   platformCompositionKey: string // whatsapp#<phoneNumber/page>Id
 
@@ -168,8 +173,7 @@ export interface Conversation {
   assignedAgentIds?: string[]
 
   // Added for group chats
-  name?: string
-  isGroup?: boolean
+  group?: ConversationGroup
 
   // This id is set when a new execution is created
   lastWorkflowExecutionId?: string
