@@ -94,7 +94,8 @@ export interface ContactMessageData {
 }
 
 export interface EditedMessageData {
-  textMessage: string;
+  text?: string
+  textMessage?: string;
   stanzaId: string;
 }
 
