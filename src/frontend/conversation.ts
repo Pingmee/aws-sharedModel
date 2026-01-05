@@ -167,6 +167,9 @@ export interface Conversation {
   assignedTagIds?: string[]
   assignedAgentIds?: string[]
 
+  // Added for group chats
+  name?: string
+  isGroup?: boolean
 
   // This id is set when a new execution is created
   lastWorkflowExecutionId?: string
