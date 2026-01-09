@@ -1,4 +1,4 @@
-import { Base64Attachment, Message, WhatsAppContact } from '../conversation.js'
+import { Base64Attachment, Message, PlatformType, WhatsAppContact } from '../conversation.js'
 import { TemplateInformation } from './template-creation-model.js'
 
 export enum WhatsAppMessageStatus {
@@ -209,6 +209,7 @@ export interface PhoneNumber {
   platform_type: string
   display_phone_number: string
   verified_name: string
+  type: PlatformType.whatsapp | PlatformType.greenAPI
 }
 
 export interface WhatsAppPhoneNumber extends PhoneNumber {
