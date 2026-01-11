@@ -155,7 +155,32 @@ export interface ConversationGroup {
   name: string
 }
 
-export interface Conversation {
+export enum UpdateConversationAction {
+  silenced,
+  pinConversation,
+  aiFeatures,
+  unreadCount ,
+  isOptoutFromMarketingMessages,
+}
+
+export interface UpdatableConversationKeys {
+  silenced?: boolean
+
+  //Pin Conversation
+  pinnedByAgents?: string[]
+  pinnedAt?: number
+
+  aiFeatures?: {
+    autoTranslation?: LanguageInformation
+  }
+
+  statusCase: ConversationStatusCase
+  answerMode: ConversationAnswerMode
+  unreadCount: number
+  isOptoutFromMarketingMessages?: boolean
+}
+
+export interface Conversation extends  UpdatableConversationKeys {
   platformCompositionKey: string // whatsapp#<phoneNumber/page>Id
 
   associatedTo: string
@@ -168,7 +193,6 @@ export interface Conversation {
   customer: Customer
   createdAt: number
   updatedAt: number
-  unreadCount: number
   assignedTagIds?: string[]
   assignedAgentIds?: string[]
 
@@ -180,23 +204,15 @@ export interface Conversation {
   // This object is queried when fetching conversations
   lastWorkflowExecution?: WorkflowExecution
 
-  aiFeatures?: {
-    autoTranslation?: LanguageInformation
-  }
-
   ai?: {
     tokensUsed?: number
   }
-
-  statusCase: ConversationStatusCase
-  answerMode: ConversationAnswerMode
 
   lastSendMessageFromUser?: number
   lastScrollViewPosition?: number
   hasMoreItemsToFetch?: boolean
   lastEvaluatedKey?: any
   isSelected?: boolean
-  isOptoutFromMarketingMessages?: boolean
 }
 
 export type AISettings = {
