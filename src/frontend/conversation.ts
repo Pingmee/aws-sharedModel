@@ -224,6 +224,12 @@ export type AISettings = {
   baseInstructions?: string
 }
 
+export type StorageSettings = {
+  maxSizeInBytes: number
+  purchased: number
+  size: number
+}
+
 export type BusinessSettings = {
   associatedTo: string
   name?: string
@@ -245,10 +251,7 @@ export type BusinessSettings = {
   emails?: string[]
 
   ai?: AISettings
-  storage?: {
-    maxSizeInMB: number
-    size: number
-  }
+  storage: StorageSettings
 }
 
 export enum PlatformType {
