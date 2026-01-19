@@ -343,6 +343,7 @@ export type UserPublicInformation = UserSchemaKeys & {
   connectedVia: LoginPlatform
   settings: UserSettings
   filterOptions?: UserFilterOptions
+  creationDate?: number
 }
 
 export type User = UserPublicInformation & {
