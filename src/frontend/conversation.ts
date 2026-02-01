@@ -141,6 +141,14 @@ export interface ConversationTag {
   isSelected?: boolean
 }
 
+export interface ConversationStatus {
+  id: string
+  title: string
+  color: string
+  associatedTo: string
+  isSelected?: boolean
+}
+
 export type AISummarizeData = {
   shouldSummarize: boolean
 }
@@ -380,6 +388,7 @@ export type InitialBaseInformation = {
   conversations?: DBObjectInterface<Conversation[]>,
   agents?: DBObjectInterface<UserPublicInformation[]>
   conversationTags?: DBObjectInterface<ConversationTag[]>
+  conversationStatuses?: DBObjectInterface<ConversationStatus[]>
   businessSettings?: BusinessSettings,
   agentSettings?: UserSettings
 }
