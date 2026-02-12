@@ -331,6 +331,7 @@ export enum UserStatus {
 
 export type UserSettings = {
   blurImages: boolean
+  systemLanguage: string
   finishedOnboarding: boolean
   // Should show the new overview page tutorial
   finishedOverview: boolean
