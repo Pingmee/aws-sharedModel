@@ -56,6 +56,11 @@ export type WhatsAppContact = {
   }[]
 }
 
+export type InformativeMessage = Message & {
+  answerMode?: ConversationAnswerMode
+  statusCase?: ConversationStatusCase | string // string is the new custom status id
+}
+
 export type Message = BaseMessageSchemeKeys & {
   sender: string
   receiver: string
