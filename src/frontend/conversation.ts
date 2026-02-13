@@ -56,6 +56,12 @@ export type WhatsAppContact = {
   }[]
 }
 
+export enum InformativeMessageType {
+  conversationStatusSwitched = 'conversationStatusSwitched',
+  conversationModeSwitchedAfter24H = 'conversationModeSwitchedAfter24H',
+  conversationModeSwitched = 'conversationModeSwitched'
+}
+
 export type Message = BaseMessageSchemeKeys & {
   sender: string
   receiver: string
@@ -86,6 +92,8 @@ export type Message = BaseMessageSchemeKeys & {
   richContent?: RichContent
 
   tempAttachmentFile?: FileInterface
+
+  informativeMessageType?: InformativeMessageType
 
   // Used to track upload progress
   attachmentUploadProgress?: number
