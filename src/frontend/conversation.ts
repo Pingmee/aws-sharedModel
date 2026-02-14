@@ -14,6 +14,24 @@ import { WorkflowExecution } from './Automations/workflow'
 import { SelectablePlatform } from './platforms'
 import { FilterRule } from './Sorting'
 
+export enum FilterOptionType {
+  mine = 'mine',
+  agentShared = 'agentShared',
+  unassigned = 'unassigned',
+  unread = 'unread',
+  new = 'new',
+  all = 'all'
+}
+
+export interface FilterOption {
+  type: FilterOptionType,
+  title: string,
+  count: number,
+  isSelected: boolean,
+  showAlertIndicator: boolean
+  condition: (conversation: Conversation) => boolean
+}
+
 export type ExtractedUserJWTPayload = {
   user: User
   iat: number;
@@ -337,9 +355,16 @@ export enum UserStatus {
   invited = 'invited'
 }
 
+export interface OverviewBoardConfig {
+  columnStatuses: string[]
+  hiddenColumnStatuses?: string[]
+}
+
 export type UserSettings = {
   blurImages: boolean
   systemLanguage: string
+  filterOptions?: UserFilterOptions
+  overviewPagePreferences?: OverviewBoardConfig,
   finishedOnboarding: boolean
   // Should show the new overview page tutorial
   finishedOverview: boolean
@@ -347,8 +372,8 @@ export type UserSettings = {
 
 export type UserFilterOptions = {
   conversation?: {
-    defaultHeaderTab: string,
-    filterOptions: FilterRule[]
+    defaultHeaderTab: FilterOptionType,
+    rules: FilterRule[]
   }
 }
 
@@ -362,7 +387,6 @@ export type UserPublicInformation = UserSchemaKeys & {
   isConnected?: boolean
   connectedVia: LoginPlatform
   settings: UserSettings
-  filterOptions?: UserFilterOptions
   creationDate?: number
 }
 
