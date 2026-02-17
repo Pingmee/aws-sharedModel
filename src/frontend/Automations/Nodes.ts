@@ -168,6 +168,7 @@ export interface SubNodeFallbackData extends SubNodeData {
 export interface TriggerNodeData extends GeneralNodeData {
   platform?: PlatformType
   eventType?: string; // e.g., "onMessage" or "onNewConversation"
+  keywords?: string[]
 }
 
 export interface SocialTriggerNodeData extends TriggerNodeData {
