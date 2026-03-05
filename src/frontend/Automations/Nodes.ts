@@ -24,6 +24,10 @@ export enum WorkflowMode {
   full = "full"
 }
 
+export enum AIOption {
+  answerWithAI = 'answerWithAI'
+}
+
 export enum NodeType {
   // Real Full Nodes
   pingmeeTrigger = "pingmeeTrigger",
@@ -42,6 +46,7 @@ export enum NodeType {
   wait = "wait",
   switch = "switch",
   httpRequest = "httpRequest",
+  ai = "ai",
 
   // Non connectable node
   stickyNote = "stickyNote",
@@ -211,6 +216,10 @@ export interface HTTPRequestNodeData extends GeneralNodeData {
   responseMapping?: { [key: string]: string }; // Optional field for mapping response keys to variables
   timeout?: number; // In milliseconds
   retryCount?: number; // Number of retries if the request fails
+}
+
+export interface AINodeData extends GeneralNodeData {
+  aiOption?: AIOption
 }
 
 export interface FireberryNodeData extends GeneralNodeData {
