@@ -7,6 +7,7 @@ export enum PlanType {
 
 export interface Plan {
   paymentLinkId: string,
+  yearlyPaymentLinkId: string,
   name: string
   description: string
   type: PlanType
@@ -20,6 +21,7 @@ export interface Plan {
 
 const basePlan = {
   paymentLinkId: '96dddf71-c537-4e05-a1a2-13adda359196',
+  yearlyPaymentLinkId: 'ab63ef0e-9adb-476a-9393-146fcf6cfbc5',
   name: 'בסיס - Social',
   type: PlanType.basic,
   isActive: true,
@@ -42,8 +44,9 @@ const basePlan = {
   description: 'תוכנית זו מתאימה לעסקים שמנהלים פעילות בסיסית במדיה החברתית ורוצים מענה אוטומטי לפוסטים, Stories ו־Reels. ושליחת הודעות קמפיין להמונים.'
 }
 
-const extendedPlan = {
+const extendedPlan: Plan = {
   paymentLinkId: '6b06b7d9-c046-42a2-a88d-351e37011703',
+  yearlyPaymentLinkId: 'dff7c69c-5837-4f9f-849a-c568e77d656d',
   name: 'מורחב - Chatbot',
   type: PlanType.expended,
   isActive: true,
@@ -69,6 +72,7 @@ export const Plans: { [key in PlanType]: Plan } = {
   [PlanType.expended]: extendedPlan,
   [PlanType.expertAI]: {
     paymentLinkId: '46c8a69f-bf05-48f6-b9ed-10e1cdb2136e',
+    yearlyPaymentLinkId: '03e444a4-ab1a-472c-ae7e-db7b65c59dbc',
     name: 'מתקדם - AI',
     type: PlanType.expertAI,
     isActive: true,
