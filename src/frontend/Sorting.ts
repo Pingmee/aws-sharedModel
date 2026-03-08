@@ -2,7 +2,7 @@ export function isSortOperator(op?: Operator) {
   return op === 'asc' || op === 'desc'
 }
 
-export type FilterFieldType = 'string' | 'number' | 'enum' | 'array'
+export type FilterFieldType = 'string' | 'number' | 'enum' | 'array' | 'sort'
 export type sortOperator = 'asc' | 'desc'
 export type Operator = '=' | '!=' | '<' | '>' | 'contains' | 'in' | sortOperator
 
