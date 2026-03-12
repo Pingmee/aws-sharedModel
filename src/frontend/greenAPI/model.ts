@@ -22,7 +22,8 @@ export enum TypeIncomingMessage {
   imageMessage = 'imageMessage',
   videoMessage = 'videoMessage',
   audioMessage = 'audioMessage',
-  quotedMessage = 'quotedMessage'
+  quotedMessage = 'quotedMessage',
+  documentMessage = 'documentMessage'
 }
 
 export interface InstanceData {
