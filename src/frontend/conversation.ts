@@ -265,6 +265,10 @@ export type StorageSettings = {
   size: number
 }
 
+export type SystemSettings = {
+  manualToBotAfter24Hours: boolean
+}
+
 export type BusinessSettings = {
   associatedTo: string
   name?: string
@@ -287,6 +291,7 @@ export type BusinessSettings = {
 
   ai?: AISettings
   storage: StorageSettings
+  system: SystemSettings
 }
 
 export enum PlatformType {
