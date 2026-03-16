@@ -1,7 +1,7 @@
-import { BaseSubFolder } from '../Automations/automations'
-import { WhatsAppErrorMessage, WhatsAppMessageStatus } from '../Whatsapp/whatsapp'
-import { ConversationTag, Customer, Message } from '../conversation'
-import { FireberryQuery, FireberryTable } from './FireberryModel'
+import { BaseSubFolder } from '../Automations/automations.js'
+import { WhatsAppErrorMessage, WhatsAppMessageStatus } from '../Whatsapp/whatsapp.js'
+import { ConversationTag, Customer, Message } from '../conversation.js'
+import { FireberryQuery, FireberryTable } from './FireberryModel.js'
 
 export enum TimeOption {
   now = 'now',

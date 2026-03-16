@@ -1,6 +1,6 @@
-import { DBObjectInterface, PlatformType } from '../conversation'
-import { WorkflowNode } from './model'
-import { AIChatBotGeneratedContent } from '../AI/Chatbot/Model'
+import { DBObjectInterface, PlatformType } from '../conversation.js'
+import { WorkflowNode } from './model.js'
+import { AIChatBotGeneratedContent } from '../AI/Chatbot/Model.js'
 
 export type BaseSubFolder = {
   id: string

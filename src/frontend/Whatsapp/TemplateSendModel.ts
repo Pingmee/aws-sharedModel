@@ -6,7 +6,7 @@ import {
   Section,
   WhatsAppComponentButtonType,
   WhatsAppComponentType
-} from './whatsapp'
+} from './whatsapp.js'
 
 
 export type TemplateSendComponentParameter = {

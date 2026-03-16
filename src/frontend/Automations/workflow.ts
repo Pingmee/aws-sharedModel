@@ -1,4 +1,4 @@
-import { NodeType } from './Nodes'
+import { NodeType } from './Nodes.js'
 
 export type NodeExecutionLog = {
   type: NodeType;

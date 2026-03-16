@@ -1,4 +1,4 @@
-import { PlatformType } from './conversation'
+import { PlatformType } from './conversation.js'
 
 export interface SelectablePlatform {
   id: string

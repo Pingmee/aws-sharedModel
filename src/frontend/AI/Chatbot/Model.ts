@@ -1,4 +1,4 @@
-import { BaseSubFolder } from '../../Automations/automations'
+import { BaseSubFolder } from '../../Automations/automations.js'
 import { VectorStoreFile } from 'openai/resources/vector-stores'
 
 export enum Status {

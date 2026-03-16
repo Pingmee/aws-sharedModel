@@ -8,11 +8,11 @@ import {
 } from './Whatsapp/whatsapp.js'
 import { LoginPlatform } from './login.js'
 import { FileInterface } from './file-interface.js'
-import { PlanType } from './Payment/Model'
-import { AITranslation } from './AI/Translation'
-import { WorkflowExecution } from './Automations/workflow'
-import { SelectablePlatform } from './platforms'
-import { FilterRule } from './Sorting'
+import { PlanType } from './Payment/Model.js'
+import { AITranslation } from './AI/Translation.js'
+import { WorkflowExecution } from './Automations/workflow.js'
+import { SelectablePlatform } from './platforms.js'
+import { FilterRule } from './Sorting.js'
 
 export enum FilterOptionType {
   mine = 'mine',

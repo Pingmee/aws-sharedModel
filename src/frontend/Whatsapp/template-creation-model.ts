@@ -7,7 +7,7 @@ import {
   WhatsAppComponentType,
   WhatsAppHeaderComponentType
 } from './whatsapp.js'
-import { PlatformType } from '../conversation'
+import { PlatformType } from '../conversation.js'
 
 export type TemplateCreationComponent = {
   type: WhatsAppComponentType;

@@ -1,5 +1,5 @@
-import { Expression, Variable } from './automations'
-import { TemplateInformation } from '../Whatsapp/template-creation-model'
+import { Expression, Variable } from './automations.js'
+import { TemplateInformation } from '../Whatsapp/template-creation-model.js'
 import {
   Condition, FacebookSocialPost,
   FireberryAction,
@@ -14,9 +14,9 @@ import {
   ConversationTag, LanguageInformation, MessageType,
   PlatformType,
   UserPublicInformation
-} from '../conversation'
-import { FireberryField, FireberryTable } from "../Campaigns/FireberryModel"
-import { MessageTemplateType } from '../Whatsapp/whatsapp'
+} from '../conversation.js'
+import { FireberryField, FireberryTable } from "../Campaigns/FireberryModel.js"
+import { MessageTemplateType } from '../Whatsapp/whatsapp.js'
 
 export enum WorkflowMode {
   demo = "demo",

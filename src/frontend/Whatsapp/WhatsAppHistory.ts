@@ -1,5 +1,5 @@
-import { WhatsAppHeaderComponentType, WhatsAppMessageStatus } from './whatsapp'
-import { PlatformWhatsapp } from '../conversation'
+import { WhatsAppHeaderComponentType, WhatsAppMessageStatus } from './whatsapp.js'
+import { PlatformWhatsapp } from '../conversation.js'
 
 export interface WhatsAppWebhookMediaMessage {
   object: string;

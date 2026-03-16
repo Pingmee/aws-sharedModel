@@ -1,4 +1,4 @@
-import { Variable } from '../Automations/automations'
+import { Variable } from '../Automations/automations.js'
 
 export interface TablesCountResponse {
   viewId: string,
