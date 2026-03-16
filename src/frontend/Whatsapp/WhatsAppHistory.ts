@@ -280,8 +280,10 @@ export function isWhatsAppWebhookMediaMessage(obj: any): obj is WhatsAppWebhookM
     typeof obj === 'object' &&
     typeof obj.object === 'string' &&
     Array.isArray(obj.entry) &&
-    obj.entry[0]?.changes?.[0]?.field === 'messages' &&
-    Array.isArray(obj.entry[0].changes[0].value.messages)
+    (obj.entry[0]?.changes?.[0]?.field === 'messages' || obj.entry[0]?.changes?.[0]?.field === 'history') &&
+    Array.isArray(obj.entry[0].changes[0].value.messages) &&
+    obj.entry[0]?.changes[0].value.messages?.[0]?.type &&
+    [WhatsAppHeaderComponentType.image, WhatsAppHeaderComponentType.document, WhatsAppHeaderComponentType.video, 'audio'].includes(obj.entry[0]?.changes[0].value.messages?.[0]?.type)
   )
 }
 
