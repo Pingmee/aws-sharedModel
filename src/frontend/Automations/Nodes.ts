@@ -207,13 +207,14 @@ export interface SwitchCaseNodeData extends GeneralNodeData {
 }
 
 export interface HTTPRequestNodeData extends GeneralNodeData {
-  method?: string; // e.g., "GET", "POST", etc.
+  method?: string;
   url?: string;
   headers?: string[];
   body?: string;
-  contentType?: string; // e.g., "application/json", "application/x-www-form-urlencoded"
+  contentType?: string;
   queryParams?: { [key: string]: string };
-  responseMapping?: { [key: string]: string }; // Optional field for mapping response keys to variables
+  responseMapping?: { [key: string]: string };
+  bodyVariables?: Record<number, Variable | Expression>
 }
 
 export interface AINodeData extends GeneralNodeData {
