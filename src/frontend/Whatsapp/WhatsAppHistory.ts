@@ -348,13 +348,13 @@ export function isHistoryMediaMessageQueueData(obj: any): obj is WhatsAppHistory
   const baseValid =
     obj &&
     typeof obj === 'object' &&
-    typeof obj.customerPhoneNumberId === 'string' &&
     typeof obj.businessPhoneNumberId === 'string' &&
     typeof obj.associatedTo === 'string' &&
     typeof obj.id === 'string' &&
     typeof obj.from === 'string' &&
     typeof obj.timestamp === 'string' &&
-    typeof obj.type === 'string'
+    typeof obj.type === 'string' &&
+    [WhatsAppHeaderComponentType.image, WhatsAppHeaderComponentType.document, WhatsAppHeaderComponentType.video, 'audio'].includes(obj.type)
 
   if (!baseValid) return false
 
