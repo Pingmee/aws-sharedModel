@@ -63,7 +63,8 @@ export enum EventBridgeTriggerOptions {
   waitNode = 'waitNode',
   campaign = 'campaign',
   noResponseTimeout = 'noResponseTimeout',
-  conversation = 'conversation'
+  conversation = 'conversation',
+  scheduledMessage = 'scheduledMessage'
 }
 
 export enum SocialTriggerOptions {

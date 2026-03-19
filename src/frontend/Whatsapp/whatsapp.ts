@@ -10,7 +10,8 @@ export enum WhatsAppMessageStatus {
   played = "played",
   standby = "standby",
   optOut = "optOut",
-  tooManyRequests = "tooManyRequests"
+  tooManyRequests = "tooManyRequests",
+  scheduled = "scheduled"
 }
 
 export interface FileMetadata {

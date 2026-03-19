@@ -100,6 +100,7 @@ export type Message = BaseMessageSchemeKeys & {
 
   translation?: AITranslation
 
+  scheduledAt?: number
   error?: WhatsAppErrorMessage
   agentIdentification?: AgentIdentification
   context?: WhatsAppMessageContext
