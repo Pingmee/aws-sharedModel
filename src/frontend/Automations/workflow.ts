@@ -30,6 +30,12 @@ export enum WorkflowExecutionStatus {
   expired = 'Expired'
 }
 
+export type TriggerdByWorkflow = {
+  workflowId: string
+  continueFromNodeId: string
+  nodes: Record<string, NodeExecutionLog>;
+}
+
 export type WorkflowExecution = {
   // Schema Keys
   id: string;
@@ -50,4 +56,7 @@ export type WorkflowExecution = {
   statusCase: WorkflowExecutionStatus;
   nodes: Record<string, NodeExecutionLog>;
   lastExecutedNodeId?: string
+
+  // When workflow A uses pointer node and want to continue execution once this current execution (B) finish
+  triggerdByWorkflow?: TriggerdByWorkflow
 };

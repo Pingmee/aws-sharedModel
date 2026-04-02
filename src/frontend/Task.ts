@@ -3,11 +3,11 @@ import { AgentIdentification, Conversation } from './conversation.js'
 export enum TaskStatusCase {
   open = 'open',
   inProgress = 'standby',
-  completed = 'completed',
-  closed = 'closed'
+  completed = 'completed'
 }
 
 export interface Task {
+  taskId: string
   title: string
   body: string
 
@@ -24,7 +24,10 @@ export interface Task {
   dueDate: number
 
   isRecurring: boolean
-  recurringAtDate: number
+  recurringAtDate?: number
+
+  // If we want to filter all Tasks for a specific platform id
+  phoneNumberId?: string
 
   participantsIdentifiers?: string
   conversation?: Conversation
