@@ -17,6 +17,7 @@ import {
 } from '../conversation.js'
 import { FireberryField, FireberryTable } from "../Campaigns/FireberryModel.js"
 import { MessageTemplateType } from '../Whatsapp/whatsapp.js'
+import { Task } from 'frontend/Task.js'
 
 export enum WorkflowMode {
   demo = "demo",
@@ -47,6 +48,7 @@ export enum NodeType {
   switch = "switch",
   httpRequest = "httpRequest",
   ai = "ai",
+  task = "task",
 
   // Non connectable node
   stickyNote = "stickyNote",
@@ -102,14 +104,15 @@ export type NodeSpecificData =
   & WorkflowPointerNodeData
   & WaitNodeData
   & SwitchCaseNodeData
+  & TaskNodeData
   & FireberryNodeData
   & UpdateConversationData
 
 // Base data structure for all nodes
 export interface GeneralNodeData extends Record<string, unknown> {
   description?: string;
-  variables?: { [key: string]: Variable }
-  possibilities?: { [key: string]: { [key: string]: string[] } }
+  variables?: { [ key: string ]: Variable }
+  possibilities?: { [ key: string ]: { [ key: string ]: string[] } }
   index?: number;
   subNodesLength?: number;
   subNodesConfig?: SubNodeConfigType;
@@ -189,8 +192,8 @@ export interface MessageNodeData extends GeneralNodeData {
   platform?: PlatformType
   waitForUserResponse?: boolean
   templateInformation?: TemplateInformation
-  headerVariables?: { [key: number]: Variable | Expression }
-  bodyVariables?: { [key: number]: Variable | Expression }
+  headerVariables?: { [ key: number ]: Variable | Expression }
+  bodyVariables?: { [ key: number ]: Variable | Expression }
 }
 
 export interface WorkflowPointerNodeData extends GeneralNodeData {
@@ -213,13 +216,13 @@ export interface HTTPRequestNodeData extends GeneralNodeData {
   headers?: string[];
   body?: string;
   contentType?: string;
-  queryParams?: { [key: string]: string };
-  responseMapping?: { [key: string]: string };
+  queryParams?: { [ key: string ]: string };
+  responseMapping?: { [ key: string ]: string };
   bodyVariables?: Record<number, Variable | Expression>
 }
 
-export interface AINodeData extends GeneralNodeData {
-  aiOption?: AIOption
+export interface TaskNodeData extends GeneralNodeData {
+  task?: Task
 }
 
 export interface FireberryNodeData extends GeneralNodeData {
