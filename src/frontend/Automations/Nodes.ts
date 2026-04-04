@@ -107,6 +107,7 @@ export type NodeSpecificData =
   & TaskNodeData
   & FireberryNodeData
   & UpdateConversationData
+  & AINodeData
 
 // Base data structure for all nodes
 export interface GeneralNodeData extends Record<string, unknown> {
@@ -219,6 +220,10 @@ export interface HTTPRequestNodeData extends GeneralNodeData {
   queryParams?: { [ key: string ]: string };
   responseMapping?: { [ key: string ]: string };
   bodyVariables?: Record<number, Variable | Expression>
+}
+
+export interface AINodeData extends GeneralNodeData {
+   aiOption?: AIOption
 }
 
 export interface TaskNodeData extends GeneralNodeData {
