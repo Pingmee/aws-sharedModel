@@ -223,11 +223,13 @@ export interface HTTPRequestNodeData extends GeneralNodeData {
 }
 
 export interface AINodeData extends GeneralNodeData {
-   aiOption?: AIOption
+  aiOption?: AIOption
 }
 
 export interface TaskNodeData extends GeneralNodeData {
   task?: Task
+  titleVariables?: Record<number, Variable | Expression>
+  bodyVariables?: Record<number, Variable | Expression>
 }
 
 export interface FireberryNodeData extends GeneralNodeData {
