@@ -30,6 +30,6 @@ export interface Task {
   phoneNumberId?: string
 
   participantsIdentifiers?: string
-  customer?: Customer
+  customer?: Partial<Customer>
   conversation?: Conversation
 }
