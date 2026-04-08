@@ -1,4 +1,4 @@
-import { AgentIdentification, Conversation } from './conversation.js'
+import { AgentIdentification, Conversation, Customer } from './conversation.js'
 
 export enum TaskStatusCase {
   open = 'open',
@@ -30,5 +30,6 @@ export interface Task {
   phoneNumberId?: string
 
   participantsIdentifiers?: string
+  customer?: Customer
   conversation?: Conversation
 }
