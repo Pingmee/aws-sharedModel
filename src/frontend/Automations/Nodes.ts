@@ -77,6 +77,7 @@ export enum SocialTriggerOptions {
 export enum PingmeeTriggerOptions {
   MessageCreated = "Messages Created",
   NewConversationStarted = "New Conversation Started",
+  ManualTrigger = "Manual Trigger",
 }
 
 export enum ConditionType {
@@ -166,12 +167,16 @@ export type TimerInfo = {
   seconds: string
 }
 
-export interface SubNodeFallbackData extends SubNodeData {
+export interface FallbackBaseData {
   shouldSendReplyMessage?: boolean
   unknownAnswerReplyMessage?: string
 
   shouldTimeoutExecution?: boolean
   timerInfo?: TimerInfo
+}
+
+export interface SubNodeFallbackData extends SubNodeData, FallbackBaseData {
+
 }
 
 // Specific data structure for Trigger nodes

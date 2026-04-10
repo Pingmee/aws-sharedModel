@@ -1,6 +1,7 @@
 import { DBObjectInterface, PlatformType } from '../conversation.js'
 import { WorkflowNode } from './model.js'
 import { AIChatBotGeneratedContent } from '../AI/Chatbot/Model.js'
+import { FallbackBaseData, TimerInfo } from './Nodes.js'
 
 export type BaseSubFolder = {
   id: string
@@ -13,6 +14,19 @@ export type BaseSubFolder = {
 
   // GUI
   selected?: boolean
+}
+
+export type WorkflowSettings = {
+  sharedTimeout: {
+    enabled: boolean
+    workflowId?: string
+    timerInfo?: TimerInfo
+  },
+  sharedFallback: {
+    enabled: boolean
+    workflowId?: string
+    fallbackData?: FallbackBaseData
+  },
 }
 
 export type Workflow = BaseSubFolder & {
@@ -33,7 +47,9 @@ export type Workflow = BaseSubFolder & {
   conversionRate?: number;     // Percentage of users who completed the workflow's intended outcome
   notes?: string;              // Any manual notes or descriptions for the workflow
 
-  variables: { [key: string]: Variable }
+  settings?: WorkflowSettings
+
+  variables: { [ key: string ]: Variable }
   data: any // For reactflow UI
   parsedData: WorkflowNode[] // for backend execution
 
@@ -52,7 +68,7 @@ export type Expression = BaseVariable & {
 }
 
 export type Variable = BaseVariable & {
-  variables?: { [key: string]: Variable  }
+  variables?: { [ key: string ]: Variable }
 }
 
 export function isVariable(obj: any): obj is Variable {
