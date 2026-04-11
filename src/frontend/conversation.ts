@@ -195,12 +195,14 @@ export enum UpdateConversationAction {
   silenced,
   pinConversation,
   aiFeatures,
-  unreadCount ,
+  unreadCount,
   isOptoutFromMarketingMessages,
+  isBlocked
 }
 
 export interface UpdatableConversationKeys {
   silenced?: boolean
+  isBlocked?: boolean
 
   //Pin Conversation
   pinnedByAgents?: string[]
@@ -216,7 +218,7 @@ export interface UpdatableConversationKeys {
   isOptoutFromMarketingMessages?: boolean
 }
 
-export interface Conversation extends  UpdatableConversationKeys {
+export interface Conversation extends UpdatableConversationKeys {
   platformCompositionKey: string // whatsapp#<phoneNumber/page>Id
 
   associatedTo: string
