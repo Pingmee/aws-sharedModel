@@ -197,6 +197,7 @@ export enum UpdateConversationAction {
   aiFeatures,
   unreadCount ,
   isOptoutFromMarketingMessages,
+  isBlocked
 }
 
 export interface UpdatableConversationKeys {
@@ -231,6 +232,7 @@ export interface Conversation extends  UpdatableConversationKeys {
   updatedAt: number
   assignedTagIds?: string[]
   assignedAgentIds?: string[]
+  isBlocked?: boolean
 
   // Added for group chats
   group?: ConversationGroup
