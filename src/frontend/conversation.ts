@@ -143,6 +143,10 @@ export interface Base64Attachment {
 }
 
 export type BaseCustomerSchemeKeys = {
+  // In an upcoming update meta will hide the user phone number and how a generated user id which is unique to this business
+  // trying to use that to send a message to ths user from a different business will fail
+  metaUserId?: string
+
   phoneNumberId: string
   countryCode: string
   associatedTo: string
