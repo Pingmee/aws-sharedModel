@@ -65,6 +65,7 @@ export type TemplateSendMessage = {
   recipient_type?: 'individual';
   type: string;
   to: string;
+  recipient?: string; // Used to send a message to a BSUID
   from?: string;
   template?: Template;
   interactive?: InteractiveList | InteractiveSendButton;

@@ -58,6 +58,7 @@ export type WhatsAppHistoryMessageEchoQueueData = WhatsAppHistoryMediaMessageQue
 
 export type WhatsAppHistoryMediaMessage = {
   from: string,
+  from_user_id?: string, // WhatsApp new BSUID user id of the sender
   id: string,
   timestamp: string,
   type: string,
@@ -91,6 +92,7 @@ export type WhatsAppHistoryMediaMessage = {
 
 export type WhatsAppHistoryMessageEcho = WhatsAppHistoryMediaMessage & {
   to: string
+  to_user_id?: string
 }
 
 export type WhatsAppHistoryMessage = {
@@ -258,8 +260,8 @@ export function isHistoryWhatsAppWebhookStateSync(obj: any): obj is WhatsAppWebh
     typeof obj === 'object' &&
     typeof obj.object === 'string' &&
     Array.isArray(obj.entry) &&
-    obj.entry[0]?.changes?.[0]?.field === 'smb_app_state_sync' &&
-    Array.isArray(obj.entry[0].changes[0].value.state_sync)
+    obj.entry[ 0 ]?.changes?.[ 0 ]?.field === 'smb_app_state_sync' &&
+    Array.isArray(obj.entry[ 0 ].changes[ 0 ].value.state_sync)
   )
 }
 
@@ -269,8 +271,8 @@ export function isHistoryWhatsAppWebhookMessageEchoes(obj: any): obj is WhatsApp
     typeof obj === 'object' &&
     typeof obj.object === 'string' &&
     Array.isArray(obj.entry) &&
-    (obj.entry[0]?.changes?.[0]?.field === 'smb_message_echoes' || obj.entry[0]?.changes?.[0]?.field === 'history') &&
-    Array.isArray(obj.entry[0].changes[0].value.message_echoes)
+    (obj.entry[ 0 ]?.changes?.[ 0 ]?.field === 'smb_message_echoes' || obj.entry[ 0 ]?.changes?.[ 0 ]?.field === 'history') &&
+    Array.isArray(obj.entry[ 0 ].changes[ 0 ].value.message_echoes)
   )
 }
 
@@ -280,10 +282,10 @@ export function isWhatsAppWebhookMediaMessage(obj: any): obj is WhatsAppWebhookM
     typeof obj === 'object' &&
     typeof obj.object === 'string' &&
     Array.isArray(obj.entry) &&
-    (obj.entry[0]?.changes?.[0]?.field === 'messages' || obj.entry[0]?.changes?.[0]?.field === 'history') &&
-    Array.isArray(obj.entry[0].changes[0].value.messages) &&
-    obj.entry[0]?.changes[0].value.messages?.[0]?.type &&
-    [WhatsAppHeaderComponentType.image, WhatsAppHeaderComponentType.document, WhatsAppHeaderComponentType.video, 'audio'].includes(obj.entry[0]?.changes[0].value.messages?.[0]?.type)
+    (obj.entry[ 0 ]?.changes?.[ 0 ]?.field === 'messages' || obj.entry[ 0 ]?.changes?.[ 0 ]?.field === 'history') &&
+    Array.isArray(obj.entry[ 0 ].changes[ 0 ].value.messages) &&
+    obj.entry[ 0 ]?.changes[ 0 ].value.messages?.[ 0 ]?.type &&
+    [ WhatsAppHeaderComponentType.image, WhatsAppHeaderComponentType.document, WhatsAppHeaderComponentType.video, 'audio' ].includes(obj.entry[ 0 ]?.changes[ 0 ].value.messages?.[ 0 ]?.type)
   )
 }
 
@@ -293,8 +295,8 @@ export function isWhatsAppWebhookHistoryMessage(obj: any): obj is WhatsAppWebhoo
     typeof obj === 'object' &&
     typeof obj.object === 'string' &&
     Array.isArray(obj.entry) &&
-    obj.entry[0]?.changes?.[0]?.field === 'history' &&
-    Array.isArray(obj.entry[0].changes[0].value.history)
+    obj.entry[ 0 ]?.changes?.[ 0 ]?.field === 'history' &&
+    Array.isArray(obj.entry[ 0 ].changes[ 0 ].value.history)
   )
 }
 
@@ -305,7 +307,7 @@ export function isWhatsAppWebhookHistoryError(obj: any): obj is WhatsAppWebhookH
     typeof obj.messaging_product === 'string' &&
     obj.history &&
     Array.isArray(obj.history) &&
-    Array.isArray(obj.history[0]?.errors)
+    Array.isArray(obj.history[ 0 ]?.errors)
   )
 }
 
@@ -316,14 +318,14 @@ export function isWhatsAppWebhookAccountUpdate(obj: any): obj is WhatsAppWebhook
     typeof obj === 'object' &&
     obj.object === 'whatsapp_business_account' &&
     Array.isArray(obj.entry) &&
-    typeof obj.entry[0]?.id === 'string' &&
-    typeof obj.entry[0]?.time === 'number' &&
-    Array.isArray(obj.entry[0]?.changes) &&
-    obj.entry[0]?.changes[0]?.field === 'account_update' &&
-    typeof obj.entry[0]?.changes[0]?.value?.event === 'string' &&
-    typeof obj.entry[0]?.changes[0]?.value?.waba_info?.waba_id === 'string' &&
-    typeof obj.entry[0]?.changes[0]?.value?.waba_info?.owner_business_id === 'string' &&
-    typeof obj.entry[0]?.changes[0]?.value?.waba_info?.partner_app_id === 'string'
+    typeof obj.entry[ 0 ]?.id === 'string' &&
+    typeof obj.entry[ 0 ]?.time === 'number' &&
+    Array.isArray(obj.entry[ 0 ]?.changes) &&
+    obj.entry[ 0 ]?.changes[ 0 ]?.field === 'account_update' &&
+    typeof obj.entry[ 0 ]?.changes[ 0 ]?.value?.event === 'string' &&
+    typeof obj.entry[ 0 ]?.changes[ 0 ]?.value?.waba_info?.waba_id === 'string' &&
+    typeof obj.entry[ 0 ]?.changes[ 0 ]?.value?.waba_info?.owner_business_id === 'string' &&
+    typeof obj.entry[ 0 ]?.changes[ 0 ]?.value?.waba_info?.partner_app_id === 'string'
   )
 }
 
@@ -354,7 +356,7 @@ export function isHistoryMediaMessageQueueData(obj: any): obj is WhatsAppHistory
     typeof obj.from === 'string' &&
     typeof obj.timestamp === 'string' &&
     typeof obj.type === 'string' &&
-    [WhatsAppHeaderComponentType.image, WhatsAppHeaderComponentType.document, WhatsAppHeaderComponentType.video, 'audio'].includes(obj.type)
+    [ WhatsAppHeaderComponentType.image, WhatsAppHeaderComponentType.document, WhatsAppHeaderComponentType.video, 'audio' ].includes(obj.type)
 
   if (!baseValid) return false
 
@@ -407,14 +409,14 @@ export function isHistoryMediaMessageQueueData(obj: any): obj is WhatsAppHistory
 
 
 export function isHistoryMessageQueueDataArray(obj: any): obj is WhatsAppHistoryMessageQueueData[] {
-  return Array.isArray(obj) && obj.length > 0 && isHistoryMessageQueueData(obj[0])
+  return Array.isArray(obj) && obj.length > 0 && isHistoryMessageQueueData(obj[ 0 ])
 }
 
 export function isHistoryMediaMessageQueueDataArray(obj: any): obj is WhatsAppHistoryMediaMessageQueueData[] {
   return (
     Array.isArray(obj) &&
     obj.length > 0 &&
-    isHistoryMediaMessageQueueData(obj[0])
+    isHistoryMediaMessageQueueData(obj[ 0 ])
   )
 }
 
@@ -424,14 +426,14 @@ export function isHistoryMessageEchoesQueueDataArray(
   return (
     Array.isArray(obj) &&
     obj.length > 0 &&
-    typeof obj[0]?.to === "string" &&
-    typeof obj[0]?.from === "string" &&
-    typeof obj[0]?.id === "string" &&
-    typeof obj[0]?.timestamp === "string" &&
-    typeof obj[0]?.type === "string" &&
-    typeof obj[0]?.customerPhoneNumberId === "string" &&
-    typeof obj[0]?.businessPhoneNumberId === "string" &&
-    typeof obj[0]?.associatedTo === "string"
+    typeof obj[ 0 ]?.to === "string" &&
+    typeof obj[ 0 ]?.from === "string" &&
+    typeof obj[ 0 ]?.id === "string" &&
+    typeof obj[ 0 ]?.timestamp === "string" &&
+    typeof obj[ 0 ]?.type === "string" &&
+    typeof obj[ 0 ]?.customerPhoneNumberId === "string" &&
+    typeof obj[ 0 ]?.businessPhoneNumberId === "string" &&
+    typeof obj[ 0 ]?.associatedTo === "string"
   )
 }
 
@@ -439,9 +441,9 @@ export function isHistoryStateSyncQueueDataArray(obj: any): obj is WhatsAppHisto
   return (
     Array.isArray(obj) &&
     obj.length > 0 &&
-    typeof obj[0]?.customerPhoneNumberId === 'string' &&
-    typeof obj[0]?.businessPhoneNumberId === 'string' &&
-    typeof obj[0]?.associatedTo === 'string' &&
-    typeof obj[0]?.fullName === 'string'
+    typeof obj[ 0 ]?.customerPhoneNumberId === 'string' &&
+    typeof obj[ 0 ]?.businessPhoneNumberId === 'string' &&
+    typeof obj[ 0 ]?.associatedTo === 'string' &&
+    typeof obj[ 0 ]?.fullName === 'string'
   )
 }

@@ -24,6 +24,7 @@ export enum WorkflowExecutionStatus {
   idle = 'Idle',
   inProgress = 'In Progress',
   waitingForInput = 'Waiting For Input',
+  waitingForTimer = 'Waiting For Timer',
   waitingForSubWorkflow = 'Waiting For Sub Workflow',
   success = 'Success',
   failure = 'Failure',
