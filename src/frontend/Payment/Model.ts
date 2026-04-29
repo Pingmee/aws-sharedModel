@@ -2,7 +2,8 @@ export enum PlanType {
   basic = 'Basic',
   expended = 'Expanded',
   expertAI = 'ExpertAI',
-  trial = 'Trial'
+  trial = 'Trial',
+  partner = 'Partner'
 }
 
 export interface Plan {
@@ -67,10 +68,10 @@ const extendedPlan: Plan = {
 }
 
 //@ts-expect-error
-export const Plans: { [key in PlanType]: Plan } = {
-  [PlanType.basic]: basePlan,
-  [PlanType.expended]: extendedPlan,
-  [PlanType.expertAI]: {
+export const Plans: { [ key in PlanType ]: Plan } = {
+  [ PlanType.basic ]: basePlan,
+  [ PlanType.expended ]: extendedPlan,
+  [ PlanType.expertAI ]: {
     paymentLinkId: '46c8a69f-bf05-48f6-b9ed-10e1cdb2136e',
     yearlyPaymentLinkId: '03e444a4-ab1a-472c-ae7e-db7b65c59dbc',
     name: 'מתקדם - AI',
