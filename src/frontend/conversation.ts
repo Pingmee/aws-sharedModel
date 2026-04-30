@@ -274,13 +274,16 @@ export type StorageSettings = {
 
 export type SystemSettings = {
   manualToBotAfter24Hours: boolean
+  showTaskBackgroundColorBasedOnStatus: boolean
+  showConversationBackgroundColorBasedOnStatus: boolean
 }
 
 export type BusinessSettings = {
   associatedTo: string
+  associatedToPartner?: string
   name?: string
   imageUrl?: string
-  isActive?: boolean
+  isActive: boolean
 
   subscription_id: string
   subscriptionStartDate?: number
