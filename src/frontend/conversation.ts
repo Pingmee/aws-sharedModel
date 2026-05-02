@@ -100,6 +100,11 @@ export type Message = BaseMessageSchemeKeys & {
 
   translation?: AITranslation
 
+  workflowAssociation?: {
+    workflowId: string
+    nodeId: string
+  }
+
   scheduledAt?: number
   error?: WhatsAppErrorMessage
   agentIdentification?: AgentIdentification
