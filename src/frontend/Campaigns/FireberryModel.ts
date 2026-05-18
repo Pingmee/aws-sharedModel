@@ -6,9 +6,9 @@ export interface TablesCountResponse {
   primaryKeyName: string,
   primaryFieldName: string,
   pageNumber: number,
-  records: [{
+  records: [ {
     count: number
-  }]
+  } ]
 }
 
 export interface FireberryObjectsResponse<T> {
@@ -27,7 +27,7 @@ export interface FireberryTable {
 
 export interface FireberryQueries {
   objectType: number,
-  views: [FireberryQuery],
+  views: [ FireberryQuery ],
   roleId: ''
 }
 
@@ -48,7 +48,7 @@ export type FireberryTableData = {
 }
 
 export interface FireberryRecord {
-  [key: string]: any;
+  [ key: string ]: any;
 }
 
 export function isSelectionBoxItem(obj: any): obj is FireberrySelectionBoxItem {
@@ -81,6 +81,7 @@ export interface FireberryField {
   values?: FireberrySelectionBoxItem[]
 
   // Exist only in some responses
+  fieldObjectType?: string // For example Customer is 1
   logicalName?: string;
   type?: FieldType
 }
