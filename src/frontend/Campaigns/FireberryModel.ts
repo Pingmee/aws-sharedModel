@@ -73,6 +73,14 @@ export enum FieldType {
   Email = "email",
 }
 
+export interface FireberryWorkflowQueryItem {
+  id: string
+  field?: FireberryField
+  value?: unknown
+  isConnection?: boolean
+  queryField?: FireberryField
+}
+
 export interface FireberryField {
   label: string;
   fieldName: string;
