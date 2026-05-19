@@ -109,6 +109,7 @@ export type NodeSpecificData =
   & FireberryNodeData
   & UpdateConversationData
   & AINodeData
+  & UpdateCustomerData
 
 // Base data structure for all nodes
 export interface GeneralNodeData extends Record<string, unknown> {
@@ -141,6 +142,12 @@ export interface assignTagsData extends GeneralNodeData {
 // *depecrated* use updateConversationData
 export interface assignAgentsData extends GeneralNodeData {
   selectedAgents?: UserPublicInformation[];
+}
+
+export interface UpdateCustomerData extends GeneralNodeData {
+  phoneNumber?: string
+  email?: string
+  customerNickname?: string
 }
 
 export interface UpdateConversationData extends GeneralNodeData {
