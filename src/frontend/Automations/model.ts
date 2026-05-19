@@ -47,7 +47,7 @@ export interface FireberryWorkflowQuery {
 export enum FireberryAction {
   updateRecord = 'Update Record',
   createIfNoneExist = 'Create If None Exist',
-
+  create = 'Create'
   // addTask = 'Add Task',
   // addComment = 'Add Comment',
   // addRecord = 'Add Record',
