@@ -152,6 +152,7 @@ export type BaseCustomerSchemeKeys = {
   // trying to use that to send a message to ths user from a different business will fail
   metaUserId?: string
 
+  phoneNumber?: string // This is a editable field and might be different the the whatsapp id
   phoneNumberId: string
   countryCode: string
   associatedTo: string
