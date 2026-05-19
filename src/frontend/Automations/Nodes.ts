@@ -26,7 +26,8 @@ export enum WorkflowMode {
 }
 
 export enum AIOption {
-  answerWithAI = 'answerWithAI'
+  answerWithAI = 'answerWithAI',
+  summarizeConversation = 'summarizeConversation'
 }
 
 export enum NodeType {
