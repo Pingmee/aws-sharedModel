@@ -41,6 +41,7 @@ export enum NodeType {
   assignTags = "assignTags",
   assignAgents = "assignAgent",
   updateConversation = 'updateConversation',
+  updateCustomer = 'updateCustomer',
   workflowPointer = 'workflowPointer',
   fireberry = 'fireberry',
   if = "if",

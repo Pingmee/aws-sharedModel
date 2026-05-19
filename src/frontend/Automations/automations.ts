@@ -71,6 +71,14 @@ export type Variable = BaseVariable & {
   variables?: { [ key: string ]: Variable }
 }
 
+export type CustomValue = BaseVariable & {
+  custom: string
+}
+
+export function isCustomValue(obj: any): obj is CustomValue {
+  return obj && typeof obj === 'object' && typeof obj.custom === 'string'
+}
+
 export function isVariable(obj: any): obj is Variable {
   return (
     obj &&
