@@ -22,6 +22,7 @@ import { Task } from 'frontend/Task.js'
 export enum WorkflowMode {
   demo = "demo",
   social = "social",
+  mockup = "mockup",
   full = "full"
 }
 
