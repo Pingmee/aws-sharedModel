@@ -190,7 +190,7 @@ export interface WhatsAppCoexistenceStatus {
   phase: number,
   chunk_order: number,
   progress: number,
-  syncIds: {[key: string]: string}
+  syncIds: { [ key: string ]: string }
   errors?: WhatsAppCoexistenceError[]
 }
 
@@ -281,7 +281,8 @@ export enum WhatsAppComponentButtonType {
   quick_reply = 'quick_reply',
   copy_code = 'copy_code',
   catalog = 'catalog',
-  multi_product = 'mpm'
+  multi_product = 'mpm',
+  requestContactInfo = 'REQUEST_CONTACT_INFO'
 }
 
 export type Button = {
@@ -382,7 +383,7 @@ export enum SupportedMimeTypes {
 }
 
 export function attachmentTypeFromInfo(attachmentBase64: Base64Attachment) {
-  const fileType = attachmentBase64.fileMimeType.split('/')[0]
+  const fileType = attachmentBase64.fileMimeType.split('/')[ 0 ]
   switch (fileType) {
     case 'application':
       return AttachmentType.document
