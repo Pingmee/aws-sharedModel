@@ -228,10 +228,21 @@ export interface WhatsAppPhoneNumber extends PhoneNumber {
   coexistenceOnboarding?: WhatsAppCoexistenceStatus
 }
 
+export enum GreenAPIStateInstance {
+  notAuthorized = "notAuthorized",
+  authorized = "authorized",
+  restricted = "sleepMode",
+  blocked = "blocked",
+  unavailable = "starting",
+  other = "yellowCard"
+}
+
 export interface GreenAPIPhoneNumber extends PhoneNumber {
   apiUrl: string
   mediaUrl: string,
   token: string
+  stateInstance: GreenAPIStateInstance
+  updatedAt: number
 }
 
 export interface WhatsAppErrorMessage {
