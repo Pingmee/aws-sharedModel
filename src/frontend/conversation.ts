@@ -151,13 +151,14 @@ export type BaseCustomerSchemeKeys = {
   // In an upcoming update meta will hide the user phone number and how a generated user id which is unique to this business
   // trying to use that to send a message to ths user from a different business will fail
   metaUserId?: string
+  wa_id?: string // The real phone number id of the customer if phoneNumberId is BSUID
 
-  phoneNumber?: string // This is a editable field and might be different the the whatsapp id
-  phoneNumberId: string
+  phoneNumber?: string // This is a editable field and controlled by the business
+  phoneNumberId: string // Might be 972505621234 or IL.1234567890
   countryCode: string
   associatedTo: string
 
-  parsedPhoneNumber?: string
+  parsedPhoneNumber?: string // +972 50-562-1234
 }
 
 export type Customer = BaseCustomerSchemeKeys & {
