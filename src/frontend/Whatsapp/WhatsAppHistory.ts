@@ -97,6 +97,7 @@ export type WhatsAppHistoryMessageEcho = WhatsAppHistoryMediaMessage & {
 
 export type WhatsAppHistoryMessage = {
   from: string;
+  from_user_id?: string
   id: string;
   timestamp: string;
   type: string;
