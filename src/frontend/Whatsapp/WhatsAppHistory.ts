@@ -142,6 +142,10 @@ export interface WhatsAppWebhookHistoryMessage {
                 threads: [
                   {
                     id: string;
+                    context: {
+                      user_id: string;
+                      username: string;
+                    }
                     messages: WhatsAppHistoryMessage[];
                   }
                 ];
@@ -193,6 +197,7 @@ export interface WhatsAppWebhookStateSync {
             state_sync: Array<{
               type: "contact";
               contact: {
+                user_id: string;
                 full_name: string;
                 first_name: string
                 phone_number: string;
