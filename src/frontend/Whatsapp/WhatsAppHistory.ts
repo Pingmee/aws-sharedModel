@@ -38,12 +38,14 @@ export interface WhatsAppWebhookMediaMessage {
 
 export type WhatsAppHistoryBaseMessage = {
   customerPhoneNumberId: string
+  customerMetaUserId?: string
   businessPhoneNumberId: string
   associatedTo: string
 }
 
 export type WhatsAppHistoryStateSyncQueueData = WhatsAppHistoryBaseMessage & {
   fullName: string
+  username?: string
 }
 
 export type WhatsAppHistoryMessageQueueData = WhatsAppHistoryBaseMessage & WhatsAppHistoryMessage
