@@ -33,6 +33,7 @@ export type Workflow = BaseSubFolder & {
 
   //(whatsapp - phoneNumberId, facebook - pageId)
   associatedToBusinessId: string
+  associatedToPlatformId?: string // whatsapp - phoneNumberId, facebook - pageId
   platformType?: PlatformType
 
   triggerType?: string,
