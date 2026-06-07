@@ -23,7 +23,9 @@ export enum TypeIncomingMessage {
   videoMessage = 'videoMessage',
   audioMessage = 'audioMessage',
   quotedMessage = 'quotedMessage',
-  documentMessage = 'documentMessage'
+  documentMessage = 'documentMessage',
+  interactiveButtons = 'interactiveButtons',
+  templateMessage = 'templateMessage'
 }
 
 export interface InstanceData {
@@ -110,6 +112,9 @@ export interface QuotedMessageData {
   participant?: string;
 }
 
+export interface TemplateMessageData { titleText?: string, footerText?: string, contentText?: string }
+export interface InteractiveButtonsData { header?: { type: string, parameters?: string[] }, body?: { text: string }, footer?: string, buttons?: { type: string, text: string }[] }
+
 export interface MessageData {
   typeMessage: TypeIncomingMessage;
 
@@ -120,6 +125,8 @@ export interface MessageData {
   editedMessageData?: EditedMessageData;
   deletedMessageData?: DeletedMessageData;
   quotedMessage?: QuotedMessageData;
+  templateMessageData?: TemplateMessageData;
+  interactiveButtonsData?: InteractiveButtonsData;
 }
 
 export interface OutgoingMessageReceivedWebhook {
@@ -146,7 +153,7 @@ export function isOutgoingMessageStatusWebhook(obj: any): obj is OutgoingMessage
 
 export function isOutgoingMessageReceivedWebhook(obj: any): obj is OutgoingMessageReceivedWebhook {
   return (
-    [TypeWebhook.incomingMessageReceived, TypeWebhook.outgoingAPIMessageReceived, TypeWebhook.outgoingMessageStatus, TypeWebhook.outgoingMessageReceived].includes(obj.typeWebhook) &&
+    [ TypeWebhook.incomingMessageReceived, TypeWebhook.outgoingAPIMessageReceived, TypeWebhook.outgoingMessageStatus, TypeWebhook.outgoingMessageReceived ].includes(obj.typeWebhook) &&
     typeof obj.idMessage === 'string' &&
     typeof obj.senderData?.sender === 'string' &&
     typeof obj.messageData?.typeMessage === 'string'
