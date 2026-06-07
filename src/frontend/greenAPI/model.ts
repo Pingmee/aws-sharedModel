@@ -23,7 +23,9 @@ export enum TypeIncomingMessage {
   videoMessage = 'videoMessage',
   audioMessage = 'audioMessage',
   quotedMessage = 'quotedMessage',
-  documentMessage = 'documentMessage'
+  documentMessage = 'documentMessage',
+  interactiveButtons = 'interactiveButtons',
+  templateMessage = 'templateMessage'
 }
 
 export interface InstanceData {
@@ -146,7 +148,7 @@ export function isOutgoingMessageStatusWebhook(obj: any): obj is OutgoingMessage
 
 export function isOutgoingMessageReceivedWebhook(obj: any): obj is OutgoingMessageReceivedWebhook {
   return (
-    [TypeWebhook.incomingMessageReceived, TypeWebhook.outgoingAPIMessageReceived, TypeWebhook.outgoingMessageStatus, TypeWebhook.outgoingMessageReceived].includes(obj.typeWebhook) &&
+    [ TypeWebhook.incomingMessageReceived, TypeWebhook.outgoingAPIMessageReceived, TypeWebhook.outgoingMessageStatus, TypeWebhook.outgoingMessageReceived ].includes(obj.typeWebhook) &&
     typeof obj.idMessage === 'string' &&
     typeof obj.senderData?.sender === 'string' &&
     typeof obj.messageData?.typeMessage === 'string'
