@@ -309,6 +309,11 @@ export type BusinessSettings = {
   ai?: AISettings
   storage: StorageSettings
   system: SystemSettings
+  workflows?: WorkflowsSettings
+}
+
+export type WorkflowsSettings = {
+  executionTTLinDays: number
 }
 
 export enum PlatformType {
