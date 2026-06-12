@@ -17,6 +17,7 @@ import {
 } from '../conversation.js'
 import { FireberryField, FireberryTable } from "../Campaigns/FireberryModel.js"
 import { MessageTemplateType } from '../Whatsapp/whatsapp.js'
+import { FileMetadata } from '../Whatsapp/whatsapp.js'
 import { Task } from 'frontend/Task.js'
 
 export enum WorkflowMode {
@@ -168,6 +169,10 @@ export interface SubNodeData extends GeneralNodeData {
   label?: string,
   editable?: boolean
   removable?: boolean
+  /** Optional Meta button payload to match carousel / template quick-reply replies. */
+  buttonPayload?: string
+  /** 0-based carousel card index when this answer sub-node maps to a carousel quick reply. */
+  carouselCardIndex?: number
 }
 
 export type TimerInfo = {
@@ -210,6 +215,10 @@ export interface MessageNodeData extends GeneralNodeData {
   templateInformation?: TemplateInformation
   headerVariables?: { [ key: number ]: Variable | Expression }
   bodyVariables?: { [ key: number ]: Variable | Expression }
+  /** Per-card carousel values keyed as `${cardIndex}-body-${placeholderIndex}` or `${cardIndex}-${buttonIndex}`. */
+  carouselVariables?: Record<string, Variable | Expression>
+  /** Per-card media metadata (blob URLs) uploaded to S3 on workflow save. */
+  carouselCardAttachments?: FileMetadata[]
 }
 
 export interface WorkflowPointerNodeData extends GeneralNodeData {

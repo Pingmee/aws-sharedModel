@@ -45,6 +45,11 @@ export type TemplateSendMessageComponentAttachment = {
   id?: string
 }
 
+export type TemplateCarouselSendCard = {
+  card_index: number;
+  components: TemplateComponent[];
+};
+
 export type TemplateComponent = {
   type: WhatsAppComponentType;
   sub_type?: WhatsAppComponentButtonType,
@@ -52,6 +57,7 @@ export type TemplateComponent = {
   text?: string;
   sections?: Section[];
   parameters?: TemplateSendComponentParameter[];
+  cards?: TemplateCarouselSendCard[];
 };
 
 export type Template = {

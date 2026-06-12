@@ -9,6 +9,10 @@ import {
 } from './whatsapp.js'
 import { PlatformType } from '../conversation.js'
 
+export type TemplateCarouselCard = {
+  components: TemplateCreationComponent[];
+};
+
 export type TemplateCreationComponent = {
   type: WhatsAppComponentType;
   format?: WhatsAppHeaderComponentType;
@@ -16,6 +20,7 @@ export type TemplateCreationComponent = {
   example?: TemplateCreationComponentExamples;
   buttons?: Button[];
   sections?: Section[];
+  cards?: TemplateCarouselCard[];
 
   // Used for internal company and private templates
   attachmentS3Id?: string

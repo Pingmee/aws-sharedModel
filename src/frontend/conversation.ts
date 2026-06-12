@@ -125,6 +125,9 @@ export type Message = BaseMessageSchemeKeys & {
   // When we send a message we create a temp id, then replace it
   // with the real whatsapp id
   temporaryMessageId?: string
+
+  /** Meta quick-reply / interactive button payload (distinct from visible button label in `message`). */
+  buttonPayload?: string
 }
 
 export interface MessagesDBScheme {

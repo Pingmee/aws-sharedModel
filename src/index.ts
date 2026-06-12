@@ -21,6 +21,10 @@ export * from './frontend/Whatsapp/TemplateSendModel.js';
 // Re-export from Whatsapp/template-creation-model.ts
 export * from './frontend/Whatsapp/template-creation-model.js';
 
+export * from './frontend/Whatsapp/template-utils.js';
+
+export * from './frontend/Whatsapp/button-reply-utils.js';
+
 export * from './frontend/Automations/automations.js';
 //
 export * from './frontend/Automations/Nodes.js';

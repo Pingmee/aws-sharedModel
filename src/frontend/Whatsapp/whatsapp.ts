@@ -103,6 +103,26 @@ export interface RichContent {
   }
 }
 
+export interface TemplateCarouselCardButtonData {
+  type: WhatsAppComponentButtonType
+  index: number
+  text?: string
+  payload?: string
+}
+
+export interface TemplateCarouselCardData {
+  cardIndex: number
+  header?: {
+    type: WhatsAppHeaderComponentType
+    mediaId?: string
+    url?: string
+  }
+  body?: {
+    parameters?: string[]
+  }
+  buttons?: TemplateCarouselCardButtonData[]
+}
+
 export interface TemplateData {
   header?: {
     type: WhatsAppHeaderComponentType
@@ -117,6 +137,7 @@ export interface TemplateData {
     type: WhatsAppComponentButtonType,
     text: string
   }[]
+  carousel?: TemplateCarouselCardData[]
 }
 
 export type InteractiveButton = {
@@ -316,7 +337,8 @@ export enum WhatsAppComponentType {
   footer = 'footer',
   text = 'text',
   buttons = 'buttons',
-  button = 'button'
+  button = 'button',
+  carousel = 'carousel',
 }
 
 export enum WhatsAppHeaderComponentType {
