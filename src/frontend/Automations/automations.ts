@@ -2,6 +2,7 @@ import { DBObjectInterface, PlatformType } from '../conversation.js'
 import { WorkflowNode } from './model.js'
 import { AIChatBotGeneratedContent } from '../AI/Chatbot/Model.js'
 import { FallbackBaseData, TimerInfo } from './Nodes.js'
+import { WorkflowAnalytics } from './workflow-analytics.js'
 
 export type BaseSubFolder = {
   id: string
@@ -39,13 +40,11 @@ export type Workflow = BaseSubFolder & {
   triggerType?: string,
   trigger?: WorkflowNode,
 
-  executionCount?: number;      // Number of times the workflow was executed
-  successCount?: number;        // Number of successful executions
-  failureCount?: number;        // Number of failed executions
+  executionCount?: number;      // Number of times the workflow was executed (running number for executions)
   lastExecution?: number;       // Timestamp of the last execution
-  messageReadCount?: number;    // How many people read the message
-  buttonClicks?: Record<string, number>; // Tracks button clicks by button ID/name
-  conversionRate?: number;     // Percentage of users who completed the workflow's intended outcome
+
+  /** Canvas analytics (Expert AI). All conversion/button/read stats live here. */
+  analytics?: WorkflowAnalytics
   notes?: string;              // Any manual notes or descriptions for the workflow
 
   settings?: WorkflowSettings
@@ -116,4 +115,6 @@ export interface AutomationsDataExport {
   displayedFlow: () => Promise<Workflow | undefined>
   onAnyChange: () => void
   onEvent: (event: AutomationEvents, data: any) => void
+  /** Clears all analytics for a workflow and returns the updated record from the API. */
+  resetWorkflowAnalytics?: (workflowId: string) => Promise<Workflow | undefined>
 }
