@@ -27,6 +27,23 @@ export function getPlanPlatformLimits(plan?: PlanType): PlanPlatformLimits {
   }
 }
 
+/** Plan defaults merged with optional per-business overrides from BusinessSettings.platformLimits. */
+export function getBusinessPlatformLimits(
+  plan?: PlanType,
+  overrides?: Partial<PlanPlatformLimits>,
+): PlanPlatformLimits {
+  const planLimits = getPlanPlatformLimits(plan)
+  if (!overrides) {
+    return planLimits
+  }
+
+  return {
+    maxWhatsappPlatforms: overrides.maxWhatsappPlatforms ?? planLimits.maxWhatsappPlatforms,
+    maxWhatsappPhoneNumbers: overrides.maxWhatsappPhoneNumbers ?? planLimits.maxWhatsappPhoneNumbers,
+    maxFacebookConnections: overrides.maxFacebookConnections ?? planLimits.maxFacebookConnections,
+  }
+}
+
 export function mergeFacebookPagesById(
   existing: PlatformFacebookMessenger[] = [],
   incoming: PlatformFacebookMessenger[] = [],
@@ -73,8 +90,11 @@ export function wouldExceedFacebookPlatformLimits(
   return mergedPages.length > limits.maxFacebookConnections
 }
 
-export function getWhatsappPlatformLimitErrorMessage(plan?: PlanType): string {
-  const limits = getPlanPlatformLimits(plan)
+export function getWhatsappPlatformLimitErrorMessage(
+  plan?: PlanType,
+  overrides?: Partial<PlanPlatformLimits>,
+): string {
+  const limits = getBusinessPlatformLimits(plan, overrides)
 
   if (limits.maxWhatsappPhoneNumbers != null) {
     return `Your plan allows up to ${ limits.maxWhatsappPhoneNumbers } WhatsApp numbers. Upgrade your plan to add more.`
@@ -87,7 +107,10 @@ export function getWhatsappPlatformLimitErrorMessage(plan?: PlanType): string {
   return 'Your plan does not allow adding more WhatsApp connections. Upgrade your plan to add more.'
 }
 
-export function getFacebookPlatformLimitErrorMessage(plan?: PlanType): string {
-  const limits = getPlanPlatformLimits(plan)
+export function getFacebookPlatformLimitErrorMessage(
+  plan?: PlanType,
+  overrides?: Partial<PlanPlatformLimits>,
+): string {
+  const limits = getBusinessPlatformLimits(plan, overrides)
   return `Your plan allows up to ${ limits.maxFacebookConnections } Facebook connection${ limits.maxFacebookConnections === 1 ? '' : 's' }. Upgrade your plan to add more.`
 }

@@ -24,6 +24,7 @@ export interface Plan {
 export type { PlanPlatformLimits } from './plan-platform-limits.js'
 export {
   getPlanPlatformLimits,
+  getBusinessPlatformLimits,
   getFacebookPlatformLimitErrorMessage,
   getWhatsappPlatformLimitErrorMessage,
   mergeFacebookPagesById,

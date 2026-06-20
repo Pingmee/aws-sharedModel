@@ -9,6 +9,7 @@ import {
 import { LoginPlatform } from './login.js'
 import { FileInterface } from './file-interface.js'
 import { PlanType } from './Payment/Model.js'
+import type { PlanPlatformLimits } from './Payment/plan-platform-limits.js'
 import { AITranslation } from './AI/Translation.js'
 import { WorkflowExecution } from './Automations/workflow.js'
 import { SelectablePlatform } from './platforms.js'
@@ -313,6 +314,8 @@ export type BusinessSettings = {
   storage: StorageSettings
   system: SystemSettings
   workflows?: WorkflowsSettings
+  /** Per-business overrides for how many platform connections can be added. */
+  platformLimits?: Partial<PlanPlatformLimits>
 }
 
 export type WorkflowsSettings = {
