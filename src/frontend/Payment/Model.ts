@@ -18,7 +18,20 @@ export interface Plan {
   yearlyPrice: number
   baseFeatures: string[]
   extraFeatures: string[]
+  platformLimits: PlanPlatformLimits
 }
+
+export type { PlanPlatformLimits } from './plan-platform-limits.js'
+export {
+  getPlanPlatformLimits,
+  getFacebookPlatformLimitErrorMessage,
+  getWhatsappPlatformLimitErrorMessage,
+  mergeFacebookPagesById,
+  wouldExceedFacebookPlatformLimits,
+  wouldExceedWhatsappPlatformLimits,
+} from './plan-platform-limits.js'
+
+import type { PlanPlatformLimits } from './plan-platform-limits.js'
 
 const basePlan = {
   paymentLinkId: '96dddf71-c537-4e05-a1a2-13adda359196',
@@ -42,7 +55,8 @@ const basePlan = {
     "ממשק ניהול שיחות מתקדם",
     "תמיכה בתקשורת בין סוכנים"
   ],
-  description: 'תוכנית זו מתאימה לעסקים שמנהלים פעילות בסיסית במדיה החברתית ורוצים מענה אוטומטי לפוסטים, Stories ו־Reels. ושליחת הודעות קמפיין להמונים.'
+  description: 'תוכנית זו מתאימה לעסקים שמנהלים פעילות בסיסית במדיה החברתית ורוצים מענה אוטומטי לפוסטים, Stories ו־Reels. ושליחת הודעות קמפיין להמונים.',
+  platformLimits: { maxWhatsappPlatforms: 1, maxFacebookConnections: 1 },
 }
 
 const extendedPlan: Plan = {
@@ -64,7 +78,8 @@ const extendedPlan: Plan = {
     "תרגום הודעות אוטומטי",
     "שרת אוטומציות מגובה ענן"
   ],
-  description: 'תוכנית זו מתאימה לעסקים המעוניינים בצ\'אט בוטים קלאסים (שאלות תשובות), ניהול מסעות לקוח וכלי אוטומציה מבוססי AI לשיפור השירות והמעורבות.'
+  description: 'תוכנית זו מתאימה לעסקים המעוניינים בצ\'אט בוטים קלאסים (שאלות תשובות), ניהול מסעות לקוח וכלי אוטומציה מבוססי AI לשיפור השירות והמעורבות.',
+  platformLimits: { maxWhatsappPlatforms: 3, maxFacebookConnections: 2 },
 }
 
 //@ts-expect-error
@@ -88,6 +103,7 @@ export const Plans: { [ key in PlanType ]: Plan } = {
       "סיכום שיחות בקליק ועריכת הודעות AI",
       "חיבור למערכת ChatGPT"
     ],
-    description: 'תוכנית זו מתאימה לעסקים מתקדמים שמבקשים כלים חכמים לניהול שיחות, סוכני AI וחיבורים למערכות מתקדמות כמו ChatGPT. סוכני AI מסוגלים לקבוע פגישות, לתת מידע על סטטוס הזמנה, לספק מידע על העסק ועוד המון אפשריות.'
+    description: 'תוכנית זו מתאימה לעסקים מתקדמים שמבקשים כלים חכמים לניהול שיחות, סוכני AI וחיבורים למערכות מתקדמות כמו ChatGPT. סוכני AI מסוגלים לקבוע פגישות, לתת מידע על סטטוס הזמנה, לספק מידע על העסק ועוד המון אפשריות.',
+    platformLimits: { maxWhatsappPhoneNumbers: 5, maxFacebookConnections: 5 },
   }
 }
