@@ -33,6 +33,7 @@ export * from './frontend/Automations/model.js';
 
 export * from './frontend/Automations/workflow.js';
 export * from './frontend/Automations/workflow-analytics.js';
+export * from './frontend/Automations/workflow-duplicate-helpers.js';
 
 export * from './frontend/Payment/Model.js';
 
