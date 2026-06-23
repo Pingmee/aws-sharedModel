@@ -65,6 +65,17 @@ export enum NodeType {
   awaitResponseTimeout = 'awaitResponseTimeout',
 }
 
+const WORKFLOW_TRIGGER_NODE_TYPES = new Set<NodeType>([
+  NodeType.pingmeeTrigger,
+  NodeType.instagramTrigger,
+  NodeType.facebookTrigger,
+  NodeType.workflowTrigger,
+])
+
+export function isWorkflowTriggerNodeType(nodeType?: string): boolean {
+  return nodeType != null && WORKFLOW_TRIGGER_NODE_TYPES.has(nodeType as NodeType)
+}
+
 export enum EventBridgeTriggerOptions {
   waitNode = 'waitNode',
   campaign = 'campaign',
@@ -82,6 +93,9 @@ export enum PingmeeTriggerOptions {
   MessageCreated = "Messages Created",
   NewConversationStarted = "New Conversation Started",
   ManualTrigger = "Manual Trigger",
+
+  conversationTagChanged = "Conversation Tag Set",
+  conversationStatusChanged = "Conversation Status Changed",
 }
 
 export enum ConditionType {
@@ -219,6 +233,8 @@ export interface MessageNodeData extends GeneralNodeData {
   carouselVariables?: Record<string, Variable | Expression>
   /** Per-card media metadata (blob URLs) uploaded to S3 on workflow save. */
   carouselCardAttachments?: FileMetadata[]
+  /** Media-only messages (no body/buttons); each item is sent as its own WhatsApp message. */
+  attachments?: Array<FileMetadata & { attachmentS3Id?: string }>
 }
 
 export interface WorkflowPointerNodeData extends GeneralNodeData {

@@ -1,6 +1,8 @@
 import { WorkflowNode } from './model.js'
 import { PlanType } from '../Payment/Model.js'
 
+export { isWorkflowTriggerNodeType } from './Nodes.js'
+
 export type WorkflowNodeStats = {
   enteredCount: number
   completedCount: number
@@ -343,6 +345,15 @@ export function formatAnalyticsPercent(value: number): string {
   if (value <= 0) return '0%'
   if (value >= 100) return '100%'
   return `${ value }%`
+}
+
+/** Conversations that started but have not completed or dropped yet. */
+export function getWorkflowInProgressCount(analytics?: WorkflowAnalytics): number {
+  if (!analytics) return 0
+  const started = analytics.totalStarted ?? 0
+  const completed = analytics.totalCompleted ?? 0
+  const dropped = analytics.totalDropped ?? 0
+  return Math.max(0, started - completed - dropped)
 }
 
 /** Workflow canvas analytics (overlays, summary panel, reset) is an Expert AI plan feature. */
