@@ -233,8 +233,8 @@ export interface MessageNodeData extends GeneralNodeData {
   carouselVariables?: Record<string, Variable | Expression>
   /** Per-card media metadata (blob URLs) uploaded to S3 on workflow save. */
   carouselCardAttachments?: FileMetadata[]
-  /** Media-only messages (no body/buttons); each item is sent as its own WhatsApp message. */
-  attachments?: Array<FileMetadata & { attachmentS3Id?: string }>
+  /** Extra header media after the first `templateInformation.attachment` (blob URLs → S3 on save). */
+  headerAttachments?: Array<FileMetadata & { attachmentS3Id?: string }>
 }
 
 export interface WorkflowPointerNodeData extends GeneralNodeData {
