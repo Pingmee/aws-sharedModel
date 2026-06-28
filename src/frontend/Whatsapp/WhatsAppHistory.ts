@@ -40,6 +40,8 @@ export type WhatsAppHistoryBaseMessage = {
   customerPhoneNumberId: string
   customerMetaUserId?: string
   businessPhoneNumberId: string
+  /** E.164 display number from webhook metadata; history `from` uses this for business-sent messages. */
+  businessDisplayPhoneNumber?: string
   associatedTo: string
 }
 
