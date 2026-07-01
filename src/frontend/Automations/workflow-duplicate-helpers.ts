@@ -2,19 +2,31 @@ import { Workflow } from './automations.js'
 import { isWorkflowTriggerNodeType } from './Nodes.js'
 import { WorkflowNode } from './model.js'
 
-function stripWhatsAppTriggerLinkFromNodeData(
+function stripDuplicateTriggerNodeData(
   data: Record<string, unknown> | undefined,
 ): Record<string, unknown> | undefined {
   if (!data || typeof data !== 'object') {
     return data
   }
 
-  if (data.whatsappLink === undefined && data.messageQrdlId === undefined) {
+  const hasLinkFields = data.whatsappLink !== undefined || data.messageQrdlId !== undefined
+  const hasKeywords = Array.isArray(data.keywords) && data.keywords.length > 0
+
+  if (!hasLinkFields && !hasKeywords) {
     return data
   }
 
-  const { whatsappLink: _whatsappLink, messageQrdlId: _messageQrdlId, ...rest } = data
-  return rest
+  const {
+    whatsappLink: _whatsappLink,
+    messageQrdlId: _messageQrdlId,
+    keywords: _keywords,
+    ...rest
+  } = data
+
+  return {
+    ...rest,
+    keywords: [],
+  }
 }
 
 function stripWhatsAppTriggerLinkFromWorkflowNode(node: WorkflowNode | undefined): WorkflowNode | undefined {
@@ -22,7 +34,7 @@ function stripWhatsAppTriggerLinkFromWorkflowNode(node: WorkflowNode | undefined
     return node
   }
 
-  const cleanedData = stripWhatsAppTriggerLinkFromNodeData(node.data as Record<string, unknown> | undefined)
+  const cleanedData = stripDuplicateTriggerNodeData(node.data as Record<string, unknown> | undefined)
   if (cleanedData === node.data) {
     return node
   }
@@ -33,7 +45,7 @@ function stripWhatsAppTriggerLinkFromWorkflowNode(node: WorkflowNode | undefined
   }
 }
 
-/** Removes Meta WhatsApp QR link references so a duplicated workflow does not share the original link. */
+/** Clears WhatsApp link fields and trigger keywords so a duplicate does not share the original link or prefilled message. */
 export function stripWhatsAppTriggerLinkReferences(workflow: Workflow): Workflow {
   let changed = false
   const nextWorkflow: Workflow = { ...workflow }
@@ -65,7 +77,7 @@ export function stripWhatsAppTriggerLinkReferences(workflow: Workflow): Workflow
         return node
       }
 
-      const cleanedData = stripWhatsAppTriggerLinkFromNodeData(node.data)
+      const cleanedData = stripDuplicateTriggerNodeData(node.data)
       if (cleanedData === node.data) {
         return node
       }
