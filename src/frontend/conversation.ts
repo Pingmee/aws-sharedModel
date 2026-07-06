@@ -316,6 +316,8 @@ export type BusinessSettings = {
   workflows?: WorkflowsSettings
   /** Per-business overrides for how many platform connections can be added. */
   platformLimits?: Partial<PlanPlatformLimits>
+  /** Extra agent seats purchased on top of the plan default (owner + invited users). */
+  additionalAgentsPurchased?: number
 }
 
 export type WorkflowsSettings = {

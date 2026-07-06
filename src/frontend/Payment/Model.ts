@@ -32,6 +32,15 @@ export {
   wouldExceedWhatsappPlatformLimits,
 } from './plan-platform-limits.js'
 
+export type { PlanAgentLimits } from './plan-agent-limits.js'
+export {
+  canInviteAgent,
+  getAgentLimitErrorMessage,
+  getBusinessAgentLimit,
+  getPlanAgentLimits,
+  wouldExceedAgentLimit,
+} from './plan-agent-limits.js'
+
 import type { PlanPlatformLimits } from './plan-platform-limits.js'
 
 const basePlan = {
