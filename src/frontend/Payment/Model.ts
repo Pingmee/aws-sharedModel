@@ -35,9 +35,12 @@ export {
 export type { PlanAgentLimits } from './plan-agent-limits.js'
 export {
   canInviteAgent,
+  countAgentSeats,
   getAgentLimitErrorMessage,
   getBusinessAgentLimit,
+  getPlanAgentLimit,
   getPlanAgentLimits,
+  userCountsTowardAgentSeat,
   wouldExceedAgentLimit,
 } from './plan-agent-limits.js'
 

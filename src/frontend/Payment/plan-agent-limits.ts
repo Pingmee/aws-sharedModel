@@ -1,7 +1,8 @@
 import { PlanType } from './Model.js'
+import { UserStatus } from '../conversation.js'
 
 export type PlanAgentLimits = {
-  /** Max users (owner + agents) for the workspace. Omit for unlimited. */
+  /** Max workspace users including the owner. */
   maxAgents?: number
 }
 
@@ -13,12 +14,16 @@ export function getPlanAgentLimits(plan?: PlanType): PlanAgentLimits {
     case PlanType.expended:
       return { maxAgents: 5 }
     case PlanType.expertAI:
-      return { maxAgents: 10 }
     case PlanType.partner:
-      return {}
+      return { maxAgents: 10 }
     default:
       return { maxAgents: 1 }
   }
+}
+
+/** Plan-included seats only (excludes purchased add-ons). */
+export function getPlanAgentLimit(plan?: PlanType): number | undefined {
+  return getPlanAgentLimits(plan).maxAgents
 }
 
 /** Plan max plus optional purchased add-on seats from BusinessSettings.additionalAgentsPurchased. */
@@ -40,10 +45,6 @@ export function wouldExceedAgentLimit(
   currentAgentCount: number,
   additionalAgentsPurchased?: number,
 ): boolean {
-  if (plan === PlanType.partner) {
-    return false
-  }
-
   const limit = getBusinessAgentLimit(plan, additionalAgentsPurchased)
   if (limit == null) {
     return false
@@ -70,5 +71,14 @@ export function getAgentLimitErrorMessage(
     return 'Your plan does not allow inviting more agents. Upgrade your plan to add more.'
   }
 
-  return `Your plan allows up to ${ limit } agent seat${ limit === 1 ? '' : 's' }. Upgrade your plan or purchase additional seats to invite more.`
+  return `Your plan allows up to ${ limit } user${ limit === 1 ? '' : 's' } including the owner. Upgrade your plan or purchase additional seats to invite more.`
+}
+
+/** Inactive agents do not consume a seat. Invited and active users do. */
+export function userCountsTowardAgentSeat(status?: UserStatus): boolean {
+  return status !== UserStatus.inActive
+}
+
+export function countAgentSeats<T extends { status?: UserStatus }>(users: T[]): number {
+  return users.filter((user) => userCountsTowardAgentSeat(user.status)).length
 }
