@@ -415,8 +415,13 @@ export enum SupportedMimeTypes {
   zip = 'application/zip'
 }
 
+import { resolveAttachmentMimeType } from '../attachmentMime.js'
+
 export function attachmentTypeFromInfo(attachmentBase64: Base64Attachment) {
-  const fileType = attachmentBase64.fileMimeType.split('/')[ 0 ]
+  const fileType = resolveAttachmentMimeType(
+    attachmentBase64.fileName,
+    attachmentBase64.fileMimeType,
+  ).split('/')[ 0 ]
   switch (fileType) {
     case 'application':
       return AttachmentType.document
