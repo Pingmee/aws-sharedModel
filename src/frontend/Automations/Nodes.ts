@@ -229,6 +229,8 @@ export interface MessageNodeData extends GeneralNodeData {
   templateInformation?: TemplateInformation
   headerVariables?: { [ key: number ]: Variable | Expression }
   bodyVariables?: { [ key: number ]: Variable | Expression }
+  /** Dynamic URL / action button suffixes keyed by button index in the template BUTTONS component. */
+  buttonVariables?: { [ key: number ]: Variable | Expression }
   /** Per-card carousel values keyed as `${cardIndex}-body-${placeholderIndex}` or `${cardIndex}-${buttonIndex}`. */
   carouselVariables?: Record<string, Variable | Expression>
   /** Per-card media metadata (blob URLs) uploaded to S3 on workflow save. */

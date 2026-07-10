@@ -136,6 +136,8 @@ export interface TemplateData {
   buttons?: {
     type: WhatsAppComponentButtonType,
     text: string
+    /** Index of the button in the template BUTTONS component (required when multiple buttons share a type). */
+    index?: number
   }[]
   carousel?: TemplateCarouselCardData[]
 }
@@ -315,6 +317,12 @@ export enum WhatsAppComponentButtonType {
   catalog = 'catalog',
   multi_product = 'mpm',
   requestContactInfo = 'REQUEST_CONTACT_INFO'
+}
+
+/** Whether a template URL button uses a fixed URL or a Meta `{{1}}` dynamic suffix. */
+export enum WhatsAppTemplateUrlButtonType {
+  static = 'static',
+  dynamic = 'dynamic',
 }
 
 export type Button = {
