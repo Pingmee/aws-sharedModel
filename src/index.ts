@@ -6,6 +6,8 @@ export * from './frontend/login.js';
 
 export * from './frontend/utils.js';
 
+export * from './frontend/dynamicUrl.js';
+
 export * from './frontend/attachmentMime.js';
 
 // Re-export from file-interface.ts
