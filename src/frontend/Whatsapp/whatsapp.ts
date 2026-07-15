@@ -236,11 +236,53 @@ export interface PhoneNumber {
   type: PlatformType.whatsapp | PlatformType.greenAPI
 }
 
+/** Business-portfolio messaging limit tier from Graph `whatsapp_business_manager_messaging_limit`. */
+export type WhatsAppBusinessMessagingLimitTier =
+  | 'TIER_50'
+  | 'TIER_250'
+  | 'TIER_2K'
+  | 'TIER_10K'
+  | 'TIER_100K'
+  | 'TIER_UNLIMITED'
+  | 'UNTIERED'
+  // Legacy phone-number `messaging_limit_tier` values still seen in older responses
+  | 'TIER_1K'
+
+export const DEFAULT_WHATSAPP_MESSAGING_LIMIT = 250
+
+/**
+ * Maps Meta messaging-limit tiers to unique users allowed in a moving 24h window.
+ * Returns `null` for unlimited (no cap).
+ */
+export function whatsappMessagingLimitFromTier(tier?: string | null): number | null {
+  switch (tier) {
+    case 'TIER_50':
+      return 50
+    case 'TIER_250':
+      return 250
+    case 'TIER_1K':
+      return 1000
+    case 'TIER_2K':
+      return 2000
+    case 'TIER_10K':
+      return 10000
+    case 'TIER_100K':
+      return 100000
+    case 'TIER_UNLIMITED':
+      return null
+    case 'UNTIERED':
+    default:
+      return DEFAULT_WHATSAPP_MESSAGING_LIMIT
+  }
+}
+
 export interface WhatsAppPhoneNumber extends PhoneNumber {
   userExtensionSettingsId: string
   code_verification_status: string
   quality_rating: string
   max_daily_conversations?: number
+  /** Portfolio messaging limit tier (request via Graph field `whatsapp_business_manager_messaging_limit`). */
+  whatsapp_business_manager_messaging_limit?: WhatsAppBusinessMessagingLimitTier | string
   throughput: {
     "level": string
   },
