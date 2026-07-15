@@ -15,9 +15,20 @@ export enum AudienceSource {
   webhook = 'webhook'
 }
 
+/** What the campaign delivers to each recipient. */
+export enum CampaignContentType {
+  singleMessage = 'singleMessage',
+  triggerWorkflow = 'triggerWorkflow',
+}
+
 export type Campaign = BaseSubFolder & {
   description: string;
-  message: Message;
+  /** Required when `contentType` is `singleMessage` (default). */
+  message?: Message;
+  contentType?: CampaignContentType
+  /** Required when `contentType` is `triggerWorkflow`. */
+  workflowId?: string
+  workflowName?: string
   status: WhatsAppMessageStatus;
   whenToSendMessage: TimeOption
   source: AudienceSource
