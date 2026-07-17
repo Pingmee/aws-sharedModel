@@ -302,8 +302,15 @@ export type BusinessSettings = {
   subscriptionPlan?: PlanType
   isPaymentYearly?: boolean
 
+  /**
+   * API Gateway API key provisioned for this business (used to identify the
+   * caller and attach it to a per-plan usage plan for throttling/quotas).
+   * `apiKeyValue` is sensitive and must never be returned to clients.
+   */
+  apiKeyId?: string
+  apiKeyValue?: string
+
   industry?: string
-  targetAudience?: string
   about?: string
 
   // Representative contact information
