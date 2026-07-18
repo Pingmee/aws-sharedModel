@@ -172,6 +172,7 @@ export type Customer = BaseCustomerSchemeKeys & {
   createdAt: number
   lastActiveAt: number
   email?: string
+  description?: string // Free-text note controlled by the business
   platform?: PlatformType.whatsapp | PlatformType.instagram | PlatformType.facebookMessenger
 }
 
