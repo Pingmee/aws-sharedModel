@@ -45,9 +45,13 @@ export type WhatsAppHistoryBaseMessage = {
   associatedTo: string
 }
 
+export type WhatsAppHistoryStateSyncAction = 'add' | 'remove'
+
 export type WhatsAppHistoryStateSyncQueueData = WhatsAppHistoryBaseMessage & {
-  fullName: string
+  /** Omitted when Meta sends a contact `remove` (names are not included). */
+  fullName?: string
   username?: string
+  action: WhatsAppHistoryStateSyncAction
 }
 
 export type WhatsAppHistoryMessageQueueData = WhatsAppHistoryBaseMessage & WhatsAppHistoryMessage
@@ -201,12 +205,14 @@ export interface WhatsAppWebhookStateSync {
             state_sync: Array<{
               type: "contact";
               contact: {
-                user_id: string;
-                full_name: string;
-                first_name: string
+                user_id?: string;
+                /** Not included when action is `remove`. */
+                full_name?: string;
+                /** Not included when action is `remove`. */
+                first_name?: string;
                 phone_number: string;
               };
-              action: string;
+              action: "add" | "remove" | string;
               metadata: {
                 timestamp: string;
               };
@@ -219,6 +225,13 @@ export interface WhatsAppWebhookStateSync {
   ];
 }
 
+export type WhatsAppAccountUpdateEvent =
+  | "PARTNER_APP_UNINSTALLED"
+  | "PARTNER_REMOVED"
+  | "ACCOUNT_OFFBOARDED"
+  | "ACCOUNT_RECONNECTED"
+  | string
+
 export interface WhatsAppWebhookAccountUpdate {
   object: string;
   entry: [
@@ -229,11 +242,18 @@ export interface WhatsAppWebhookAccountUpdate {
         {
           field: "account_update";
           value: {
-            event: "PARTNER_APP_UNINSTALLED" | string;
-            waba_info: {
+            event: WhatsAppAccountUpdateEvent;
+            /** Present on PARTNER_REMOVED (and some other) coexistence disconnect events. */
+            phone_number?: string;
+            disconnection_info?: {
+              reason: string;
+              initiated_by: string;
+            };
+            /** Present on PARTNER_APP_UNINSTALLED; may be absent on PARTNER_REMOVED. */
+            waba_info?: {
               waba_id: string;
-              owner_business_id: string;
-              partner_app_id: string;
+              owner_business_id?: string;
+              partner_app_id?: string;
             };
           };
         }
@@ -323,20 +343,38 @@ export function isWhatsAppWebhookHistoryError(obj: any): obj is WhatsAppWebhookH
 
 
 export function isWhatsAppWebhookAccountUpdate(obj: any): obj is WhatsAppWebhookAccountUpdate {
-  return (
-    obj &&
-    typeof obj === 'object' &&
-    obj.object === 'whatsapp_business_account' &&
-    Array.isArray(obj.entry) &&
-    typeof obj.entry[ 0 ]?.id === 'string' &&
-    typeof obj.entry[ 0 ]?.time === 'number' &&
-    Array.isArray(obj.entry[ 0 ]?.changes) &&
-    obj.entry[ 0 ]?.changes[ 0 ]?.field === 'account_update' &&
-    typeof obj.entry[ 0 ]?.changes[ 0 ]?.value?.event === 'string' &&
-    typeof obj.entry[ 0 ]?.changes[ 0 ]?.value?.waba_info?.waba_id === 'string' &&
-    typeof obj.entry[ 0 ]?.changes[ 0 ]?.value?.waba_info?.owner_business_id === 'string' &&
-    typeof obj.entry[ 0 ]?.changes[ 0 ]?.value?.waba_info?.partner_app_id === 'string'
-  )
+  if (
+    !obj ||
+    typeof obj !== 'object' ||
+    obj.object !== 'whatsapp_business_account' ||
+    !Array.isArray(obj.entry)
+  ) {
+    return false
+  }
+
+  const entry = obj.entry[ 0 ]
+  const change = entry?.changes?.[ 0 ]
+  if (
+    typeof entry?.id !== 'string' ||
+    typeof entry?.time !== 'number' ||
+    !Array.isArray(entry?.changes) ||
+    change?.field !== 'account_update' ||
+    typeof change?.value?.event !== 'string'
+  ) {
+    return false
+  }
+
+  // PARTNER_REMOVED / ACCOUNT_OFFBOARDED / ACCOUNT_RECONNECTED often omit waba_info; entry.id is the WABA id.
+  if (change.value.waba_info) {
+    return typeof change.value.waba_info.waba_id === 'string'
+  }
+
+  return [
+    'PARTNER_REMOVED',
+    'ACCOUNT_OFFBOARDED',
+    'ACCOUNT_RECONNECTED',
+    'PARTNER_APP_UNINSTALLED',
+  ].includes(change.value.event)
 }
 
 
@@ -454,6 +492,10 @@ export function isHistoryStateSyncQueueDataArray(obj: any): obj is WhatsAppHisto
     typeof obj[ 0 ]?.customerPhoneNumberId === 'string' &&
     typeof obj[ 0 ]?.businessPhoneNumberId === 'string' &&
     typeof obj[ 0 ]?.associatedTo === 'string' &&
-    typeof obj[ 0 ]?.fullName === 'string'
+    (
+      obj[ 0 ]?.action === 'add' ||
+      obj[ 0 ]?.action === 'remove' ||
+      typeof obj[ 0 ]?.fullName === 'string'
+    )
   )
 }

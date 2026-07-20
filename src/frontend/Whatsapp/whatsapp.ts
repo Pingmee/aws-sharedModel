@@ -209,12 +209,22 @@ export enum WhatsAppCoexistenceSyncType {
   history = 'history'
 }
 
+/** Meta history webhook error when the business declines chat history sharing. */
+export const WHATSAPP_HISTORY_SYNC_DECLINED_ERROR_CODE = 2593109
+
+export type WhatsAppCoexistenceOnboardingStatus =
+  | 'in_progress'
+  | 'completed'
+  | 'history_declined'
+
 export interface WhatsAppCoexistenceStatus {
   phase: number,
   chunk_order: number,
   progress: number,
   syncIds: { [ key: string ]: string }
   errors?: WhatsAppCoexistenceError[]
+  /** Terminal/lifecycle status for coexistence history sync UI. */
+  status?: WhatsAppCoexistenceOnboardingStatus
 }
 
 export interface WhatsAppCoexistenceError {
