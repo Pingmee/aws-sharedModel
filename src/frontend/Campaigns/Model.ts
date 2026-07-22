@@ -15,6 +15,13 @@ export enum AudienceSource {
   webhook = 'webhook'
 }
 
+/** Lifecycle of the campaign itself (not per-message WhatsApp delivery status). */
+export enum CampaignStatus {
+  pending = 'pending',
+  scheduled = 'scheduled',
+  completed = 'completed',
+}
+
 /** What the campaign delivers to each recipient. */
 export enum CampaignContentType {
   singleMessage = 'singleMessage',
@@ -29,7 +36,7 @@ export type Campaign = BaseSubFolder & {
   /** Required when `contentType` is `triggerWorkflow`. */
   workflowId?: string
   workflowName?: string
-  status: WhatsAppMessageStatus;
+  status: CampaignStatus;
   whenToSendMessage: TimeOption
   source: AudienceSource
 
@@ -51,6 +58,7 @@ export type Campaign = BaseSubFolder & {
   deliveredCount?: number;
   readCount?: number;
   failedCount?: number;
+  optOutCount?: number;
   expiresAt?: number; // TTL attribute (optional, only if set)
 };
 
