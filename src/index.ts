@@ -50,6 +50,8 @@ export * from './frontend/DateHelper.js';
 
 export * from './frontend/Blogs/Model.js';
 
+export * from './frontend/ProductUpdates/Model.js';
+
 export * from './frontend/AI/Chatbot/Model.js';
 
 export * from './frontend/AI/Translation.js';

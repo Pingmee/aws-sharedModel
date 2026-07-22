@@ -14,6 +14,7 @@ import { AITranslation } from './AI/Translation.js'
 import { WorkflowExecution } from './Automations/workflow.js'
 import { SelectablePlatform } from './platforms.js'
 import { FilterRule } from './Sorting.js'
+import type { ProductUpdate } from './ProductUpdates/Model.js'
 
 export enum FilterOptionType {
   mine = 'mine',
@@ -411,6 +412,8 @@ export type UserSettings = {
   finishedOnboarding: boolean
   // Should show the new overview page tutorial
   finishedOverview: boolean
+  /** Cursor for product update toasts — updates with createdAt <= this are treated as seen */
+  lastSeenProductUpdateAt?: number
 }
 
 export type UserFilterOptions = {
@@ -469,6 +472,8 @@ export type InitialBaseInformation = {
   conversationStatuses?: DBObjectInterface<ConversationStatus[]>
   businessSettings?: BusinessSettings,
   agentSettings?: UserSettings
+  /** Unseen product updates for this agent (createdAt > lastSeenProductUpdateAt), oldest first */
+  productUpdates?: ProductUpdate[]
 }
 
 export type DBObjectInterface<T> = {
