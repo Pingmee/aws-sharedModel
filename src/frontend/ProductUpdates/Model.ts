@@ -11,5 +11,6 @@ export type ProductUpdate = {
   imageUrl: string
   type: ProductUpdateType
   title?: string
+  linkUrl?: string
   published: boolean
 }
