@@ -268,6 +268,8 @@ export interface Conversation extends UpdatableConversationKeys {
   hasMoreItemsToFetch?: boolean
   lastEvaluatedKey?: any
   isSelected?: boolean
+  /** Frontend-only: keep in unread filter while selected after opening with unreadCount > 0. */
+  retainInUnreadFilterWhileSelected?: boolean
 }
 
 export type AISettings = {
