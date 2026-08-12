@@ -19,7 +19,13 @@ export enum AudienceSource {
 export enum CampaignStatus {
   pending = 'pending',
   scheduled = 'scheduled',
+  /** Audience resolved and messages are being enqueued/sent. */
+  inProgress = 'inProgress',
   completed = 'completed',
+  /** Initiate/audience resolution failed before (or while) enqueueing. */
+  failed = 'failed',
+  /** Manually stopped; in-flight batches must abort. */
+  stopped = 'stopped',
 }
 
 /** What the campaign delivers to each recipient. */
@@ -52,6 +58,9 @@ export type Campaign = BaseSubFolder & {
   scheduledAt?: number; // Optional: Timestamp for scheduled execution
   startedAt?: number; // Optional: When campaign execution started
   completedAt?: number; // Optional: When campaign execution finished
+  /** Set when status becomes `failed` (initiate / audience errors). */
+  failureReason?: string
+  failedAt?: number
   totalRecipients?: number;
   pendingCount?: number;
   sentCount?: number;
