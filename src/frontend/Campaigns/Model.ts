@@ -77,6 +77,8 @@ export type CampaignRecipient = {
   campaignId: string; // Partition Key
   recipientPhoneNumberId: string; // Sort Key (phone number or user ID)
   conversationId: string
+  /** Business/account partition — needed for AssociatedToIndex. */
+  associatedTo?: string
   status: WhatsAppMessageStatus;
   customer?: Customer
   sentAt?: number; // Optional timestamp when message was sent
