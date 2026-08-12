@@ -68,6 +68,8 @@ export type Campaign = BaseSubFolder & {
   readCount?: number;
   failedCount?: number;
   optOutCount?: number;
+  /** Set once when "resend all failed" has been used — blocks repeat abuse. */
+  failedResentAt?: number
   expiresAt?: number; // TTL attribute (optional, only if set)
 };
 
