@@ -27,9 +27,11 @@ export {
   getBusinessPlatformLimits,
   getFacebookPlatformLimitErrorMessage,
   getWhatsappPlatformLimitErrorMessage,
+  getWebsitePlatformLimitErrorMessage,
   mergeFacebookPagesById,
   wouldExceedFacebookPlatformLimits,
   wouldExceedWhatsappPlatformLimits,
+  wouldExceedWebsitePlatformLimits,
 } from './plan-platform-limits.js'
 
 export type { PlanAgentLimits } from './plan-agent-limits.js'
@@ -69,7 +71,12 @@ const basePlan = {
     "תמיכה בתקשורת בין סוכנים"
   ],
   description: 'תוכנית זו מתאימה לעסקים שמנהלים פעילות בסיסית במדיה החברתית ורוצים מענה אוטומטי לפוסטים, Stories ו־Reels. ושליחת הודעות קמפיין להמונים.',
-  platformLimits: { maxWhatsappPlatforms: 1, maxFacebookConnections: 1 },
+  platformLimits: {
+    maxWhatsappPlatforms: 1,
+    maxFacebookConnections: 1,
+    maxWebsiteConnections: 1,
+    exclusiveWhatsappOrWebsite: true,
+  },
 }
 
 const extendedPlan: Plan = {
@@ -93,7 +100,11 @@ const extendedPlan: Plan = {
     "משימות"
   ],
   description: 'תוכנית זו מתאימה לעסקים המעוניינים בצ\'אט בוטים קלאסים (שאלות תשובות), ניהול מסעות לקוח וכלי אוטומציה מבוססי AI לשיפור השירות והמעורבות.',
-  platformLimits: { maxWhatsappPlatforms: 3, maxFacebookConnections: 2 },
+  platformLimits: {
+    maxWhatsappPlatforms: 3,
+    maxFacebookConnections: 2,
+    maxWebsiteConnections: 1,
+  },
 }
 
 //@ts-expect-error
@@ -118,6 +129,10 @@ export const Plans: { [ key in PlanType ]: Plan } = {
       "חיבור למערכת ChatGPT"
     ],
     description: 'תוכנית זו מתאימה לעסקים מתקדמים שמבקשים כלים חכמים לניהול שיחות, סוכני AI וחיבורים למערכות מתקדמות כמו ChatGPT. סוכני AI מסוגלים לקבוע פגישות, לתת מידע על סטטוס הזמנה, לספק מידע על העסק ועוד המון אפשריות.',
-    platformLimits: { maxWhatsappPhoneNumbers: 5, maxFacebookConnections: 5 },
+    platformLimits: {
+      maxWhatsappPhoneNumbers: 5,
+      maxFacebookConnections: 5,
+      maxWebsiteConnections: 3,
+    },
   }
 }

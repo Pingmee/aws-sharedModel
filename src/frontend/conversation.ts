@@ -174,7 +174,7 @@ export type Customer = BaseCustomerSchemeKeys & {
   lastActiveAt: number
   email?: string
   description?: string // Free-text note controlled by the business
-  platform?: PlatformType.whatsapp | PlatformType.instagram | PlatformType.facebookMessenger
+  platform?: PlatformType.whatsapp | PlatformType.instagram | PlatformType.facebookMessenger | PlatformType.web
 }
 
 export interface ConversationTag {
@@ -342,6 +342,7 @@ export enum PlatformType {
   facebookMessenger = 'facebookMessenger',
   pingmee = 'pingmee',
   instagram = 'instagram',
+  web = 'web',
 }
 
 export type Platform = {
@@ -368,6 +369,22 @@ export type PlatformFacebookMessenger = {
   access_token: string,
   instagram_business_account_id?: string
   instagram_username?: string
+}
+
+/** Embed options baked into the website widget `<script>` tag (extensible). */
+export type PlatformWebEmbedSettings = {
+  /** Header / bubble greeting shown to visitors */
+  greeting?: string
+  /** Accent / chrome color (CSS hex) */
+  primaryColor?: string
+}
+
+/** Connected website chat site (one selectable line per site URL). */
+export type PlatformWeb = {
+  siteUrl: string
+  /** Display name in inbox platform picker and widget header */
+  name?: string
+  settings?: PlatformWebEmbedSettings
 }
 
 export type UserSchemaKeys = {

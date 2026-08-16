@@ -5,5 +5,5 @@ export interface SelectablePlatform {
   displayId: string
   name: string
   associatedBusinessId: string
-  type: PlatformType.instagram | PlatformType.facebookMessenger | PlatformType.whatsapp | PlatformType.greenAPI
+  type: PlatformType.instagram | PlatformType.facebookMessenger | PlatformType.whatsapp | PlatformType.greenAPI | PlatformType.web
 }
