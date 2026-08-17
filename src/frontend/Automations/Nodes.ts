@@ -41,6 +41,7 @@ export enum NodeType {
   whatsapp = "whatsapp",
   facebookMessenger = "facebookMessenger",
   instagram = "instagram",
+  webchat = "webchat",
   assignTags = "assignTags",
   assignAgents = "assignAgent",
   updateConversation = 'updateConversation',

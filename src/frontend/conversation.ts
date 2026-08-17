@@ -373,10 +373,25 @@ export type PlatformFacebookMessenger = {
 
 /** Embed options baked into the website widget `<script>` tag (extensible). */
 export type PlatformWebEmbedSettings = {
-  /** Header / bubble greeting shown to visitors */
+  /** First automated message shown when the thread is empty */
   greeting?: string
   /** Accent / chrome color (CSS hex) */
   primaryColor?: string
+  /** Launcher + panel side of the viewport */
+  position?: 'left' | 'right'
+  /** Widget header title */
+  title?: string
+  /** Widget header subtitle */
+  subtitle?: string
+  /**
+   * Widget chrome: light, dark, or auto (follow the host page / system).
+   * Auto uses the embed site's dark class / color-scheme when present.
+   */
+  appearance?: 'light' | 'dark' | 'auto'
+  /** Message list and composer text direction */
+  direction?: 'ltr' | 'rtl'
+  /** Composer input placeholder */
+  placeholder?: string
 }
 
 /** Connected website chat site (one selectable line per site URL). */
