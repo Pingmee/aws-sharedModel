@@ -3,6 +3,8 @@ import { TemplateInformation } from './template-creation-model.js'
 
 export enum WhatsAppMessageStatus {
   pending = "pending",
+  /** Recipient is actively being sent (WhatsApp call in flight). */
+  inProcess = "inProcess",
   failed = "failed",
   sent = "sent",
   delivered = "delivered",
@@ -11,7 +13,9 @@ export enum WhatsAppMessageStatus {
   standby = "standby",
   optOut = "optOut",
   tooManyRequests = "tooManyRequests",
-  scheduled = "scheduled"
+  scheduled = "scheduled",
+  /** Skipped because the same campaign content was already delivered. */
+  duplicateMessage = "duplicateMessage",
 }
 
 export interface FileMetadata {

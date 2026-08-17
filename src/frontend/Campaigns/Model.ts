@@ -63,15 +63,29 @@ export type Campaign = BaseSubFolder & {
   failedAt?: number
   totalRecipients?: number;
   pendingCount?: number;
+  inProcessCount?: number;
   sentCount?: number;
   deliveredCount?: number;
   readCount?: number;
   failedCount?: number;
   optOutCount?: number;
+  duplicateMessageCount?: number;
+  tooManyRequestsCount?: number;
   /** Set once when "resend all failed" has been used — blocks repeat abuse. */
   failedResentAt?: number
   expiresAt?: number; // TTL attribute (optional, only if set)
 };
+
+/** Recipients that no longer need a send. Used to mark the campaign completed. */
+export function campaignTerminalRecipientCount(campaign: Pick<Campaign,
+  'sentCount' | 'failedCount' | 'optOutCount' | 'duplicateMessageCount' | 'tooManyRequestsCount'
+>): number {
+  return (campaign.sentCount ?? 0)
+    + (campaign.failedCount ?? 0)
+    + (campaign.optOutCount ?? 0)
+    + (campaign.duplicateMessageCount ?? 0)
+    + (campaign.tooManyRequestsCount ?? 0)
+}
 
 export type CampaignRecipient = {
   campaignId: string; // Partition Key
