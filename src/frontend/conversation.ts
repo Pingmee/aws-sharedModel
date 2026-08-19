@@ -392,11 +392,15 @@ export type PlatformWebEmbedSettings = {
   direction?: 'ltr' | 'rtl'
   /** Composer input placeholder */
   placeholder?: string
+  /** Tappable labels shown in an empty thread to start the conversation */
+  starterOptions?: string[]
 }
 
 /** Connected website chat site (one selectable line per site URL). */
 export type PlatformWeb = {
   siteUrl: string
+  /** Unique conversation line id (digits only). */
+  id?: string
   /** Display name in inbox platform picker and widget header */
   name?: string
   settings?: PlatformWebEmbedSettings

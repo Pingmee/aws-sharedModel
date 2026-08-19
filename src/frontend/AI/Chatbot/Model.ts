@@ -1,5 +1,6 @@
 import { BaseSubFolder } from '../../Automations/automations.js'
 import { VectorStoreFile } from 'openai/resources/vector-stores'
+import type { PlatformType } from '../../conversation.js'
 
 export enum Status {
   none,
@@ -40,6 +41,7 @@ export type ChatBotGeneratorModel = {
   audience: string,
   about: string,
   depth: number
+  platformType?: PlatformType
 }
 
 export type LLMResponse = {
