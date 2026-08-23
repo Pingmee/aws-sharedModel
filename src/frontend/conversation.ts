@@ -301,6 +301,12 @@ export type BusinessSettings = {
   isActive: boolean
 
   subscription_id: string
+  /**
+   * Morning (Green Invoice) **client** UUID (`client.id`).
+   * Documents, card tokens, and recurring charges are all queried by this id.
+   * Distinct from `subscription_id`, which is a recurring-charge id.
+   */
+  morningClientId?: string
   subscriptionStartDate?: number
   subscriptionEndDate?: number
   subscriptionPlan?: PlanType
