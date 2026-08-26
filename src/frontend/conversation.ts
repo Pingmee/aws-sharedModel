@@ -400,6 +400,13 @@ export type PlatformWebEmbedSettings = {
   placeholder?: string
   /** Tappable labels shown in an empty thread to start the conversation */
   starterOptions?: string[]
+  /**
+   * Business WhatsApp number for the widget header CTA (digits only, country code included).
+   * When set, the visitor widget shows a button that opens wa.me.
+   */
+  whatsappPhone?: string
+  /** Optional prefilled message when opening WhatsApp from the widget CTA */
+  whatsappMessage?: string
 }
 
 /** Connected website chat site (one selectable line per site URL). */
@@ -458,6 +465,8 @@ export type UserSettings = {
   finishedOverview: boolean
   /** Cursor for product update toasts — updates with createdAt <= this are treated as seen */
   lastSeenProductUpdateAt?: number
+  /** WhatsApp line id to use when a conversation deep link has no phoneNumberId. */
+  defaultWhatsappPhoneNumberId?: string
 }
 
 export type UserFilterOptions = {
