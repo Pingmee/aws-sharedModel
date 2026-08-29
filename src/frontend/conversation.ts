@@ -335,6 +335,23 @@ export type BusinessSettings = {
   platformLimits?: Partial<PlanPlatformLimits>
   /** Extra agent seats purchased on top of the plan default (owner + invited users). */
   additionalAgentsPurchased?: number
+  /**
+   * Last server-computed checkout quote awaiting Morning payment confirmation.
+   * Written by POST /payment/checkout; never trust client prices.
+   */
+  pendingCheckout?: {
+    plan: PlanType
+    planName: string
+    isPaymentYearly: boolean
+    agents: number
+    storageGb: number
+    extraAgents: number
+    extraStorageGb: number
+    priceExVat: number
+    priceIncVat: number
+    description: string
+    createdAt: number
+  }
 }
 
 export type WorkflowsSettings = {

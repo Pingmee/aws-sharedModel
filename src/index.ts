@@ -41,6 +41,7 @@ export * from './frontend/Automations/workflow-duplicate-helpers.js';
 export * from './frontend/Automations/workflow-whatsapp-link-helpers.js';
 
 export * from './frontend/Payment/Model.js';
+export * from './frontend/Payment/plan-checkout-quote.js';
 
 export * from './frontend/Campaigns/Model.js';
 
