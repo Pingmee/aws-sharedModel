@@ -337,7 +337,7 @@ export type BusinessSettings = {
   additionalAgentsPurchased?: number
   /**
    * Last server-computed checkout quote awaiting Morning payment confirmation.
-   * Written by POST /payment/checkout; never trust client prices.
+   * Written by POST /payment/{plan} for catalog plans; never trust client prices.
    */
   pendingCheckout?: {
     plan: PlanType

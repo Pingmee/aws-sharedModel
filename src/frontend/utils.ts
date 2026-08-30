@@ -167,6 +167,16 @@ export function updateAndEncodeCookie(cookieName: string): void {
   }
 }
 
+/**
+ * Drop Google One Tap `g_state` (often raw JSON with `{`/`}`).
+ * serverless-offline/Hapi rejects those cookie values with "Invalid cookie value".
+ */
+export function clearGoogleGStateCookie(): void {
+  const expire = 'Max-Age=0; path=/'
+  document.cookie = `g_state=; ${ expire }`
+  document.cookie = `g_state=; ${ expire }; domain=${ window.location.hostname }`
+}
+
 export const splitIntoChunks = <T,>(arr: T[], size: number): T[][] => {
   const out = [];
   for (let i = 0; i < arr.length; i += size) {
