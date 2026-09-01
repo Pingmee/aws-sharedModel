@@ -333,6 +333,29 @@ export interface WhatsAppErrorMessage {
   };
 }
 
+/** Meta accepted the send but the message could not reach the device. */
+export const WHATSAPP_UNDELIVERABLE_ERROR_CODE = 131026
+
+export function isWhatsAppUndeliverableError(error: unknown): error is WhatsAppErrorMessage {
+  return (
+    error != null &&
+    typeof error === 'object' &&
+    typeof (error as WhatsAppErrorMessage).code === 'number' &&
+    (error as WhatsAppErrorMessage).code === WHATSAPP_UNDELIVERABLE_ERROR_CODE
+  )
+}
+
+/** Count undeliverable outcomes as sent (accepted by Meta), not failed. */
+export function resolveWhatsAppDeliveryStatus(
+  status: WhatsAppMessageStatus,
+  error?: WhatsAppErrorMessage,
+): WhatsAppMessageStatus {
+  if (status === WhatsAppMessageStatus.failed && error && isWhatsAppUndeliverableError(error)) {
+    return WhatsAppMessageStatus.sent
+  }
+  return status
+}
+
 export enum MessageTemplateType {
   whatsapp = 'whatsapp',
   company = 'company',
