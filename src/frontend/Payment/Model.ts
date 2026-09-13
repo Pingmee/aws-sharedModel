@@ -134,5 +134,27 @@ export const Plans: { [ key in PlanType ]: Plan } = {
       maxFacebookConnections: 5,
       maxWebsiteConnections: 3,
     },
-  }
+  },
+  [ PlanType.partner ]: {
+    paymentLinkId: '',
+    yearlyPaymentLinkId: '',
+    name: 'שותפים - Partners',
+    type: PlanType.partner,
+    isActive: true,
+    isPopular: false,
+    monthlyPrice: 999,
+    yearlyPrice: 999 * 11,
+    baseFeatures: [],
+    extraFeatures: [
+      'הרוויחו כסף מעסקים שאתם מצרפים',
+      'עדיפות בבקשות לפיצ׳רים',
+      'תמיכה בעדיפות גבוהה',
+    ],
+    description: 'תוכנית זו מיועדת לשותפים שמביאים עסקים לפלטפורמה ומרוויחים מהם, עם עדיפות בבקשות לפיצ׳רים ובתמיכה.',
+    platformLimits: {
+      maxWhatsappPhoneNumbers: 5,
+      maxFacebookConnections: 5,
+      maxWebsiteConnections: 10,
+    },
+  },
 }

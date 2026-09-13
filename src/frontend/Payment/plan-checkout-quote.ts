@@ -1,6 +1,6 @@
 import { Plans, PlanType } from './Model.js'
 
-export type CheckoutPlanId = PlanType.basic | PlanType.expended | PlanType.expertAI
+export type CheckoutPlanId = PlanType.basic | PlanType.expended | PlanType.expertAI | PlanType.partner
 
 export type PlanAddonConfig = {
   plan: CheckoutPlanId
@@ -44,6 +44,14 @@ export const PLAN_CHECKOUT_ADDONS: Record<CheckoutPlanId, PlanAddonConfig> = {
     includedStorageGb: 16,
     maxStorageGb: 100,
   },
+  [ PlanType.partner ]: {
+    plan: PlanType.partner,
+    includedAgents: 10,
+    canBuyExtraAgents: true,
+    maxAgents: 50,
+    includedStorageGb: 16,
+    maxStorageGb: 100,
+  },
 }
 
 export type CheckoutAddonSelections = {
@@ -79,6 +87,7 @@ const CHECKOUT_PLANS = new Set<string>([
   PlanType.basic,
   PlanType.expended,
   PlanType.expertAI,
+  PlanType.partner,
 ])
 
 export function isCheckoutPlan(plan: string): plan is CheckoutPlanId {
