@@ -63,4 +63,6 @@ export * from './frontend/greenAPI/model.js';
 
 export * from './frontend/Sorting.js';
 
-export * from './frontend/Task.js';
+export * from './frontend/Task.js'
+
+export * from './frontend/Search.js';
