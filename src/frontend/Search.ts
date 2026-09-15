@@ -55,7 +55,10 @@ export type SearchRequest = {
   /** Free-text query (names, phones, title, body). Empty string allowed when only filters are set. */
   q: string
   kinds?: SearchEntityKind[]
+  /** Page size (default 25, max 100). Prefer 50 for inbox search. */
   limit?: number
+  /** Offset into the result set for pagination (OpenSearch `from`). */
+  from?: number
   filters?: SearchFilters
 }
 
@@ -97,4 +100,6 @@ export type SearchResponse = {
   customers: SearchCustomerHit[]
   conversations: SearchConversationHit[]
   tasks: SearchTaskHit[]
+  /** True when this page was full — caller can request the next `from`. */
+  hasMore?: boolean
 }
