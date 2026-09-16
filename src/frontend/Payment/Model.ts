@@ -28,10 +28,13 @@ export {
   getFacebookPlatformLimitErrorMessage,
   getWhatsappPlatformLimitErrorMessage,
   getWebsitePlatformLimitErrorMessage,
+  getEmailPlatformLimitErrorMessage,
   mergeFacebookPagesById,
+  mergeEmailAccountsByAddress,
   wouldExceedFacebookPlatformLimits,
   wouldExceedWhatsappPlatformLimits,
   wouldExceedWebsitePlatformLimits,
+  wouldExceedEmailPlatformLimits,
 } from './plan-platform-limits.js'
 
 export type { PlanAgentLimits } from './plan-agent-limits.js'
@@ -75,6 +78,7 @@ const basePlan = {
     maxWhatsappPlatforms: 1,
     maxFacebookConnections: 1,
     maxWebsiteConnections: 1,
+    maxEmailConnections: 1,
     exclusiveWhatsappOrWebsite: true,
   },
 }
@@ -104,6 +108,7 @@ const extendedPlan: Plan = {
     maxWhatsappPlatforms: 3,
     maxFacebookConnections: 2,
     maxWebsiteConnections: 1,
+    maxEmailConnections: 2,
   },
 }
 
@@ -133,6 +138,7 @@ export const Plans: { [ key in PlanType ]: Plan } = {
       maxWhatsappPhoneNumbers: 5,
       maxFacebookConnections: 5,
       maxWebsiteConnections: 3,
+      maxEmailConnections: 5,
     },
   },
   [ PlanType.partner ]: {
@@ -155,6 +161,7 @@ export const Plans: { [ key in PlanType ]: Plan } = {
       maxWhatsappPhoneNumbers: 5,
       maxFacebookConnections: 5,
       maxWebsiteConnections: 10,
+      maxEmailConnections: 10,
     },
   },
 }

@@ -130,6 +130,19 @@ export type Message = BaseMessageSchemeKeys & {
 
   /** Meta quick-reply / interactive button payload (distinct from visible button label in `message`). */
   buttonPayload?: string
+
+  /** Email-channel metadata (Gmail / Outlook) when messagePlatform is PlatformType.email. */
+  email?: {
+    subject?: string
+    from?: string
+    to?: string[]
+    cc?: string[]
+    bcc?: string[]
+    rfcMessageId?: string
+    inReplyTo?: string
+    references?: string[]
+    htmlBody?: string
+  }
 }
 
 export interface MessagesDBScheme {
@@ -174,7 +187,7 @@ export type Customer = BaseCustomerSchemeKeys & {
   lastActiveAt: number
   email?: string
   description?: string // Free-text note controlled by the business
-  platform?: PlatformType.whatsapp | PlatformType.instagram | PlatformType.facebookMessenger | PlatformType.web
+  platform?: PlatformType.whatsapp | PlatformType.instagram | PlatformType.facebookMessenger | PlatformType.web | PlatformType.email
 }
 
 export interface ConversationTag {
@@ -366,6 +379,7 @@ export enum PlatformType {
   pingmee = 'pingmee',
   instagram = 'instagram',
   web = 'web',
+  email = 'email',
 }
 
 export type Platform = {
@@ -434,6 +448,24 @@ export type PlatformWeb = {
   /** Display name in inbox platform picker and widget header */
   name?: string
   settings?: PlatformWebEmbedSettings
+}
+
+/**
+ * Connected email account (Gmail or Outlook) under one PlatformType.email.
+ * ConnectedPlatforms may store an array of these accounts in `Platform.data`.
+ * Distinct from LoginPlatform.email (auth login method).
+ */
+export type PlatformEmail = {
+  provider: 'gmail' | 'outlook'
+  emailAddress: string
+  access_token: string
+  refresh_token: string
+  /** Unix epoch ms when the access token expires. */
+  expires_at: number
+  googleAccountId?: string
+  microsoftUserId?: string
+  /** Display name for inbox / platform picker */
+  name?: string
 }
 
 export type UserSchemaKeys = {

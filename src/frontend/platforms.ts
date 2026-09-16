@@ -5,7 +5,7 @@ export interface SelectablePlatform {
   displayId: string
   name: string
   associatedBusinessId: string
-  type: PlatformType.instagram | PlatformType.facebookMessenger | PlatformType.whatsapp | PlatformType.greenAPI | PlatformType.web
+  type: PlatformType.instagram | PlatformType.facebookMessenger | PlatformType.whatsapp | PlatformType.greenAPI | PlatformType.web | PlatformType.email
 }
 
 export const PLATFORM_DISPLAY_NAMES: Partial<Record<PlatformType, string>> = {
@@ -15,6 +15,7 @@ export const PLATFORM_DISPLAY_NAMES: Partial<Record<PlatformType, string>> = {
   [ PlatformType.web ]: 'Pingmee Website',
   [ PlatformType.pingmee ]: 'Pingmee',
   [ PlatformType.fireberry ]: 'Fireberry',
+  [ PlatformType.email ]: 'Email',
 }
 
 export function platformDisplayName(platform: PlatformType): string {
@@ -27,4 +28,5 @@ export const PINGMEE_TRIGGER_PLATFORMS: PlatformType[] = [
   PlatformType.facebookMessenger,
   PlatformType.instagram,
   PlatformType.web,
+  PlatformType.email,
 ]

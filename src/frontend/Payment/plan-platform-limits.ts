@@ -1,5 +1,5 @@
 import { PlanType } from './Model.js'
-import { PlatformFacebookMessenger, PlatformWhatsapp } from '../conversation.js'
+import { PlatformEmail, PlatformFacebookMessenger, PlatformWhatsapp } from '../conversation.js'
 
 export type PlanPlatformLimits = {
   /** Max WhatsApp Business accounts. Applies when set. */
@@ -10,6 +10,8 @@ export type PlanPlatformLimits = {
   maxFacebookConnections: number
   /** Max website chat sites. Applies when set. */
   maxWebsiteConnections?: number
+  /** Max connected email accounts (Gmail / Outlook under PlatformType.email). */
+  maxEmailConnections?: number
   /**
    * Basic/trial: WhatsApp and website chat share one slot —
    * the business can connect one WhatsApp OR one website, not both.
@@ -24,6 +26,7 @@ export function getPlanPlatformLimits(plan?: PlanType): PlanPlatformLimits {
         maxWhatsappPlatforms: 1,
         maxFacebookConnections: 1,
         maxWebsiteConnections: 1,
+        maxEmailConnections: 1,
         exclusiveWhatsappOrWebsite: true,
       }
     case PlanType.expended:
@@ -31,24 +34,28 @@ export function getPlanPlatformLimits(plan?: PlanType): PlanPlatformLimits {
         maxWhatsappPlatforms: 3,
         maxFacebookConnections: 2,
         maxWebsiteConnections: 1,
+        maxEmailConnections: 2,
       }
     case PlanType.expertAI:
       return {
         maxWhatsappPhoneNumbers: 5,
         maxFacebookConnections: 5,
         maxWebsiteConnections: 3,
+        maxEmailConnections: 5,
       }
     case PlanType.partner:
       return {
         maxWhatsappPhoneNumbers: 5,
         maxFacebookConnections: 5,
         maxWebsiteConnections: 10,
+        maxEmailConnections: 10,
       }
     case PlanType.trial:
       return {
         maxWhatsappPlatforms: 1,
         maxFacebookConnections: 1,
         maxWebsiteConnections: 1,
+        maxEmailConnections: 1,
         exclusiveWhatsappOrWebsite: true,
       }
     default:
@@ -56,6 +63,7 @@ export function getPlanPlatformLimits(plan?: PlanType): PlanPlatformLimits {
         maxWhatsappPlatforms: 1,
         maxFacebookConnections: 1,
         maxWebsiteConnections: 1,
+        maxEmailConnections: 1,
         exclusiveWhatsappOrWebsite: true,
       }
   }
@@ -76,6 +84,7 @@ export function getBusinessPlatformLimits(
     maxWhatsappPhoneNumbers: overrides.maxWhatsappPhoneNumbers ?? planLimits.maxWhatsappPhoneNumbers,
     maxFacebookConnections: overrides.maxFacebookConnections ?? planLimits.maxFacebookConnections,
     maxWebsiteConnections: overrides.maxWebsiteConnections ?? planLimits.maxWebsiteConnections,
+    maxEmailConnections: overrides.maxEmailConnections ?? planLimits.maxEmailConnections,
     exclusiveWhatsappOrWebsite: overrides.exclusiveWhatsappOrWebsite ?? planLimits.exclusiveWhatsappOrWebsite,
   }
 }
@@ -196,4 +205,41 @@ export function getWebsitePlatformLimitErrorMessage(
   }
 
   return 'Your plan does not allow adding more website chat connections. Upgrade your plan to add more.'
+}
+
+export function mergeEmailAccountsByAddress(
+  existing: PlatformEmail[] = [],
+  incoming: PlatformEmail[] = [],
+): PlatformEmail[] {
+  const map = new Map<string, PlatformEmail>()
+  existing.forEach(item => map.set(item.emailAddress.toLowerCase(), item))
+  incoming.forEach(item =>
+    map.set(item.emailAddress.toLowerCase(), { ...(map.get(item.emailAddress.toLowerCase()) ?? {}), ...item }),
+  )
+  return Array.from(map.values())
+}
+
+export function wouldExceedEmailPlatformLimits(
+  limits: PlanPlatformLimits,
+  existingAccounts: PlatformEmail[],
+  incomingAccounts: PlatformEmail[],
+): boolean {
+  if (limits.maxEmailConnections == null) {
+    return false
+  }
+  const mergedAccounts = mergeEmailAccountsByAddress(existingAccounts, incomingAccounts)
+  return mergedAccounts.length > limits.maxEmailConnections
+}
+
+export function getEmailPlatformLimitErrorMessage(
+  plan?: PlanType,
+  overrides?: Partial<PlanPlatformLimits>,
+): string {
+  const limits = getBusinessPlatformLimits(plan, overrides)
+
+  if (limits.maxEmailConnections != null) {
+    return `Your plan allows up to ${ limits.maxEmailConnections } email connection${ limits.maxEmailConnections === 1 ? '' : 's' }. Upgrade your plan to add more.`
+  }
+
+  return 'Your plan does not allow adding more email connections. Upgrade your plan to add more.'
 }
