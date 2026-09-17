@@ -141,6 +141,8 @@ export type Message = BaseMessageSchemeKeys & {
     rfcMessageId?: string
     inReplyTo?: string
     references?: string[]
+    /** Gmail threadId / Outlook conversationId */
+    threadId?: string
     htmlBody?: string
   }
 }
@@ -283,6 +285,11 @@ export interface Conversation extends UpdatableConversationKeys {
   isSelected?: boolean
   /** Frontend-only: keep in unread filter while selected after opening with unreadCount > 0. */
   retainInUnreadFilterWhileSelected?: boolean
+
+  /** Canonical email thread subject (normalized, without Re:/Fwd: prefix). */
+  emailSubject?: string
+  /** Union of CC addresses seen on this email thread. */
+  emailCc?: string[]
 }
 
 export type AISettings = {
