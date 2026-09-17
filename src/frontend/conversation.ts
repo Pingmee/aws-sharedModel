@@ -82,6 +82,21 @@ export enum InformativeMessageType {
   conversationModeSwitched = 'conversationModeSwitched'
 }
 
+/** Email-channel metadata (Gmail / Outlook) when messagePlatform is PlatformType.email. */
+export type MessageEmail = {
+  subject?: string
+  from?: string
+  to?: string[]
+  cc?: string[]
+  bcc?: string[]
+  rfcMessageId?: string
+  inReplyTo?: string
+  references?: string[]
+  /** Gmail threadId / Outlook conversationId */
+  threadId?: string
+  htmlBody?: string
+}
+
 export type Message = BaseMessageSchemeKeys & {
   sender: string
   receiver: string
@@ -131,20 +146,7 @@ export type Message = BaseMessageSchemeKeys & {
   /** Meta quick-reply / interactive button payload (distinct from visible button label in `message`). */
   buttonPayload?: string
 
-  /** Email-channel metadata (Gmail / Outlook) when messagePlatform is PlatformType.email. */
-  email?: {
-    subject?: string
-    from?: string
-    to?: string[]
-    cc?: string[]
-    bcc?: string[]
-    rfcMessageId?: string
-    inReplyTo?: string
-    references?: string[]
-    /** Gmail threadId / Outlook conversationId */
-    threadId?: string
-    htmlBody?: string
-  }
+  email?: MessageEmail
 }
 
 export interface MessagesDBScheme {
