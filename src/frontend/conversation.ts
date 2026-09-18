@@ -95,6 +95,8 @@ export type MessageEmail = {
   /** Gmail threadId / Outlook conversationId */
   threadId?: string
   htmlBody?: string
+  /** When true, do not attach In-Reply-To / thread from prior conversation messages. */
+  forceNewThread?: boolean
 }
 
 export type Message = BaseMessageSchemeKeys & {
@@ -152,6 +154,8 @@ export type Message = BaseMessageSchemeKeys & {
 export interface MessagesDBScheme {
   phoneNumberId: string
   targetPhoneNumberId: string
+  /** Prefer this when set (email thread keys are mailbox#threadId, not mailbox#customer). */
+  participantsIdentifiers?: string
   startKey: BaseMessageSchemeKeys | undefined,
   limit: number
 }
