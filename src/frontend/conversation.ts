@@ -463,6 +463,8 @@ export type PlatformWeb = {
   settings?: PlatformWebEmbedSettings
 }
 
+export type PlatformEmailAuthStatus = 'ok' | 'needs_reconnect'
+
 /**
  * Connected email account (Gmail or Outlook) under one PlatformType.email.
  * ConnectedPlatforms may store an array of these accounts in `Platform.data`.
@@ -479,6 +481,13 @@ export type PlatformEmail = {
   microsoftUserId?: string
   /** Display name for inbox / platform picker */
   name?: string
+  /**
+   * Set to `needs_reconnect` when refresh_token is revoked / invalid.
+   * Cleared to `ok` on successful OAuth reconnect or token refresh.
+   */
+  authStatus?: PlatformEmailAuthStatus
+  /** Unix epoch ms when auth last failed (optional). */
+  authErrorAt?: number
 }
 
 export type UserSchemaKeys = {
