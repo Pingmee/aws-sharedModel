@@ -204,6 +204,11 @@ export interface ConversationTag {
   color: string
   associatedTo: string
   isSelected?: boolean
+  /**
+   * Cached Gmail user-label ids per connected mailbox (lowercase email).
+   * Used for bidirectional tag ↔ Gmail label sync (justifies `gmail.modify`).
+   */
+  gmailLabelByMailbox?: Record<string, string>
 }
 
 export interface ConversationStatus {
@@ -538,6 +543,8 @@ export type UserSettings = {
   lastSeenProductUpdateAt?: number
   /** WhatsApp line id to use when a conversation deep link has no phoneNumberId. */
   defaultWhatsappPhoneNumberId?: string
+  /** Platform ids muted for web push. Absent/empty = all platforms enabled. */
+  pushDisabledPlatformIds?: string[]
 }
 
 export type UserFilterOptions = {
