@@ -301,6 +301,11 @@ export interface Conversation extends UpdatableConversationKeys {
   emailSubject?: string
   /** Union of CC addresses seen on this email thread. */
   emailCc?: string[]
+  /**
+   * Whether the first message on this email thread was sent from the mailbox (outgoing).
+   * Set once with if_not_exists so the conversation list can show origin without loading messages.
+   */
+  emailOriginOutgoing?: boolean
 }
 
 export type AISettings = {
