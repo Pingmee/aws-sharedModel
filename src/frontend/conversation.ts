@@ -315,6 +315,27 @@ export type AISettings = {
   autoRenewable: boolean
   apiToken?: string
   baseInstructions?: string
+  /**
+   * Optional auto top-up when remaining AI tokens fall to `thresholdPercent` or below.
+   * At most one config per business — create/update the same object.
+   */
+  autoCharge?: AiTokenAutoCharge
+}
+
+/** Remaining-token thresholds available for AI auto top-up. */
+export type AiTokenAutoChargeThresholdPercent = 0 | 10 | 25
+
+export type AiTokenAutoCharge = {
+  /** ILS amount charged via Morning one-time recurring when the threshold is crossed. */
+  amount: number
+  /** Charge when remaining pool % crosses from above this value to at/below it. */
+  thresholdPercent: AiTokenAutoChargeThresholdPercent
+  /** User consented to automatic charges. */
+  consented: boolean
+  consentedAt?: number
+  enabled: boolean
+  /** Last successful auto-charge (unix seconds) — used for cooldown / audit. */
+  lastChargedAt?: number
 }
 
 export type StorageSettings = {
