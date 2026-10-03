@@ -73,6 +73,11 @@ export type Campaign = BaseSubFolder & {
   tooManyRequestsCount?: number;
   /** Set once when "resend all failed" has been used — blocks repeat abuse. */
   failedResentAt?: number
+  /**
+   * When true, campaign send path skips WhatsApp and mocks sent→delivered→read
+   * for load-testing queues with fake phone numbers.
+   */
+  dryRun?: boolean
   expiresAt?: number; // TTL attribute (optional, only if set)
 };
 
