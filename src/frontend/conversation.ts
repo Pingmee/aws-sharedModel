@@ -158,6 +158,7 @@ export interface MessagesDBScheme {
   participantsIdentifiers?: string
   startKey: BaseMessageSchemeKeys | undefined,
   limit: number
+  resetConversationUnreadCount?: boolean
 }
 
 export type ConnectedPhoneBaseInformation = {
