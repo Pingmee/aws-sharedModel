@@ -74,8 +74,11 @@ export type Campaign = BaseSubFolder & {
    * which drops as messages are sent and would break execute/retry.
    */
   audienceMaterializedCount?: number
-  /** Completed materialize job offsets, e.g. `{ "o0": true, "o500": true }`. */
-  materializeOffsets?: Record<string, boolean>
+  /**
+   * String-set of completed materialize job offset keys (`o0`, `o500`, …).
+   * Stored as a top-level SS — nested map paths fail in DynamoDB when the parent is missing.
+   */
+  materializeCompletedOffsets?: string[]
   inProcessCount?: number;
   sentCount?: number;
   deliveredCount?: number;
