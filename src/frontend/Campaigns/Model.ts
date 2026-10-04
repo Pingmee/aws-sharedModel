@@ -74,7 +74,7 @@ export type Campaign = BaseSubFolder & {
    * which drops as messages are sent and would break execute/retry.
    */
   audienceMaterializedCount?: number
-  /** Completed materialize job offsets, e.g. `{ "0": true, "500": true }`. */
+  /** Completed materialize job offsets, e.g. `{ "o0": true, "o500": true }`. */
   materializeOffsets?: Record<string, boolean>
   inProcessCount?: number;
   sentCount?: number;
