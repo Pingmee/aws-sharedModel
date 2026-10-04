@@ -63,6 +63,19 @@ export type Campaign = BaseSubFolder & {
   failedAt?: number
   totalRecipients?: number;
   pendingCount?: number;
+  /**
+   * Set when send batches have been enqueued after materialize finishes.
+   * Prevents a second materialize worker from double-enqueueing FIFO sends.
+   */
+  sendsEnqueued?: boolean
+  /**
+   * Audience IDs processed by completed materialize jobs (idempotent per offset).
+   * Send kickoff waits until this reaches `totalRecipients` — not pending+optOut,
+   * which drops as messages are sent and would break execute/retry.
+   */
+  audienceMaterializedCount?: number
+  /** Completed materialize job offsets, e.g. `{ "0": true, "500": true }`. */
+  materializeOffsets?: Record<string, boolean>
   inProcessCount?: number;
   sentCount?: number;
   deliveredCount?: number;
