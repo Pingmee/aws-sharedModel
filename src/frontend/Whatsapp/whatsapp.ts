@@ -305,6 +305,8 @@ export interface WhatsAppPhoneNumber extends PhoneNumber {
   }
   isCoexistence?: boolean
   coexistenceOnboarding?: WhatsAppCoexistenceStatus
+  /** Set when Meta reports the Business app coexistence link is off. Cleared on ACCOUNT_RECONNECTED. */
+  coexistenceDisconnected?: boolean
 }
 
 export enum GreenAPIStateInstance {
