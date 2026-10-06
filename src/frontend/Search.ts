@@ -1,3 +1,5 @@
+import type { Task } from './Task.js'
+
 export type SearchEntityKind = 'customer' | 'conversation' | 'task'
 
 /** Lean indexed document — searchable text + structured filter fields (not full Dynamo JSON). */
@@ -49,6 +51,21 @@ export type SearchFilters = {
   createdAtTo?: number
   dueDateFrom?: number
   dueDateTo?: number
+  /** Task timestamps are Unix seconds. */
+  statusCaseExclude?: string | string[]
+  phoneNumberIdExclude?: string
+  participantsIdentifiers?: string[]
+  includeUnassignedAgents?: boolean
+  overdue?: boolean
+  titleContains?: string
+  titleEquals?: string
+  titleExclude?: string
+  bodyContains?: string
+  bodyExclude?: string
+  createdAtExclude?: number
+  createdAtExcludeFrom?: number
+  createdAtExcludeTo?: number
+  dueDateExclude?: number
 }
 
 export type SearchRequest = {
@@ -92,6 +109,8 @@ export type SearchTaskHit = {
   customerNickname?: string
   phoneNumber?: string
   statusCase?: string
+  /** DynamoDB task for this hit, loaded in the search request. */
+  task?: Task
 }
 
 export type SearchHit = SearchCustomerHit | SearchConversationHit | SearchTaskHit
