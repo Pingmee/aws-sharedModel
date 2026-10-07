@@ -315,7 +315,8 @@ export enum GreenAPIStateInstance {
   restricted = "sleepMode",
   blocked = "blocked",
   unavailable = "starting",
-  other = "yellowCard"
+  other = "yellowCard",
+  suspended = "suspended"
 }
 
 export interface GreenAPIPhoneNumber extends PhoneNumber {
