@@ -38,6 +38,8 @@ export type ExtractedUserJWTPayload = {
   user: User
   iat: number;
   exp: number;
+  /** Present on short-lived WebSocket connect tickets from /authWsTicket. */
+  purpose?: 'websocket'
 };
 
 export type BaseMessageSchemeKeys = {
