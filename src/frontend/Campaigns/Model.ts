@@ -45,6 +45,11 @@ export type Campaign = BaseSubFolder & {
   status: CampaignStatus;
   whenToSendMessage: TimeOption
   source: AudienceSource
+  /**
+   * ISO region (IL, US, …) used when a recipient number has no calling code.
+   * Numbers that already include one keep it.
+   */
+  audienceCountry?: string
 
   //(whatsapp - phoneNumberId, facebook - pageId)
   associatedToBusinessId: string
