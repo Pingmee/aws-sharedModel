@@ -37,9 +37,11 @@ export interface FilterOption {
 export type ExtractedUserJWTPayload = {
   user: User
   iat: number;
-  exp: number;
-  /** Present on short-lived WebSocket connect tickets from /authWsTicket. */
-  purpose?: 'websocket'
+  exp?: number;
+  /** Server-side session id. Present on login, refresh, and websocket tickets. */
+  sid?: string
+  /** websocket: short-lived connect ticket. invite: agent invite link, no session row. */
+  purpose?: 'websocket' | 'invite'
 };
 
 export type BaseMessageSchemeKeys = {
