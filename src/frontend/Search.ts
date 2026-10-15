@@ -53,6 +53,7 @@ export type SearchFilters = {
   dueDateTo?: number
   /** Task timestamps are Unix seconds. */
   statusCaseExclude?: string | string[]
+  answerModeExclude?: string | string[]
   phoneNumberIdExclude?: string
   participantsIdentifiers?: string[]
   includeUnassignedAgents?: boolean
@@ -66,6 +67,8 @@ export type SearchFilters = {
   createdAtExcludeFrom?: number
   createdAtExcludeTo?: number
   dueDateExclude?: number
+  updatedAtExcludeFrom?: number
+  updatedAtExcludeTo?: number
 }
 
 export type SearchRequest = {
