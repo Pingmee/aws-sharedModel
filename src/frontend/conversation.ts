@@ -22,7 +22,8 @@ export enum FilterOptionType {
   unassigned = 'unassigned',
   unread = 'unread',
   new = 'new',
-  all = 'all'
+  all = 'all',
+  groups = 'groups'
 }
 
 export interface FilterOption {
@@ -149,6 +150,9 @@ export type Message = BaseMessageSchemeKeys & {
   buttonPayload?: string
 
   email?: MessageEmail
+
+  /** When message is in a group: platform participant id of the human sender */
+  groupParticipantId?: string
 }
 
 export interface MessagesDBScheme {
@@ -230,9 +234,26 @@ export type LanguageInformation = {
   autoTranslate: boolean
 }
 
-export interface ConversationGroup {
+/** Platform-agnostic group participant (e.g. WhatsApp JID via Green API or Meta). */
+export type ConversationGroupParticipant = {
+  /** Platform-native participant id (e.g. WhatsApp JID `...@c.us`) */
+  id: string
+  name?: string
+  phoneNumber?: string
+  username?: string
+  isAdmin?: boolean
+  isSuperAdmin?: boolean
+  avatarUrl?: string
+  /** Optional secondary id (e.g. WhatsApp LID) — keep generic */
+  lid?: string
+}
+
+export type ConversationGroup = {
   id: string
   name: string
+  participants?: ConversationGroupParticipant[]
+  /** Unix seconds or ms when participants were last refreshed — optional */
+  participantsUpdatedAt?: number
 }
 
 export enum UpdateConversationAction {
