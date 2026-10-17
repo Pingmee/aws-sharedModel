@@ -22,7 +22,8 @@ export enum FilterOptionType {
   unassigned = 'unassigned',
   unread = 'unread',
   new = 'new',
-  all = 'all'
+  all = 'all',
+  groups = 'groups'
 }
 
 export interface FilterOption {
