@@ -71,6 +71,13 @@ export type SearchFilters = {
   updatedAtExcludeTo?: number
 }
 
+export type SearchSortField = 'updatedAt' | 'createdAt' | 'dueDate'
+
+export type SearchSort = {
+  field: SearchSortField
+  order: 'asc' | 'desc'
+}
+
 export type SearchRequest = {
   /** Free-text query (names, phones, title, body). Empty string allowed when only filters are set. */
   q: string
@@ -80,6 +87,8 @@ export type SearchRequest = {
   /** Offset into the result set for pagination (OpenSearch `from`). */
   from?: number
   filters?: SearchFilters
+  /** OpenSearch sort. Conversation inbox defaults to updatedAt desc when omitted. */
+  sort?: SearchSort[]
 }
 
 export type SearchCustomerHit = {
