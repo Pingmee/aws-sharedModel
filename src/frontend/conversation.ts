@@ -2,6 +2,7 @@ import {
   AttachmentType,
   FileMetadata, SocialComment,
   RichContent,
+  GreenAPIMessageContext,
   WhatsAppMessageContext,
   WhatsAppMessageStatus,
   WhatsAppPhoneNumber, WhatsAppErrorMessage
@@ -128,7 +129,7 @@ export type Message = BaseMessageSchemeKeys & {
   scheduledAt?: number
   error?: WhatsAppErrorMessage
   agentIdentification?: AgentIdentification
-  context?: WhatsAppMessageContext
+  context?: WhatsAppMessageContext | GreenAPIMessageContext
   comment?: SocialComment
   attachment?: FileMetadata
   attachmentBase64?: Base64Attachment

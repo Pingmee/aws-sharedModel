@@ -108,8 +108,18 @@ export interface DeletedMessageData {
 
 export interface QuotedMessageData {
   text?: string
+  textMessage?: string
   stanzaId?: string;
   participant?: string;
+  /** Green API type of the quoted message, for example `textMessage` or `imageMessage`. */
+  typeMessage?: string
+  caption?: string
+  textMessageData?: { textMessage?: string }
+  extendedTextMessageData?: { text?: string; stanzaId?: string }
+  imageMessageData?: { caption?: string }
+  videoMessageData?: { caption?: string }
+  documentMessageData?: { caption?: string }
+  fileMessageData?: { caption?: string }
 }
 
 export interface TemplateMessageData { titleText?: string, footerText?: string, contentText?: string }

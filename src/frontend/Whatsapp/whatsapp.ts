@@ -50,6 +50,15 @@ export enum AttachmentType {
   reaction = 'reaction'
 }
 
+export interface GreenAPIMessageContext extends WhatsAppMessageContext {
+  extra: {
+    type?: string
+    text?: string
+    caption?: string
+    missing?: boolean
+  }
+}
+
 export interface WhatsAppMessageContext {
   from: string
   id: string
