@@ -154,6 +154,11 @@ export type Message = BaseMessageSchemeKeys & {
   /** Meta quick-reply / interactive button payload (distinct from visible button label in `message`). */
   buttonPayload?: string
 
+  /** Set when the AI sends a company saved message. Used to refuse a repeat. */
+  ai?: {
+    fromTemplateMessageId?: string
+  }
+
   email?: MessageEmail
 }
 

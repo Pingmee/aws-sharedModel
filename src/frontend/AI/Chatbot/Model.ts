@@ -77,6 +77,12 @@ export type AIAgentRole = {
   allRequired: boolean
 }
 
+/** A company saved message this agent may send, and the one line that says when. */
+export type AIAgentAllowedCompanyTemplate = {
+  templateId: string
+  sendWhen: string
+}
+
 export type VectorStore = {
   id: string
   files: VectorStoreFile[]
@@ -90,4 +96,12 @@ export type AIAgent = BaseSubFolder & {
   roles: AIAgentRole[]
   profileImage: string
   tokensUsed?: number
+  /** Pass the chat to a person and switch the conversation to manual. Off unless set. */
+  handoff?: boolean
+  /** Apply this business's tags and status. Off unless set. */
+  tagsAndStatus?: boolean
+  /** Create a task linked to this conversation. Off unless set. */
+  tasks?: boolean
+  /** Company saved messages this agent may send. Empty means it cannot send any. */
+  allowedCompanyTemplates?: AIAgentAllowedCompanyTemplate[]
 }
