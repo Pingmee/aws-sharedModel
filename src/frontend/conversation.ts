@@ -285,7 +285,13 @@ export interface Conversation extends UpdatableConversationKeys {
   customerPhoneNumberId: string
   customer: Customer
   createdAt: number
+  /** Sync cursor. Moves when the row changes, including a read, so resume-sync can find it. */
   updatedAt: number
+  /**
+   * Inbox clock and sort time. Set with updatedAt on real activity.
+   * A read freezes the previous value here and only moves updatedAt.
+   */
+  activityAt?: number
   assignedTagIds?: string[]
   assignedAgentIds?: string[]
 
