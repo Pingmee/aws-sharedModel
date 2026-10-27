@@ -83,11 +83,26 @@ export type AIAgentAllowedCompanyTemplate = {
   sendWhen: string
 }
 
+/**
+ * Pingmee-owned original for a vector-store file (S3).
+ * Present only for uploads made after editable KB support — legacy OpenAI-only files omit this.
+ */
+export type VectorStoreFileOrigin = {
+  /** Document id stable across versions (not the OpenAI file id). */
+  documentId: string
+  /** Filename argument passed to Storage.putObject (under the hashed associatedTo prefix). */
+  s3FileName: string
+  version: number
+  displayName: string
+}
+
 export type VectorStore = {
   id: string
   files: VectorStoreFile[]
   required: boolean
   fileNamesMapping: { [key: string]: string }
+  /** OpenAI file id → S3 original. Missing entry ⇒ delete-only (legacy). */
+  fileOrigins?: { [openaiFileId: string]: VectorStoreFileOrigin }
 }
 
 export type AIAgent = BaseSubFolder & {
