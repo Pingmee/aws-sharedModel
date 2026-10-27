@@ -305,6 +305,11 @@ export interface Conversation extends UpdatableConversationKeys {
 
   ai?: {
     tokensUsed?: number
+    /**
+     * Monotonic counter bumped when scheduling a debounced AI reply.
+     * Delayed SQS jobs carry the epoch they were scheduled with; stale jobs drop.
+     */
+    replyEpoch?: number
   }
 
   lastSendMessageFromUser?: number
@@ -326,6 +331,9 @@ export interface Conversation extends UpdatableConversationKeys {
   emailOriginOutgoing?: boolean
 }
 
+/** Default IANA zone for AI “today/tomorrow” and opening-hours reasoning. */
+export const DEFAULT_AI_TIMEZONE = 'Asia/Jerusalem'
+
 export type AISettings = {
   tokens: number
   purchasedTokens: number
@@ -333,6 +341,11 @@ export type AISettings = {
   autoRenewable: boolean
   apiToken?: string
   baseInstructions?: string
+  /**
+   * IANA timezone used when the AI interprets “today” / “tomorrow” and business hours.
+   * Defaults to Asia/Jerusalem when unset.
+   */
+  timezone?: string
   /**
    * Optional auto top-up when remaining AI tokens fall to `thresholdPercent` or below.
    * At most one config per business — create/update the same object.
