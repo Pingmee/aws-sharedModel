@@ -107,6 +107,13 @@ export type VectorStore = {
 
 export type AIAgent = BaseSubFolder & {
   description?: string
+  /**
+   * Reply wording sent as the model temperature.
+   * 0.2 steady, 0.3 natural, 0.6 flexible. Missing means flexible.
+   */
+  temperature?: number
+  /** Customer-reply model. Missing means gpt-4o. */
+  model?: string
   vectorStore?: VectorStore
   roles: AIAgentRole[]
   profileImage: string
