@@ -365,8 +365,18 @@ export type AiTokenAutoCharge = {
   consented: boolean
   consentedAt?: number
   enabled: boolean
-  /** Last successful auto-charge (unix seconds) — used for cooldown / audit. */
+  /** Last successful auto-charge (unix seconds) — audit only. */
   lastChargedAt?: number
+  /** Last claim / charge attempt (unix seconds) — double-charge guard. */
+  lastAttemptAt?: number
+  /** Consecutive failed charge attempts since the last success. */
+  failureCount?: number
+  /** Unix seconds of the last failed charge. */
+  lastFailedAt?: number
+  /** Short Morning/error reason for the last failure (no card data). */
+  lastFailureReason?: string
+  /** Why auto-charge was turned off by the server (e.g. charge_failed). */
+  disabledReason?: string
 }
 
 export type StorageSettings = {
