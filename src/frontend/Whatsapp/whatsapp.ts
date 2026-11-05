@@ -257,6 +257,8 @@ export interface PhoneNumber {
   display_phone_number: string
   verified_name: string
   type: PlatformType.whatsapp | PlatformType.greenAPI
+  /** Last phone-record change (e.g. coexistence disconnect / reconnect). */
+  updatedAt?: number
 }
 
 /** Business-portfolio messaging limit tier from Graph `whatsapp_business_manager_messaging_limit`. */
