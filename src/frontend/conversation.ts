@@ -36,6 +36,8 @@ export interface FilterOption {
   condition: (conversation: Conversation) => boolean
 }
 
+export type JwtTokenUse = 'access' | 'refresh'
+
 export type ExtractedUserJWTPayload = {
   user: User
   iat: number;
@@ -44,6 +46,13 @@ export type ExtractedUserJWTPayload = {
   sid?: string
   /** websocket: short-lived connect ticket. invite: agent invite link, no session row. */
   purpose?: 'websocket' | 'invite'
+  /**
+   * Distinguishes access vs refresh so a refresh JWT cannot authorize as access
+   * even if secrets were misconfigured. Omitted on legacy tokens issued before this claim.
+   */
+  token_use?: JwtTokenUse
+  /** Issuer claim; new tokens use `pingmee`. */
+  iss?: string
 };
 
 export type BaseMessageSchemeKeys = {
