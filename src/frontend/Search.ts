@@ -131,6 +131,13 @@ export type SearchResponse = {
   customers: SearchCustomerHit[]
   conversations: SearchConversationHit[]
   tasks: SearchTaskHit[]
-  /** True when this page was full — caller can request the next `from`. */
+  /** True when another in-window page may exist — never past OpenSearch's 10k `from+size` cap. */
   hasMore?: boolean
+  /** OpenSearch hit total when tracked (conversation list). */
+  total?: number
+  /**
+   * True when pagination stopped at OpenSearch's max result window (~10k), not because
+   * results are exhausted. Callers should not request a deeper `from`.
+   */
+  paginationCapped?: boolean
 }

@@ -301,6 +301,11 @@ export interface Conversation extends UpdatableConversationKeys {
    * A read freezes the previous value here and only moves updatedAt.
    */
   activityAt?: number
+  /**
+   * Monotonic metadata generation. ADD +1 on status / answerMode / agents / tags writes.
+   * Not bumped by messages or unread — used by clients to ignore stale full-row merges.
+   */
+  metaRevision?: number
   assignedTagIds?: string[]
   assignedAgentIds?: string[]
 
