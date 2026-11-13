@@ -217,6 +217,9 @@ export type Customer = BaseCustomerSchemeKeys & {
   email?: string
   description?: string // Free-text note controlled by the business
   platform?: PlatformType.whatsapp | PlatformType.instagram | PlatformType.facebookMessenger | PlatformType.web | PlatformType.email
+  /** Coexistence smb_app_state_sync: false after a business-app contact remove (never hard-delete). */
+  syncedFromBusinessApp?: boolean
+  removedFromBusinessAppAt?: number
 }
 
 export interface ConversationTag {
