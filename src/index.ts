@@ -8,6 +8,8 @@ export * from './frontend/utils.js';
 
 export * from './frontend/normalizePhoneNumber.js';
 
+export * from './frontend/customerDisplayedName.js';
+
 export * from './frontend/dynamicUrl.js';
 
 export * from './frontend/attachmentMime.js';
