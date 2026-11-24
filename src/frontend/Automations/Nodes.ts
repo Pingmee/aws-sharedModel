@@ -157,11 +157,15 @@ export interface IfNodeData extends GeneralNodeData {
 // *depecrated* use updateConversationData
 export interface assignTagsData extends GeneralNodeData {
   selectedTags?: ConversationTag[];
+  /** Missing means add, so saved workflows keep their current behavior. */
+  tagListMode?: 'add' | 'replace';
 }
 
 // *depecrated* use updateConversationData
 export interface assignAgentsData extends GeneralNodeData {
   selectedAgents?: UserPublicInformation[];
+  /** Missing means add, so saved workflows keep their current behavior. */
+  agentListMode?: 'add' | 'replace';
 }
 
 export interface UpdateCustomerData extends GeneralNodeData {
@@ -172,7 +176,11 @@ export interface UpdateCustomerData extends GeneralNodeData {
 
 export interface UpdateConversationData extends GeneralNodeData {
   selectedTags?: ConversationTag[];
+  /** Missing means add, so saved workflows keep their current behavior. */
+  tagListMode?: 'add' | 'replace';
   selectedAgents?: UserPublicInformation[];
+  /** Missing means add, so saved workflows keep their current behavior. */
+  agentListMode?: 'add' | 'replace';
   answerMode?: ConversationAnswerMode
   status?: ConversationStatusCase
   autoTranslation?: LanguageInformation
