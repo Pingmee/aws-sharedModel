@@ -10,6 +10,7 @@ export interface SelectablePlatform {
 
 export const PLATFORM_DISPLAY_NAMES: Partial<Record<PlatformType, string>> = {
   [ PlatformType.whatsapp ]: 'WhatsApp',
+  [ PlatformType.greenAPI ]: 'External WhatsApp API',
   [ PlatformType.facebookMessenger ]: 'Facebook Messenger',
   [ PlatformType.instagram ]: 'Instagram',
   [ PlatformType.web ]: 'Pingmee Website',
