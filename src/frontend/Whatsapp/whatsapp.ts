@@ -112,6 +112,7 @@ export interface RichContent {
     interactiveListData?: InteractiveListData
     referral?: AdReferral
     contacts?: WhatsAppContact[]
+    location?: RichContentLocation
     summary?: AISummary
   }
 }
@@ -207,7 +208,15 @@ export enum TemplateType {
   // Not a template
   referral = 'referral',
   contacts = 'contacts',
+  location = 'location',
   aiSummary = 'aiSummary'
+}
+
+export type RichContentLocation = {
+  nameLocation?: string
+  address?: string
+  latitude: number
+  longitude: number
 }
 
 

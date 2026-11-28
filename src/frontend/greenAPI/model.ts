@@ -13,6 +13,7 @@ export enum TypeWebhook {
 
 export enum TypeIncomingMessage {
   contactMessage = 'contactMessage',
+  contactsArrayMessage = 'contactsArrayMessage',
   textMessage = 'textMessage',
   extendedTextMessage = 'extendedTextMessage',
   reactionMessage = 'reactionMessage',
@@ -25,7 +26,15 @@ export enum TypeIncomingMessage {
   quotedMessage = 'quotedMessage',
   documentMessage = 'documentMessage',
   interactiveButtons = 'interactiveButtons',
-  templateMessage = 'templateMessage'
+  interactiveButtonsReply = 'interactiveButtonsReply',
+  templateMessage = 'templateMessage',
+  locationMessage = 'locationMessage',
+  pollMessage = 'pollMessage',
+  pollUpdateMessage = 'pollUpdateMessage',
+  buttonsResponseMessage = 'buttonsResponseMessage',
+  templateButtonsReplyMessage = 'templateButtonsReplyMessage',
+  listResponseMessage = 'listResponseMessage',
+  groupInviteMessage = 'groupInviteMessage',
 }
 
 export interface InstanceData {
@@ -125,6 +134,76 @@ export interface QuotedMessageData {
 export interface TemplateMessageData { titleText?: string, footerText?: string, contentText?: string }
 export interface InteractiveButtonsData { header?: { type: string, parameters?: string[] }, body?: { text: string }, footer?: string, buttons?: { type: string, text: string }[] }
 
+export interface LocationMessageData {
+  nameLocation?: string
+  address?: string
+  jpegThumbnail?: string
+  latitude: number
+  longitude: number
+  forwardingScore?: number
+  isForwarded?: boolean
+}
+
+export interface ContactsArrayContact {
+  displayName: string
+  vcard: string
+}
+
+export interface ContactsArrayMessageData {
+  contacts: ContactsArrayContact[]
+  forwardingScore?: number
+  isForwarded?: boolean
+}
+
+export interface PollOptionData {
+  optionName: string
+  optionVoters?: string[]
+}
+
+export interface PollMessageData {
+  stanzaId?: string
+  name: string
+  options: PollOptionData[]
+  multipleAnswers?: boolean
+}
+
+export interface ButtonsResponseMessageData {
+  selectedButtonId: string
+  selectedButtonText: string
+  stanzaId?: string
+}
+
+export interface TemplateButtonsReplyMessageData {
+  selectedIndex?: number | string
+  selectedId: string
+  selectedDisplayText: string
+  stanzaId?: string
+}
+
+export interface ListResponseMessageData {
+  title: string
+  listType?: number | string
+  singleSelectReply: string
+  stanzaId?: string
+}
+
+export interface InteractiveButtonsReplyData {
+  titleText?: string
+  contentText?: string
+  footerText?: string
+  buttons?: { type: string, buttonId?: string, buttonText?: string, text?: string }[]
+}
+
+export interface GroupInviteMessageData {
+  groupJid?: string
+  inviteCode?: string
+  inviteExpiration?: string
+  groupName?: string
+  caption?: string
+  name?: string
+  jpegThumbnail?: string
+}
+
 export interface MessageData {
   typeMessage: TypeIncomingMessage;
 
@@ -132,11 +211,21 @@ export interface MessageData {
   extendedTextMessageData?: ExtendedTextMessageData | ReactionMessageData | QuotedMessageData;
   fileMessageData?: FileMessageData;
   contactMessageData?: ContactMessageData;
+  contactsArrayMessageData?: ContactsArrayMessageData;
+  /** Green API sometimes nests contacts under `messageData.contacts` or a nested `messageData`. */
+  contacts?: ContactsArrayContact[];
   editedMessageData?: EditedMessageData;
   deletedMessageData?: DeletedMessageData;
   quotedMessage?: QuotedMessageData;
   templateMessageData?: TemplateMessageData;
   interactiveButtonsData?: InteractiveButtonsData;
+  locationMessageData?: LocationMessageData;
+  pollMessageData?: PollMessageData;
+  buttonsResponseMessage?: ButtonsResponseMessageData;
+  templateButtonReplyMessage?: TemplateButtonsReplyMessageData;
+  listResponseMessage?: ListResponseMessageData;
+  interactiveButtonsReply?: InteractiveButtonsReplyData;
+  groupInviteMessageData?: GroupInviteMessageData;
 }
 
 export interface OutgoingMessageReceivedWebhook {
